@@ -49,13 +49,13 @@ fetch('http://localhost:4567/users/login', {
 
 //-------------------------------------------------------
 
-// To Delete User:
+// To Delete User (SECURED):
 fetch('http://localhost:4567/users/' + userID, {
     method: 'POST',
     headers: {
         'Accept': 'application/json, text/plain, */*',
         'Content-type': 'application/json',
-        'Authorization': 'Bearer ' + token
+        'Authorization': token
     },
     body: JSON.stringify({
         email: email,
