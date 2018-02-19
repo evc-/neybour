@@ -44,11 +44,11 @@ sendData(){
     authenticate(data){
         if(data.message == "Auth successful"){
             this.setState({
-                loggedin:true,
+                loggedin:true
             });
                 var obj = {
                     email:this.state.email,
-                    authorization:"herpderp",
+                    token:data.token,
                     loggedin:true
                 };
             this.props.userInfo(obj);
