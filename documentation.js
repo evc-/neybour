@@ -26,7 +26,8 @@ fetch('http://localhost:4567/users/signup', {
     })
     .then((res) => res.json())
     .then((data) => console.log(data)) 
-// Returns
+// IF Email exists => Returns {message: 'Email already exists'}
+// IF Email unique => Returns {message: 'User created'}
 
 //-------------------------------------------------------
 //-------------------------------------------------------
@@ -45,8 +46,8 @@ fetch('http://localhost:4567/users/login', {
     })
     .then((res) => res.json())
     .then((data) => console.log(data)) 
-// If successful => Returns {message:”Auth failed”}
-// If unsuccessful => Returns {message:”Auth successful”, token: “tokenString”}
+// IF successful => Returns {message: 'Auth failed'}
+// IF unsuccessful => Returns {message: 'Auth successful', token: 'tokenString'}
 
 //-------------------------------------------------------
 //-------------------------------------------------------
