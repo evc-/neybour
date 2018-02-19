@@ -14,16 +14,78 @@ class App extends Component {
         
         this.toggleNavbar = this.toggleNavbar.bind(this);
         this.pushMarkersData = this.pushMarkersData.bind(this);
+        this.shareStory = this.shareStory.bind(this);
+        this.loginModal = this.loginModal.bind(this);
+        this.login = this.login.bind(this);
+        this.handleEmail = this.handleEmail.bind(this);
+        this.handlePass = this.handlePass.bind(this);
+        this.authenticate = this.authenticate.bind(this);
         
         this.state = {
             collapsed: true,
-            markersData:[]
+            markersData:[],
+            loggedin: false,
         };
         
         
         
     }
+    //bare-bones login; use "test@test.com" and "tester" to login
+    login(){
+        var email = this.state.email;
+        var password = this.state.password;
+        fetch('http://localhost:4567/users/login', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        })
+        .then((res) => res.json())
+        .then((data) => this.authenticate(data));
+    }
+    authenticate(data){
+        if(data.message == "Auth successful"){
+            this.setState({
+                loggedin:true,
+                loginModal:false
+            });
+            console.log("You're logged in!");
+        } else {
+            console.log("failed!");
+        }
+    }
     
+    shareStory(){
+        if(!this.state.loggedin){
+            this.setState({
+                loginModal:true
+            });
+        } else {
+            console.log("made post!");
+        }
+    }
+    loginModal(){
+        if(this.state.loggedin === false){
+            this.setState({
+                loginModal:true
+            });
+        }
+    }
+    handleEmail(evt){
+        this.setState({
+            email:evt.target.value
+        });
+    }
+    handlePass(evt){
+        this.setState({
+            password:evt.target.value
+        });
+    }
     pushMarkersData(data){
         var arr = this.state.markersData;
         arr.push(data);
@@ -41,6 +103,17 @@ class App extends Component {
     
     
   render() {
+      var loginModal = null;
+      if (this.state.loginModal){
+          loginModal = (
+            <div>
+              <input type="text" placeholder="username" onChange={this.handleEmail}/>
+              <input type="text" placeholder="password" onChange={this.handlePass}/>
+              <button onClick={this.login}>Go</button>
+              <div>Create Account</div>
+              </div>
+          )
+      }
     return (
       <div className="App">
         
@@ -50,7 +123,7 @@ class App extends Component {
                 <img id="nav-brand"src={require('./img/nav-brand-04.png')} alt="favicon" width="30" height="30" />
         
             </NavbarBrand>
-            <Button id="login-btn">login</Button>
+            <Button id="login-btn" onClick={this.loginModal}>login</Button>
           <NavbarToggler id="toggler" onClick={this.toggleNavbar} className="mr-2" />
           <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav navbar>
@@ -63,7 +136,7 @@ class App extends Component {
             </Nav>
           </Collapse>
         </Navbar>
-        
+        {loginModal}
         <Container id="full-bg" fluid>
             <Row>
                 <Col md="1"></Col>
@@ -74,7 +147,7 @@ class App extends Component {
                     <br />
                     <div className="about-home">Neybour is a place to share your stories, memories, and personal connections to the places and spaces in your neighbourhood. Explore the pins below and read the narratives for ideas of a perfect day in the neighbourhood, and sign in to share your own. </div>
                     <br />
-                    <Button id="sign-up-btn">share your story</Button>
+                    <Button id="sign-up-btn" onClick={this.shareStory}>share your story</Button>
                 </Col>
                 <Col md="6">
                     <img className="img-fluid"src={require('./img/map-placeholder-04.png')}/>
