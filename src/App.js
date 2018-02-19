@@ -6,6 +6,7 @@ import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Bu
 import Narrative from './components/Narrative.js';
 import NarrativePin from './components/NarrativePin.js';
 import HoodCard from './components/HoodCard.js';
+import Login from './components/Login.js';
 
 
 class App extends Component {
@@ -15,137 +16,27 @@ class App extends Component {
         this.toggleNavbar = this.toggleNavbar.bind(this);
         this.pushMarkersData = this.pushMarkersData.bind(this);
         this.shareStory = this.shareStory.bind(this);
-        this.loginModal = this.loginModal.bind(this);
-        this.signupModal = this.signupModal.bind(this);
-        this.login = this.login.bind(this);
-        this.handleEmail = this.handleEmail.bind(this);
-        this.handlePass = this.handlePass.bind(this);
-        this.authenticate = this.authenticate.bind(this);
-        this.signup = this.signup.bind(this);
-        this.signupEmail = this.signupEmail.bind(this);
-        this.signupPass = this.signupPass.bind(this);
-        this.signupName = this.signupName.bind(this);
-        this.signupCheck = this.signupCheck.bind(this);
         
         this.state = {
             collapsed: true,
             markersData:[],
             loggedin: false,
-            respMessage: []
+            respMessage: [],
+            userInfo: [],
+            modal:''
         };
         
         
         
     }
-    //bare-bones login; use "test@test.com" and "tester" to login
-    login(){
-        var email = this.state.email;
-        var password = this.state.password;
-        fetch('http://localhost:4567/users/login', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: email,
-                password: password
-            })
-        })
-        .then((res) => res.json())
-        .then((data) => this.authenticate(data));
+    shareStory(){
+        console.log("share story!");
     }
-    authenticate(data){
-        if(data.message == "Auth successful"){
-            this.setState({
-                loggedin:true,
-                modal:""
-            });
-            console.log("You're logged in!");
-        } else {
-            console.log("failed!");
-        }
-    }
-    signup(){
-        let name = this.state.signupName;
-        let password = this.state.signupPass;
-        let email = this.state.signupEmail;
-        console.log(name, email, password);
-        fetch('http://localhost:4567/users/signup', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-        'Content-type': 'application/json'
-        },
-        body: JSON.stringify({
-            email: email,
-            password: password,
-            name: name
-  })
-})
-.then((res) => res.json())
-//.then((data) => console.log(data))
-.then((data) => this.signupCheck(data))
+
+    userInfo(data){
+        console.log(data);
     }
     
-signupCheck(obj){
-    if(obj.error){
-        console.log("failed");
-    } else {
-        console.log(obj.message);
-        this.setState({
-            modal:""
-        });
-    }
-}    
-    signupEmail(evt){
-        this.setState({
-            signupEmail:evt.target.value
-        });
-    }
-    signupPass(evt){
-        this.setState({
-            signupPass:evt.target.value
-        });
-    }
-    signupName(evt){
-        this.setState({
-            signupName:evt.target.value
-        });
-    }
-    shareStory(){
-        if(!this.state.loggedin){
-            this.setState({
-                modal:"login"
-            });
-        } else {
-            console.log("made post!");
-        }
-    }
-    loginModal(){
-        if(this.state.loggedin === false){
-            this.setState({
-                modal:"login"
-            });
-        }
-    }
-    signupModal(){
-        if(this.state.loggedin === false){
-            this.setState({
-                modal:"signup"
-            });
-        }
-    }
-    handleEmail(evt){
-        this.setState({
-            email:evt.target.value
-        });
-    }
-    handlePass(evt){
-        this.setState({
-            password:evt.target.value
-        });
-    }
     pushMarkersData(data){
         var arr = this.state.markersData;
         arr.push(data);
@@ -163,27 +54,6 @@ signupCheck(obj){
     
     
   render() {
-      var modal = null;
-      if (this.state.modal === "login"){
-          modal = (
-            <div>
-              <input type="text" placeholder="username" onChange={this.handleEmail}/>
-              <input type="text" placeholder="password" onChange={this.handlePass}/>
-              <button onClick={this.login}>Go</button>
-              <div onClick={this.signupModal}>Create Account</div>
-              </div>
-          )
-      } else if (this.state.modal === "signup"){
-          modal = (
-          <div>
-              <input type="text" placeholder="email" onChange={this.signupEmail}/>
-              <input type="text" placeholder="name" onChange={this.signupName}/>
-              <input type="text" placeholder="password" onChange={this.signupPass}/>
-              <button onClick={this.signup}>Create Account</button>
-              <div onClick={this.loginModal}>back to login</div>
-              </div>
-          )
-      }
     return (
       <div className="App">
         
@@ -193,8 +63,8 @@ signupCheck(obj){
                 <img id="nav-brand"src={require('./img/nav-brand-04.png')} alt="favicon" width="30" height="30" />
         
             </NavbarBrand>
-            <Button id="login-btn" className="navBtn" onClick={this.loginModal}>login</Button>
-            <Button id="sign-up-btn" className="navBtn" onClick={this.signupModal}>sign up</Button>
+            <Button id="login-btn" className="navBtn" onClick={()=>{this.setState({modal:"login"})}}>login</Button>
+            <Button id="sign-up-btn" className="navBtn" onClick={()=>this.setState({modal:"signup"})}>sign up</Button>
           <NavbarToggler id="toggler" onClick={this.toggleNavbar} className="mr-2" />
           <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav navbar>
@@ -207,7 +77,10 @@ signupCheck(obj){
             </Nav>
           </Collapse>
         </Navbar>
-        {modal}
+        <Login 
+            userInfo={this.userInfo} 
+            modalState={this.state.modal}
+                />
         <Container id="full-bg" fluid>
             <Row>
                 <Col md="1"></Col>
