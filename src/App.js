@@ -7,6 +7,7 @@ import Narrative from './components/Narrative.js';
 import NarrativePin from './components/NarrativePin.js';
 import HoodCard from './components/HoodCard.js';
 import SimpleMap from './components/Gmap-istarkov.js';
+import Login from './components/Login.js';
 
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
         this.pushMarkersData = this.pushMarkersData.bind(this);
         this.updateCoords = this.updateCoords.bind(this);
         this.setHood = this.setHood.bind(this);
+        this.shareStory = this.shareStory.bind(this);
         
         this.state = {
             collapsed: true,
@@ -25,11 +27,22 @@ class App extends Component {
             defaultCenter:{
                 lat: -34,
                 lng: 150
-            }
+            },
+            loggedin: false,
+            respMessage: [],
+            userInfo: [],
+            modal:''
         };
         
         
         
+    }
+    shareStory(){
+        console.log("share story!");
+    }
+
+    userInfo(data){
+        console.log(data);
     }
     
     pushMarkersData(data){
@@ -75,7 +88,8 @@ class App extends Component {
             <NavbarBrand href="/" className="mr-auto">
                 <img id="nav-brand"src={require('./img/nav-brand-04.png')} alt="favicon" width="30" height="30" />
             </NavbarBrand>
-            <Button id="login-btn">login</Button>
+            <Button id="login-btn" className="navBtn" onClick={()=>{this.setState({modal:"login"})}}>login</Button>
+            <Button id="sign-up-btn" className="navBtn" onClick={()=>this.setState({modal:"signup"})}>sign up</Button>
           <NavbarToggler id="toggler" onClick={this.toggleNavbar} className="mr-2" />
           <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav navbar>
@@ -88,7 +102,10 @@ class App extends Component {
             </Nav>
           </Collapse>
         </Navbar>
-        
+        <Login 
+            userInfo={this.userInfo} 
+            modalState={this.state.modal}
+                />
         <Container id="full-bg" fluid>
             <Row>
                 <Col md="6">
@@ -101,6 +118,7 @@ class App extends Component {
                     <Button id="sign-up-btn">
                         share your story
                     </Button>
+                    <Button id="sign-up-btn" onClick={this.shareStory}>share your story</Button>
                 </Col>
                 <Col md="6">
                     <img className="img-fluid" src={require('./img/map/map.svg')} />
