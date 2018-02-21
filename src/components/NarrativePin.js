@@ -1,7 +1,6 @@
 import React, { Component} from 'react';
-import { Container, Row, Col} from 'reactstrap';
-import { Nav, NavItem, NavLink } from 'reactstrap';
-import { Button, ButtonGroup, ButtonToolbar, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Col, Button } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 class NarrativePin extends Component {
     
