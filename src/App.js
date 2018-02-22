@@ -8,6 +8,11 @@ import NarrativePin from './components/NarrativePin.js';
 import HoodCard from './components/HoodCard.js';
 import SimpleMap from './components/Gmap-istarkov.js';
 import Login from './components/Login.js';
+import { Carousel } from 'react-responsive-carousel';
+import '../node_modules/react-responsive-carousel/lib/styles/carousel.min.css';
+//import Slider from 'react-slick';
+//import Slider2 from './components/slider.js';
+
 
 
 class App extends Component {
@@ -32,11 +37,10 @@ class App extends Component {
             respMessage: [],
             userInfo: [],
             modal:''
-        };
-        
-        
-        
+        };   
     }
+    
+
     shareStory(){
         console.log("share story!");
     }
@@ -76,10 +80,43 @@ class App extends Component {
     }
     
     
-  render() {
-            
-            console.log(this.state.hoodName);
+  render() {     
+      console.log(this.state.hoodName);
+      
+      /*var carouselSettings = {
+      dots: true,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 2,
+      slidesToScroll: 2,
+      initialSlide: 0,
+      responsive: [{
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: true
+        }
+      }, {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      }, {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2
+        }
+      }]
+    };*/
 
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Carousel = require('react-responsive-carousel').Carousel;
       
     return (
       <div className="App">
@@ -131,31 +168,37 @@ class App extends Component {
                     
         <Container>
             <Row>
+               <Carousel >
+                    
                     <HoodCard
                         hoodName="Downtown"
                         hoodDesc="A place with tall buildings"
                         hoodImg={require('./img/newicons/Downtown/icons-06.svg')}
                         hoodCoords="49.2°N, 123.1°W"
                     />
+                    
                     <HoodCard
                         hoodName="Riley Park"
                         hoodDesc="A place with something"
                         hoodImg={require('./img/newicons/Riley Park/icons-12.svg')}
                         hoodCoords="49.2°N, 123.1°W"
                     />
+                    
                     <HoodCard
                         hoodName="Hastings"
                         hoodDesc="A place with a park"
                         hoodImg={require('./img/newicons/Hastings-Sunrise/icons-03.svg')}
                         hoodCoords="49.2°N, 123.1°W"
                     />
+                   
                     <HoodCard
                         hoodName="Shaughnessy"
                         hoodDesc="A place with a mansions"
                         hoodImg={require('./img/newicons/Shaughnessy/icons-11.svg')}
                         hoodCoords="49.2°N, 123.1°W"
                     />
-
+                    
+               </Carousel>
             </Row>
         </Container>
 
@@ -209,3 +252,6 @@ class App extends Component {
 }
 
 export default App;
+/*
+<link rel="stylesheet" href="../node_modules/react-responsive-carousel/lib/styles/carousel.min.css"/>
+*/
