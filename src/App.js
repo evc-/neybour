@@ -8,6 +8,7 @@ import NarrativePin from './components/NarrativePin.js';
 import HoodCard from './components/HoodCard.js';
 import SimpleMap from './components/Gmap-istarkov.js';
 import Login from './components/Login.js';
+import PostModal from './components/PostModal.js';
 import { Carousel } from 'react-responsive-carousel';
 import '../node_modules/react-responsive-carousel/lib/styles/carousel.min.css';
 //import Slider from 'react-slick';
@@ -24,6 +25,8 @@ class App extends Component {
         this.updateCoords = this.updateCoords.bind(this);
         this.setHood = this.setHood.bind(this);
         this.shareStory = this.shareStory.bind(this);
+        this.userInfo = this.userInfo.bind(this);
+        this.addPost = this.addPost.bind(this);
         
         this.state = {
             collapsed: true,
@@ -34,19 +37,42 @@ class App extends Component {
                 lng: 150
             },
             loggedin: false,
+            posts:[],
             respMessage: [],
             userInfo: [],
-            modal:''
+            modal:'',
+            postModal:false
         };   
     }
     
+    addPost(post){
+        let temp = this.state.posts;
+        temp.push(post);
+        this.setState({
+            posts:temp
+        });
+        console.log(temp);
+        this.setState({
+            postModal:false
+        })
+    }
 
     shareStory(){
-        console.log("share story!");
+        if(this.state.loggedin === true){
+            this.setState({
+                postModal:true
+            })   
+        } else {
+            console.log("log in you doof");
+        }
     }
 
     userInfo(data){
-        console.log(data);
+        this.setState({
+            loggedin:true,
+            userInfo:data,
+            token:data.token
+        });
     }
     
     pushMarkersData(data){
@@ -82,7 +108,7 @@ class App extends Component {
     
   render() {     
       console.log(this.state.hoodName);
-      
+
       /*var carouselSettings = {
       dots: true,
       infinite: false,
@@ -118,6 +144,37 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Carousel = require('react-responsive-carousel').Carousel;
       
+            
+    var loginComp = null;
+      
+      if (this.state.loggedin === false){
+          loginComp = (
+            <Login 
+            userInfo={this.userInfo} 
+            modalState={this.state.modal}
+                />
+          )
+      } else {
+          loginComp = (
+            <div></div>
+          )
+      }
+      
+      var postModal = false;
+      
+      if (this.state.postModal === true){
+          postModal = (
+            <PostModal 
+              token ={this.state.token} 
+              addPost = {this.addPost}
+              />
+          )
+      } else if (this.state.postModal === false ){
+              postModal = (
+                <div></div>
+              )
+          }
+      
     return (
       <div className="App">
         
@@ -139,10 +196,8 @@ var Carousel = require('react-responsive-carousel').Carousel;
             </Nav>
           </Collapse>
         </Navbar>
-        <Login 
-            userInfo={this.userInfo} 
-            modalState={this.state.modal}
-                />
+    {loginComp}
+    {postModal}
         <Container id="full-bg" fluid>
             <Row>
                 <Col md="6">
@@ -152,9 +207,6 @@ var Carousel = require('react-responsive-carousel').Carousel;
                     <br />
                     <div className="about-home">Neybour is a place to share your stories, memories, and personal connections to the places and spaces in your Vancouver neighbourhood. Select a neighbourhood to start.</div>
                     <br />
-                    <Button id="sign-up-btn">
-                        share your story
-                    </Button>
                     <Button id="sign-up-btn" onClick={this.shareStory}>share your story</Button>
                 </Col>
                 <Col md="6">

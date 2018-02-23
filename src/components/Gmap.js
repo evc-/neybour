@@ -7,8 +7,8 @@ import {withScriptjs, withGoogleMap, GoogleMap, Marker} from "react-google-maps"
         
         this.state={
              defaultCenter:{
-                lat: -34.397,
-                lng: 150.644
+                lat: 45.63,
+                lng: -122.67
             }
         }
     
@@ -39,7 +39,7 @@ import {withScriptjs, withGoogleMap, GoogleMap, Marker} from "react-google-maps"
             defaultCenter={this.state.defaultCenter}
             onClick={this.mapClick}
           >
-            <Marker position ={{lat: -34.397, lng: 150.644}}/>
+            <Marker position ={{lat: 45.63, lng: -122.67}}/>
             {markers}
           </GoogleMap>
         ) 

@@ -1,0 +1,5 @@
+.modal {
+    margin: 0 auto;
+    z-index: 99;
+    border: 2px solid pink;
+}
