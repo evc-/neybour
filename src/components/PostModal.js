@@ -13,13 +13,13 @@ class PostModal extends Component {
     this.postCheck = this.postCheck.bind(this);
     this.postTitle = this.postTitle.bind(this);
     this.postDesc = this.postDesc.bind(this);
-    this.postCoords = this.postCoords.bind(this);
     this.addPicture = this.addPicture.bind(this);
     this.postCheck = this.postCheck.bind(this);
     }
     
 postCreate(){
     console.log(this.props.token);
+    console.log(this.props.markersData)
     fetch('http://localhost:4567/posts/', {
     method: 'POST',
     headers: {
@@ -31,6 +31,7 @@ postCreate(){
         title:this.state.title,
         body:this.state.desc,
         coords: {
+            //fake coords - not sure how to access lat/lng from google click
             lat:12,
             long:12
         },
@@ -69,11 +70,7 @@ postCheck(obj){
             desc:evt.target.value
         });
     }
-    postCoords(evt){
-        this.setState({
-            coords:evt.target.value
-        });
-    }
+
     addPicture(){
         console.log("hi");
     }
@@ -83,10 +80,9 @@ postCheck(obj){
     return (
         <div>
             <div>
-              <input type="text" placeholder="Title" onChange={this.postTitle}/>
-              <input type="text" placeholder="Description" onChange={this.postDesc}/>
-              <input type="text" placeholder="post coords" onChange={this.postCoords}/>
-              <button onClick={this.addPicture}>Add Picture</button>
+              <input type="text" placeholder="Title" onChange={this.postTitle}/><br/>
+              <input type="text" placeholder="Description" onChange={this.postDesc}/><br/>
+              <button onClick={this.addPicture}>Add Picture</button><br/>
               <button onClick={this.postCreate}>Create Post</button>
               </div>
         </div>

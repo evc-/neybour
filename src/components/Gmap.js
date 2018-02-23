@@ -1,46 +1,40 @@
-import React, {Component} from 'react';
-import {withScriptjs, withGoogleMap, GoogleMap, Marker} from "react-google-maps";
-        
- const MyMapComponent = withScriptjs(withGoogleMap((props) =>{
-        
-        this.updateCenter = this.updateCenter.bind(this);
-        
-        this.state={
-             defaultCenter:{
-                lat: 45.63,
-                lng: -122.67
-            }
-        }
-    
+import React, { Component } from 'react';
+
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps";
+
+import PostModal from './PostModal.js';
+
+const GMap = withScriptjs(withGoogleMap((props) =>{
     
     this.mapClick = function(resp){
-        console.log(resp);
+        console.log(resp.latLng);
         props.pushMarkersData(resp.latLng);
     }
     
-    var markers = props.markersData.map((obj, i)=>{
-        return <Marker key={i} position={obj} />
-    })
-    
-    updateCenter(){
-        this.setState({
-            defaultCenter:{
-                lat: this.props.mapCoords.lat,
-                lng: this.props.mapCoords.lng
-            }
-        });
-    }
-    
+   var markers = props.markersData.map((obj, i)=>{
+        return (
+            <Marker key={i} position={obj}>
+        <InfoWindow>
+            <PostModal
+            coords={props.markersData}
+            token={props.token}
+            addPost={props.addPost}
+            />
+        </InfoWindow>
+        </Marker> 
+)
+ })
+return (
+      <GoogleMap
+        defaultZoom={10}
+        defaultCenter={{ lat: 49.2, lng: -122.8 }}
+            onClick = {this.mapClick}
+        >
+    {markers}
 
-     render({
-        return(
-          <GoogleMap
-            defaultZoom={4}
-            defaultCenter={this.state.defaultCenter}
-            onClick={this.mapClick}
-          >
-            <Marker position ={{lat: 45.63, lng: -122.67}}/>
-            {markers}
-          </GoogleMap>
-        ) 
-     })
+        </GoogleMap>
+    );
+    
+}))
+
+export default GMap;
