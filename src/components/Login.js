@@ -29,8 +29,8 @@ sendData(){
 }    
         //bare-bones login; use "test@test.com" and "tester" to login
     login(){
-        var email = this.state.email;
-        var password = this.state.password;
+        let email = this.state.email;
+        let password = this.state.password;
         fetch('http://localhost:4567/users/login', {
             method: 'POST',
             headers: {
@@ -46,7 +46,8 @@ sendData(){
         .then((data) => this.authenticate(data));
     }
     authenticate(data){
-        if(data.message == "Auth successful"){
+        console.log(data);
+        if(data.token){
             this.setState({
                 loggedin:true
             });
@@ -57,7 +58,7 @@ sendData(){
                 };
             this.props.userInfo(obj);
             console.log("You're logged in!");
-        } else {
+        } else if(data.message == "Auth failed"){
             console.log("failed!");
         }
     }

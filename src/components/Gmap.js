@@ -5,10 +5,18 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "reac
 import PostModal from './PostModal.js';
 
 const GMap = withScriptjs(withGoogleMap((props) =>{
-    
     this.mapClick = function(resp){
-        console.log(resp.latLng);
+        if(props.loggedin === true){
+  //      console.log(resp.latLng.lat(), resp.latLng.lng());
+        let coords = {
+            lat:resp.latLng.lat(),
+            lng:resp.latLng.lng()
+        };
+        props.addCoords(coords);
         props.pushMarkersData(resp.latLng);
+        } else if(props.loggedin === false){
+            alert("You need to log in!");
+        }
     }
     
    var markers = props.markersData.map((obj, i)=>{
@@ -24,6 +32,7 @@ const GMap = withScriptjs(withGoogleMap((props) =>{
         </Marker> 
 )
  })
+   
 return (
       <GoogleMap
         defaultZoom={10}

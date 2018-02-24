@@ -25,6 +25,7 @@ class App extends Component {
         this.userInfo = this.userInfo.bind(this);
         this.addPost = this.addPost.bind(this);
         this.pushMarkersData = this.pushMarkersData.bind(this);
+        this.coords = this.coords.bind(this);
         
         this.state = {
             collapsed: true,
@@ -35,6 +36,7 @@ class App extends Component {
             loggedin: false,
             posts:[],
             respMessage: [],
+            coords:{ lat:'', lng:''},
             userInfo: [],
             modal:'',
             postModal:false
@@ -61,22 +63,21 @@ class App extends Component {
             console.log("log in you doof");
         }
     }
-
+    coords(data){
+        console.log(data);
+        this.setState({
+            coords: {
+                lat:data.lat,
+                lng:data.lng
+            }
+        })
+    }
     userInfo(data){
         this.setState({
             loggedin:true,
             userInfo:data,
             token:data.token
         });
-    }
-    
-    pushMarkersData(data){
-        var arr = this.state.markersData;
-        arr.push(data);
-        
-        this.setState({
-            markersData:arr
-        })
     }
     
     toggleNavbar() {
@@ -346,6 +347,8 @@ var Carousel = require('react-responsive-carousel').Carousel;
             <Row>
                 <Col xs="12">
                     <GMap
+                    addCoords={this.coords}
+                    loggedin = {this.state.loggedin}
                     token = {this.state.token}
                     addPost = {this.addPost}
                     markersData={this.state.markersData}
@@ -355,24 +358,12 @@ var Carousel = require('react-responsive-carousel').Carousel;
                     mapElement={<div style={{ height: '100%' }}/>}
                     centerLat={this.state.centerLat}
                     centerLng={this.state.centerLng}
+                    coordsData={this.state.coords}
+                    
                     />
                 </Col>
             </Row>
                     
-                    {
-                    /*
-                    <Gmap
-                        mapCoords={this.state.mapCoords}
-                        markersData={this.state.markersData}
-                        pushMarkersData={this.pushMarkersData}
-                        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-                        loadingElement={<div style={{height:"100%"}} />}
-                        containerElement={<div className="map-container" />}
-                        mapElement={<div style={{ height:"100%"}} />}
-                    />
-                    */
-                }
-
             
         </Container>
 
