@@ -8,9 +8,11 @@ class Login extends Component {
         super(props);
         
         this.state={
-            modal: false
+            modalOpen: true
         }
         
+
+    this.toggle = this.toggle.bind(this);    
     this.sendData = this.sendData.bind(this);
     this.login = this.login.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
@@ -23,7 +25,6 @@ class Login extends Component {
     this.signupCheck = this.signupCheck.bind(this);
     }
     
-
     
 sendData(){
 }    
@@ -62,6 +63,7 @@ sendData(){
             console.log("failed!");
         }
     }
+    
     signup(){
         let name = this.state.signupName;
         let password = this.state.signupPass;
@@ -82,25 +84,28 @@ sendData(){
         .then((res) => res.json())
         //.then((data) => console.log(data))
         .then((data) => this.signupCheck(data))
-}
-    
-signupCheck(obj){
-    if(obj.error){
-        console.log("failed");
-    } else {
-        console.log(obj.message);
     }
-}    
+    
+    signupCheck(obj){
+        if(obj.error){
+            console.log("failed");
+        } else {
+            console.log(obj.message);
+        }
+    }    
+    
     signupEmail(evt){
         this.setState({
             signupEmail:evt.target.value
         });
     }
+    
     signupPass(evt){
         this.setState({
             signupPass:evt.target.value
         });
     }
+    
     signupName(evt){
         this.setState({
             signupName:evt.target.value
@@ -112,32 +117,40 @@ signupCheck(obj){
             email:evt.target.value
         });
     }
+    
     handlePass(evt){
         this.setState({
             password:evt.target.value
         });
     }
+    
+    toggle() {
+        this.setState({
+            modalOpen: !this.state.modalOpen
+        });
+    }
 
   render() {
-    var modal = null;
-      if (this.props.modalState === "login"){
-          modal = (
-            <div className="loginModal">
-              <ModalHeader>Login!</ModalHeader>
-              <ModalBody>
+      
+    var headerContent = null;
+    var bodyContent = null;
+      
+      if (this.props.modalName === "login"){
+          headerContent ="Login";
+          bodyContent = (
+                <div className="loginModal">
                 <Input type="text" placeholder="username" onChange={this.handleEmail}/>
                 <br /><br />
                 <Input type="text" placeholder="password" onChange={this.handlePass}/>
                 <br /><br />
                 <button onClick={this.login}>Go</button>
-              </ModalBody>
-            </div>
-          )
-      } else if (this.props.modalState === "signup"){
-          modal = (
-              <div className="signupModal">
-              <ModalHeader >Sign up!</ModalHeader>
-              <ModalBody>
+                </div>
+          );
+          
+      } else if (this.props.modalName === "signup"){
+          headerContent = "Sign Up"
+          bodyContent = (
+                <div className="signupModal">
                 <Input type="text" placeholder="email" onChange={this.signupEmail}/>
                 <br /><br />
                 <Input type="text" placeholder="name" onChange={this.signupName}/>
@@ -145,17 +158,19 @@ signupCheck(obj){
                 <Input type="text" placeholder="password" onChange={this.signupPass}/>
                 <br /><br />
                 <button onClick={this.signup}>Create Account</button>
-             </ModalBody>
-            </div>   
-              
-          )
+                </div>
+          );
       }
     return (
-        <div>
-            {modal}
-        </div>
-        
-
+            <Modal isOpen={this.props.modalOpen}>
+                <ModalHeader toggle={this.props.closeModal}>
+                    {headerContent}
+                </ModalHeader>
+                <ModalBody>
+                    <div>"Test"</div>
+                    {bodyContent}
+                </ModalBody>
+            </Modal>
     );
   }
 }

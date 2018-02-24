@@ -17,6 +17,7 @@ class App extends Component {
     constructor(props){
         super(props);
         
+        this.closeModal = this.closeModal.bind(this);
         this.toggleNavbar = this.toggleNavbar.bind(this);
         this.pushMarkersData = this.pushMarkersData.bind(this);
         this.updateCenter = this.updateCenter.bind(this);
@@ -39,7 +40,9 @@ class App extends Component {
             coords:{ lat:'', lng:''},
             userInfo: [],
             modal:'',
-            postModal:false
+            postModal:false,
+            modalOpen: false,
+            modalName: null
         };   
     }
     
@@ -80,6 +83,15 @@ class App extends Component {
         });
     }
     
+     pushMarkersData(data){
+        var arr = this.state.markersData;
+        arr.push(data);
+        
+        this.setState({
+            markersData:arr
+        })
+    }
+    
     toggleNavbar() {
         this.setState({
           collapsed: !this.state.collapsed
@@ -108,6 +120,12 @@ class App extends Component {
         })
     }
     
+    closeModal(){
+        this.setState({
+            modalOpen:false
+        })
+    }
+    
     
   render() {     
 /*
@@ -117,17 +135,24 @@ var Carousel = require('react-responsive-carousel').Carousel;
 */      
             
     var loginComp = null;
-      
-      if (this.state.loggedin === false){
+      console.log(this.state.modalOpen);
+      if (this.state.loggedin === false && this.state.modalOpen === true){
           loginComp = (
             <Login 
-            userInfo={this.userInfo} 
-            modalState={this.state.modal}
-                />
+                closeModal={this.closeModal}
+                modalOpen={this.state.modalOpen}
+                userInfo={this.userInfo} 
+                modalName={this.state.modalName}
+            />
           )
-      } else {
+      } else if (this.state.modalOpen === true){
+          console.log("showme");
           loginComp = (
-            <div></div>
+            <Login 
+                closeModal={this.closeModal}
+                modalOpen={this.state.modalOpen}
+                modalName={this.state.modalName}
+              />
           )
       }
       
@@ -140,8 +165,17 @@ var Carousel = require('react-responsive-carousel').Carousel;
             <NavbarBrand href="/" className="mr-auto">
                 <img id="nav-brand"src={require('./img/nav-brand-04.png')} alt="favicon" width="30" height="30" />
             </NavbarBrand>
-            <Button id="login-btn" className="navBtn" onClick={()=>{this.setState({modal:"login"})}}>login</Button>
-            <Button id="sign-up-btn" className="navBtn" onClick={()=>this.setState({modal:"signup"})}>sign up</Button>
+
+            <Button id="login-btn" className="navBtn" 
+                onClick={()=>{this.setState({modalName:"login", modalOpen: true})}}>
+                login
+            </Button>
+
+            <Button id="sign-up-btn" className="navBtn" 
+                onClick={()=>this.setState({modalName:"signup", modalOpen: true})}>
+                sign up
+            </Button>
+
           <NavbarToggler id="toggler" onClick={this.toggleNavbar} className="mr-2" />
           <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav navbar>
@@ -154,10 +188,17 @@ var Carousel = require('react-responsive-carousel').Carousel;
             </Nav>
           </Collapse>
         </Navbar>
-    {loginComp}
+
+    
+
         <Container id="full-bg" fluid>
             <Row>
-                <Col md="6">
+                <Col xs="12">
+                    {loginComp}
+                </Col>
+            </Row>
+            <Row>
+                <Col xs="10" md="6">
                     <div className="header-home">neybour.</div>
                     <br />
                     <div className="subheader-home">explore Vancouver's stories by neighbourhood</div>
@@ -166,7 +207,7 @@ var Carousel = require('react-responsive-carousel').Carousel;
                     <br />
                     <Button id="sign-up-btn"><a href="#map-container">share your story</a></Button>
                 </Col>
-                <Col md="6">
+                <Col xs="1" md="6">
                     <img className="img-fluid" src={require('./img/map/map.svg')} />
                 </Col>
             </Row>

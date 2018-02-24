@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700|Poppins');
 
-/*#full-bg{
-    background: linear-gradient(to bottom right, #F7EAE2, #EDC5CA);
-}*/
-
 .header-home{
     font-family: 'Noto Serif', serif;
     font-size: 50pt;
@@ -40,13 +36,32 @@
 
 #sign-up-btn{
     background: linear-gradient(to bottom right, #F7EAE2, #EDC5CA);
+    border-style: none;
+    border-radius: 20px;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
+
+#sign-up-btn:hover{
+     background: linear-gradient(to bottom right, #F7EAE2, #EDC5CA);
+    opacity: 0.5;
+}
+
+#sign-up-btn a{
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     color: white;
     text-transform: uppercase;
     letter-spacing: 2px;
-    border-style: none;
-    border-radius: 20px;
+}
+
+#sign-up-btn a:hover{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
 }
 
 #login-btn{
