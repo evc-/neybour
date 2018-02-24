@@ -13,15 +13,13 @@ import PostModal from './components/PostModal.js';
 //import '../node_modules/react-responsive-carousel/lib/styles/carousel.min.css';
 
 
-
-
 class App extends Component {
     constructor(props){
         super(props);
         
         this.toggleNavbar = this.toggleNavbar.bind(this);
         this.pushMarkersData = this.pushMarkersData.bind(this);
-        this.updateCoords = this.updateCoords.bind(this);
+        this.updateCenter = this.updateCenter.bind(this);
         this.setHood = this.setHood.bind(this);
         this.shareStory = this.shareStory.bind(this);
         this.userInfo = this.userInfo.bind(this);
@@ -32,10 +30,8 @@ class App extends Component {
             collapsed: true,
             markersData:[],
             mapCoords:null,
-            defaultCenter:{
-                lat: -34,
-                lng: 150
-            },
+            centerLat: 34,
+            centerLng: 45,
             loggedin: false,
             posts:[],
             respMessage: [],
@@ -51,7 +47,6 @@ class App extends Component {
         this.setState({
             posts:temp
         });
-        console.log(temp);
         this.setState({
             postModal:false
         })
@@ -90,13 +85,12 @@ class App extends Component {
         });
     }
     
-    updateCoords(lat, lng){
+    updateCenter(lat, lng){
         this.setState({
-            mapCoords:{lat, lng}
+            centerLat:lat,
+            centerLng:lng
         })
-        
-        console.log(this.state.mapCoords);
-    }
+    };
     
     setHood(hood){
         this.setState({
@@ -107,7 +101,6 @@ class App extends Component {
         pushMarkersData(data){
         var arr = this.state.markersData;
         arr.push(data);
-        console.log(arr);
         
         this.setState({
             markersData:arr
@@ -116,7 +109,6 @@ class App extends Component {
     
     
   render() {     
-      console.log(this.state.hoodName);
 /*
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -140,6 +132,7 @@ var Carousel = require('react-responsive-carousel').Carousel;
       
       
     return (
+        
       <div className="App">
         
          <Navbar color="faded" light>
@@ -183,35 +176,128 @@ var Carousel = require('react-responsive-carousel').Carousel;
                     
         <Container>
             <Row>
-                  
+                    <HoodCard
+                        onClick={()=>this.updateCenter(49.2536, 123.1604)}
+                        hoodName="Arbutus Ridge"
+                        hoodDesc="tagline"
+                        hoodImg={require('./img/newicons/Arbutus-Ridge/icons-01.svg')}
+                        hoodLat={49.2536}
+                        hoodLng={123.1604}
+                    />
+                            
                     <HoodCard
                         hoodName="Downtown"
-                        hoodDesc="A place with tall buildings"
+                        hoodDesc="tagline"
                         hoodImg={require('./img/newicons/Downtown/icons-06.svg')}
-                        hoodCoords="49.2°N, 123.1°W"
+                        hoodLat={49.2820}
+                        hoodLng= {123.1171}
+                                 
                     />
-                    <HoodCard
-                        hoodName="Riley Park"
-                        hoodDesc="A place with something"
-                        hoodImg={require('./img/newicons/Riley Park/icons-12.svg')}
-                        hoodCoords="49.2°N, 123.1°W"
-                    />
-                  
                     
                     <HoodCard
-                        hoodName="Hastings"
-                        hoodDesc="A place with a park"
-                        hoodImg={require('./img/newicons/Hastings-Sunrise/icons-03.svg')}
-                        hoodCoords="49.2°N, 123.1°W"
+                        hoodName="Dunbar"
+                        hoodDesc="tagline"
+                        hoodImg={require('./img/newicons/Dunbar/icons-13.svg')}
+                        hoodLat={49.1404}
+                        hoodLng={123.1109}
                     />
                    
                     <HoodCard
-                        hoodName="Shaughnessy"
-                        hoodDesc="A place with mansions"
-                        hoodImg={require('./img/newicons/Shaughnessy/icons-11.svg')}
-                        hoodCoords="49.2°N, 123.1°W"
+                        hoodName="Fairview"
+                        hoodDesc="tagline"
+                        hoodImg={require('./img/newicons/Fairview/icons-10.svg')}
+                        hoodLat={49.2660}
+                        hoodLng={123.1289}
                     />
-               
+                                 
+                    <HoodCard
+                        hoodName="Hastings-Sunrise"
+                        hoodDesc="tagline"
+                        hoodImg={require('./img/newicons/Hastings-Sunrise/icons-03.svg')}
+                        hoodLat={49.2811}
+                        hoodLng={123.0441}
+                    />
+                            
+                    <HoodCard
+                        hoodName="Kensington"
+                        hoodDesc="tagline"
+                        hoodImg={require('./img/newicons/Kensington/icons-02.svg')}
+                        hoodLat={49.2484}
+                        hoodLng={123.0701}
+                    />
+
+                    <HoodCard
+                        hoodName="Kerrisdale"
+                        hoodDesc="tagline"
+                        hoodImg={require('./img/newicons/Kerrisdale/icons-05.svg')}
+                        hoodLat={49.2341}
+                        hoodLng={123.1554}
+                    />
+
+                    <HoodCard
+                        hoodName="Kitsilano"
+                        hoodDesc="tagline"
+                        hoodImg={require('./img/newicons/Kitsilano/icons-14.svg')}
+                        hoodLat={49.2709}
+                        hoodLng={123.1621}
+                    />
+
+                    <HoodCard
+                        hoodName="Mt. Pleasant"
+                        hoodDesc="tagline"
+                        hoodImg={require('./img/newicons/Mt-Pleasant/icons-08.svg')}
+                        hoodLat={49.2583}
+                        hoodLng={123.1082}
+                    />
+
+                    <HoodCard
+                        hoodName="Oakridge"
+                        hoodDesc="tagline"
+                        hoodImg={require('./img/newicons/Oakridge/icons-07.svg')}
+                        hoodLat={49.2298}
+                        hoodLng={123.1162}
+                    />
+
+                    <HoodCard
+                        hoodName="Riley Park"
+                        hoodDesc="tagline"
+                        hoodImg={require('./img/newicons/Riley-Park/icons-12.svg')}
+                        hoodLat={49.2449}
+                        hoodLng={123.1135}
+                    />
+
+                    <HoodCard
+                        hoodName="Shaughnessy"
+                        hoodDesc="tagline"
+                        hoodImg={require('./img/newicons/Shaughnessy/icons-11.svg')}
+                        hoodLat={49.2473}
+                        hoodLng={123.1409}
+                    />
+    
+                    <HoodCard
+                        hoodName="Sunset"
+                        hoodDesc="tagline"
+                        hoodImg={require('./img/newicons/Sunset/icons-04.svg')}
+                        hoodLat={49.2245}
+                        hoodLng={123.0900}
+                    />
+
+                    <HoodCard
+                        hoodName="West End"
+                        hoodDesc="tagline"
+                        hoodImg={require('./img/newicons/West-End/icons-09.svg')}
+                        hoodLat={49.2856}
+                        hoodLng={123.1306}
+                    />
+
+                    <HoodCard
+                        hoodName="West Point Grey"
+                        hoodDesc="tagline"
+                        hoodImg={require('./img/newicons/West-Point-Grey/icons-15.svg')}
+                        hoodLat={49.2610}
+                        hoodLng={123.2001}
+                    />
+
             </Row>
         </Container>
 
@@ -232,6 +318,7 @@ var Carousel = require('react-responsive-carousel').Carousel;
         </Container>
         */
         }
+
         <Container id="pin-controls" fluid>
             <Row>
                 <Col xs="12">
@@ -242,17 +329,32 @@ var Carousel = require('react-responsive-carousel').Carousel;
                 </Col>
             </Row>
         </Container>
+
+        <Container id="neighbourhood-dash" fluid>
+            <Row>
+                <Col xs="12">
+                    <div>
+                    <div>Welcome to *Neighbourhood Name*</div>
+                    <div>Current Weather</div>
+                    </div>
+                </Col>
+            </Row>
+        </Container>
+
+
         <Container id="map-container" fluid>
             <Row>
                 <Col xs="12">
                     <GMap
                     token = {this.state.token}
                     addPost = {this.addPost}
-                  markersData={this.state.markersData}
-        pushMarkersData={this.pushMarkersData} googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-        loadingElement={<div style={{ height: '100%' }}/> }
-        containerElement={<div style={{ height: '300px' }} /> }
-        mapElement={<div style={{ height: '100%' }}/>}
+                    markersData={this.state.markersData}
+                    pushMarkersData={this.pushMarkersData} googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+                    loadingElement={<div style={{ height: '100%' }}/> }
+                    containerElement={<div style={{ height: '300px' }} /> }
+                    mapElement={<div style={{ height: '100%' }}/>}
+                    centerLat={this.state.centerLat}
+                    centerLng={this.state.centerLng}
                     />
                 </Col>
             </Row>

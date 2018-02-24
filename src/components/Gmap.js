@@ -14,11 +14,11 @@ const GMap = withScriptjs(withGoogleMap((props) =>{
    var markers = props.markersData.map((obj, i)=>{
         return (
             <Marker key={i} position={obj}>
-        <InfoWindow>
+            <InfoWindow>
             <PostModal
-            coords={props.markersData}
-            token={props.token}
-            addPost={props.addPost}
+                coords={props.markersData}
+                token={props.token}
+                addPost={props.addPost}
             />
         </InfoWindow>
         </Marker> 
@@ -27,11 +27,10 @@ const GMap = withScriptjs(withGoogleMap((props) =>{
 return (
       <GoogleMap
         defaultZoom={10}
-        defaultCenter={{ lat: 49.2, lng: -122.8 }}
+        defaultCenter={{ lat: props.centerLat, lng: props.CenterLng }}
             onClick = {this.mapClick}
         >
-    {markers}
-
+        {markers}
         </GoogleMap>
     );
     

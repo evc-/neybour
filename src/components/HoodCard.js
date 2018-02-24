@@ -17,7 +17,7 @@ class HoodCard extends Component {
     return (
 
                 <Col md="3" xs="6">
-                    <div id="card-bg">
+                    <div id="card-bg" onClick={this.props.onClick}>
     
                         <div id="hood-img">
                             <img src={this.props.hoodImg}/>
@@ -31,7 +31,9 @@ class HoodCard extends Component {
                             </div>
                             <br />
                             <div id="hood-coords">
-                                {this.props.hoodCoords}
+                                {this.props.hoodLat} deg N 
+                                <br />
+                                 {this.props.hoodLng} deg W
                             </div>
                         </div>
         
