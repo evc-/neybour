@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+//import '../App.css';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup } from 'reactstrap';
 
 class Login extends Component {
     
@@ -6,7 +8,7 @@ class Login extends Component {
         super(props);
         
         this.state={
-
+            modal: false
         }
         
     this.sendData = this.sendData.bind(this);
@@ -20,6 +22,8 @@ class Login extends Component {
     this.signupName = this.signupName.bind(this);
     this.signupCheck = this.signupCheck.bind(this);
     }
+    
+
     
 sendData(){
 }    
@@ -72,12 +76,12 @@ sendData(){
             email: email,
             password: password,
             name: name
-  })
-})
-.then((res) => res.json())
-//.then((data) => console.log(data))
-.then((data) => this.signupCheck(data))
-    }
+        })
+        })
+        .then((res) => res.json())
+        //.then((data) => console.log(data))
+        .then((data) => this.signupCheck(data))
+}
     
 signupCheck(obj){
     if(obj.error){
@@ -117,20 +121,32 @@ signupCheck(obj){
     var modal = null;
       if (this.props.modalState === "login"){
           modal = (
-            <div>
-              <input type="text" placeholder="username" onChange={this.handleEmail}/>
-              <input type="text" placeholder="password" onChange={this.handlePass}/>
-              <button onClick={this.login}>Go</button>
-              </div>
+            <div className="loginModal">
+              <ModalHeader>Login!</ModalHeader>
+              <ModalBody>
+                <Input type="text" placeholder="username" onChange={this.handleEmail}/>
+                <br /><br />
+                <Input type="text" placeholder="password" onChange={this.handlePass}/>
+                <br /><br />
+                <button onClick={this.login}>Go</button>
+              </ModalBody>
+            </div>
           )
       } else if (this.props.modalState === "signup"){
           modal = (
-          <div>
-              <input type="text" placeholder="email" onChange={this.signupEmail}/>
-              <input type="text" placeholder="name" onChange={this.signupName}/>
-              <input type="text" placeholder="password" onChange={this.signupPass}/>
-              <button onClick={this.signup}>Create Account</button>
-              </div>
+              <div className="signupModal">
+              <ModalHeader >Sign up!</ModalHeader>
+              <ModalBody>
+                <Input type="text" placeholder="email" onChange={this.signupEmail}/>
+                <br /><br />
+                <Input type="text" placeholder="name" onChange={this.signupName}/>
+                <br /><br />
+                <Input type="text" placeholder="password" onChange={this.signupPass}/>
+                <br /><br />
+                <button onClick={this.signup}>Create Account</button>
+             </ModalBody>
+            </div>   
+              
           )
       }
     return (
