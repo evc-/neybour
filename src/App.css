@@ -93,13 +93,14 @@
 }
 
 .modal-body .account-btns{
-    border-color: #EFA0A6;
+    background: linear-gradient(to right, #F9E0CF, #EFA0A6);
+    border-color: #F9E0CF;
     border-width: 2px;
     background-color: white;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 8pt;
-    color: #EFA0A6;
+    font-size: 12pt;
+    color: white;
     text-transform: uppercase;
     letter-spacing: 2px;
     border-radius: 20px;
@@ -185,19 +186,43 @@
 
 /*ACCOUNT MODALS*/
 
-.signupModal{
+.acctModal{
     padding: 2%;
     margin: 0 auto;
     text-align: center;
+    font-family: Poppins, sans-serif;
 
 }
 
+.modalHeader{
+    font-family: Poppins, sans-serif;
+    background-color: #F9E0CF;
+}
+
+.modalBody{
+    background-color: #F9E0CF;
+}
+
+#goBtn{
+     border-color: #EFA0A6;
+     height: 30%;
+}
+
+#goBtn:hover{
+    border-color: #EFA0A6;
+    border-width: 2px;
+    background: linear-gradient(to bottom right, #F7EAE2, #EDC5CA);
+}
+
+/*
 .loginModal{
     padding: 2%;
     margin: 0 auto;
     text-align: center;
+    background-color:#F9E0CF; 
 
 }
+*/
 
 /*LISTS*/
 
@@ -261,6 +286,15 @@
     float: left;
 }
 
-/*slider CSS*/
+@font-face{
+    font-family: Noto Serif;
+    src: url('https://fonts.googleapis.com/css?family=Noto+Serif');
+}
+
+@font-face{
+    font-family: Poppins;
+    src: url('https://fonts.googleapis.com/css?family=Poppins');
+}
+
 
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import '../App.css';
+import '../App.css';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup } from 'reactstrap';
 
 class Login extends Component {
@@ -138,20 +138,20 @@ sendData(){
       if (this.props.modalName === "login"){
           headerContent ="Login";
           bodyContent = (
-                <div className="loginModal">
+                <div className="acctModal">
                 <Input type="text" placeholder="username" onChange={this.handleEmail}/>
                 <br /><br />
                 <Input type="text" placeholder="password" onChange={this.handlePass}/>
                 <br /><br />
-                <button className="account-btns" onClick={this.login}>Go</button>
+                <button className="account-btns" id="goBtn" onClick={this.login}>Go</button>
                 </div>
           );
           
       } else if (this.props.modalName === "signup"){
           headerContent = "Sign Up"
           bodyContent = (
-                <div className="signupModal">
-                <Input type="text" placeholder="email" onChange={this.signupEmail}/>
+                <div className="acctModal">
+                <Input  type="text" placeholder="email" onChange={this.signupEmail}/>
                 <br /><br />
                 <Input type="text" placeholder="name" onChange={this.signupName}/>
                 <br /><br />
@@ -163,10 +163,10 @@ sendData(){
       }
     return (
             <Modal isOpen={this.props.modalOpen}>
-                <ModalHeader toggle={this.props.closeModal}>
+                <ModalHeader className="modalHeader"  toggle={this.props.closeModal}>
                     {headerContent}
                 </ModalHeader>
-                <ModalBody>
+                <ModalBody className="modalBody">
                     {bodyContent}
                 </ModalBody>
             </Modal>
