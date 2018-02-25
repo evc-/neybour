@@ -93,14 +93,13 @@
 }
 
 .modal-body .account-btns{
-    background: linear-gradient(to right, #F9E0CF, #EFA0A6);
-    border-color: #F9E0CF;
+    border-color: #EFA0A6;
     border-width: 2px;
     background-color: white;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 12pt;
-    color: white;
+    font-size: 10pt;
+    color: #EFA0A6;
     text-transform: uppercase;
     letter-spacing: 2px;
     border-radius: 20px;
@@ -196,22 +195,22 @@
 
 .modalHeader{
     font-family: Poppins, sans-serif;
-    background-color: #F9E0CF;
+    background-color: #F9E7DC;
 }
 
 .modalBody{
-    background-color: #F9E0CF;
+    background-color: #F9E7DC;
 }
 
-#goBtn{
+#Btn{
      border-color: #EFA0A6;
      height: 30%;
 }
 
-#goBtn:hover{
+#Btn:hover{
     border-color: #EFA0A6;
     border-width: 2px;
-    background: linear-gradient(to bottom right, #F7EAE2, #EDC5CA);
+    background: linear-gradient(to right, #F7EAE2, #EFC2CA);
 }
 
 /*
