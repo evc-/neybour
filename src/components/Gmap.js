@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps";
-
 import PostModal from './PostModal.js';
 
 const GMap = withScriptjs(withGoogleMap((props) =>{
+    
     this.mapClick = function(resp){
         if(props.loggedin === true){
 
@@ -12,8 +11,10 @@ const GMap = withScriptjs(withGoogleMap((props) =>{
             lat:resp.latLng.lat(),
             lng:resp.latLng.lng()
         };
+            
         props.addCoords(coords);
         props.pushMarkersData(resp.latLng);
+            
         } else if(props.loggedin === false){
             //alert("You need to log in!");
         }
@@ -40,7 +41,7 @@ return (
         center={{lat: props.centerLat, lng: props.centerLng}}
         onClick = {this.mapClick}
         >
-        {markers}
+            {markers}
         </GoogleMap>
     );
     

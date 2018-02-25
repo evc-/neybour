@@ -23,7 +23,7 @@
 }
 
 .map-container{
-    height: 600px;
+    height: 1500px;
 }
 
 #toggler{
@@ -262,7 +262,7 @@
 
 .hoodListContainer{
     overflow-y: scroll;
-    max-height: 300px;
+    max-height: 1500px;
 }
 
 .listItems{
@@ -283,6 +283,22 @@
 
 .listItems img{
     float: left;
+}
+
+#Killarney{
+    background-color: yellow;
+}
+
+.cls-1{
+    fill:white;
+    stroke:#fccbaa;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    stroke-width:2px;
+}
+
+.cls-1:hover{
+    fill: #efa0a6;
 }
 
 @font-face{

@@ -9,6 +9,7 @@ import HoodCard from './components/HoodCard.js';
 //import SimpleMap from './components/Gmap-istarkov.js';
 import Login from './components/Login.js';
 import PostModal from './components/PostModal.js';
+import MapGraphic from './components/MapGraphic.js';
 //import { Carousel } from 'react-responsive-carousel';
 //import '../node_modules/react-responsive-carousel/lib/styles/carousel.min.css';
 
@@ -29,7 +30,6 @@ class App extends Component {
         this.shareStory = this.shareStory.bind(this);
         this.userInfo = this.userInfo.bind(this);
         this.addPost = this.addPost.bind(this);
-        this.pushMarkersData = this.pushMarkersData.bind(this);
         this.coords = this.coords.bind(this);
         
         this.state = {
@@ -90,10 +90,10 @@ class App extends Component {
      pushMarkersData(data){
         var arr = this.state.markersData;
         arr.push(data);
-        
         this.setState({
             markersData:arr
         })
+         console.log(this.state.markersData);
     }
     
     toggleNavbar() {
@@ -115,14 +115,6 @@ class App extends Component {
             hoodName: hood
         })
         
-    }
-        pushMarkersData(data){
-        var arr = this.state.markersData;
-        arr.push(data);
-        
-        this.setState({
-            markersData:arr
-        })
     }
     
     closeModal(){
@@ -292,7 +284,7 @@ class App extends Component {
           </Collapse>
         </Navbar>
 
-        <Container id="full-bg" fluid>
+        <Container id="full-bg">
             <Row>
                 <Col xs="12">
                     {loginComp}
@@ -309,7 +301,10 @@ class App extends Component {
                     <Button id="explore-btn"><a href="#map-container">add your story</a></Button>
                 </Col>
                 <Col xs={{size:12}} md={{size: 6}}>
-                    <img className="img-fluid" src={require('./img/map/map.svg')} />
+                    <MapGraphic/>
+                    {
+                    //<img className="img-fluid" src={require('./img/map/map.svg')} />
+                }
                 </Col>
             </Row>
         </Container>
@@ -328,7 +323,7 @@ class App extends Component {
                         markersData={this.state.markersData}
                         pushMarkersData={this.pushMarkersData} googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
                         loadingElement={<div style={{ height: '100%' }}/> }
-                        containerElement={<div style={{ height: '300px' }} /> }
+                        containerElement={<div style={{ height: '800px' }} /> }
                         mapElement={<div style={{ height: '100%' }}/>}
                         centerLat={this.state.centerLat}
                         centerLng={this.state.centerLng}
