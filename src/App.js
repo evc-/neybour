@@ -26,7 +26,6 @@ class App extends Component {
         this.toggleNavbar = this.toggleNavbar.bind(this);
         this.pushMarkersData = this.pushMarkersData.bind(this);
         this.updateCenter = this.updateCenter.bind(this);
-        this.setHood = this.setHood.bind(this);
         this.shareStory = this.shareStory.bind(this);
         this.userInfo = this.userInfo.bind(this);
         this.addPost = this.addPost.bind(this);
@@ -46,7 +45,8 @@ class App extends Component {
             modal:'',
             postModal:false,
             modalOpen: false,
-            modalName: null
+            modalName: null,
+            sidebar: "neighbourhoodList"
         };   
     }
     
@@ -102,20 +102,15 @@ class App extends Component {
         });
     }
     
-    updateCenter(coords){
+    updateCenter(coords, name){
         this.setState({
             centerLat:coords.lat,
-            centerLng:coords.lng
+            centerLng:coords.lng,
+            sidebar: "postList",
+            hoodName: name
         })
         
     };
-    
-    setHood(hood){
-        this.setState({
-            hoodName: hood
-        })
-        
-    }
     
     closeModal(){
         this.setState({
@@ -221,8 +216,9 @@ class App extends Component {
       ];
       
     var hoodList = neighbourhoodArr.map((obj, i)=>{
+        var bgColor = i%2==1 ? "#f7f3f0" : "white";
         return (
-            <div className="listItems" key={i} onClick={()=>{this.updateCenter(obj.coords)}}>
+            <div style={{backgroundColor: bgColor}} className="listItems" key={i} onClick={()=>{this.updateCenter(obj.coords)}}>
                 <img style={{height: "30px"}} src={obj.icon} />
                 <span className="listNames">{obj.name}</span>
                 
@@ -251,6 +247,25 @@ class App extends Component {
               />
           )
       }
+
+    var sidebar;
+        if (this.state.sidebar == "neighbourhoodList"){
+            sidebar = (
+                <div>
+                <div id="findHoodTitle">find your neighbourhood
+                </div>
+                <div className="hoodListContainer" id="scrollbar">
+                    {hoodList}
+                </div>
+            </div>
+            );
+        } else if (this.state.sidebar == "postList"){
+            sidebar = (
+                <div>
+                    <p>Post list</p>
+                </div>
+            );
+        }
   
     return (
         
@@ -302,9 +317,6 @@ class App extends Component {
                 </Col>
                 <Col xs={{size:12}} md={{size: 6}}>
                     <MapGraphic/>
-                    {
-                    //<img className="img-fluid" src={require('./img/map/map.svg')} />
-                }
                 </Col>
             </Row>
         </Container>
@@ -336,10 +348,7 @@ class App extends Component {
                     </div>
                 </Col>
                 <Col xs="12" md="4">
-                    <div id="findHoodTitle">find your neighbourhood</div>
-                    <div className="hoodListContainer" id="scrollbar">
-                        {hoodList}
-                    </div>
+                    {sidebar}
                 </Col>
             </Row>
         </Container>
