@@ -7,7 +7,7 @@ import PostModal from './PostModal.js';
 const GMap = withScriptjs(withGoogleMap((props) =>{
     this.mapClick = function(resp){
         if(props.loggedin === true){
-  //      console.log(resp.latLng.lat(), resp.latLng.lng());
+
         let coords = {
             lat:resp.latLng.lat(),
             lng:resp.latLng.lng()
@@ -15,7 +15,7 @@ const GMap = withScriptjs(withGoogleMap((props) =>{
         props.addCoords(coords);
         props.pushMarkersData(resp.latLng);
         } else if(props.loggedin === false){
-            alert("You need to log in!");
+            //alert("You need to log in!");
         }
     }
     
@@ -36,8 +36,8 @@ const GMap = withScriptjs(withGoogleMap((props) =>{
 return (
       <GoogleMap
         defaultZoom={10}
-        defaultCenter={{ lat: props.centerLat, lng: props.CenterLng }}
-            onClick = {this.mapClick}
+        defaultCenter={{ lat: 49, lng: -123 }}
+        onClick = {this.mapClick}
         >
         {markers}
         </GoogleMap>

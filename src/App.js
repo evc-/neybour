@@ -259,8 +259,6 @@ class App extends Component {
           )
       }
   
-      
-      
     return (
         
       <div className="App">
@@ -293,8 +291,6 @@ class App extends Component {
           </Collapse>
         </Navbar>
 
-    
-
         <Container id="full-bg" fluid>
             <Row>
                 <Col xs="12">
@@ -320,23 +316,22 @@ class App extends Component {
         <br />
         <br />
                     
-
-        <Container id="map-container">
+        <Container id="map-container" fluid>
             <Row>
-                <Col xs="12" md="6">
+                <Col xs="12" md="8">
                     <GMap
-                    addCoords={this.coords}
-                    loggedin = {this.state.loggedin}
-                    token = {this.state.token}
-                    addPost = {this.addPost}
-                    markersData={this.state.markersData}
-                    pushMarkersData={this.pushMarkersData} googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-                    loadingElement={<div style={{ height: '100%' }}/> }
-                    containerElement={<div style={{ height: '300px' }} /> }
-                    mapElement={<div style={{ height: '100%' }}/>}
-                    centerLat={this.state.centerLat}
-                    centerLng={this.state.centerLng}
-                    coordsData={this.state.coords}
+                        addCoords={this.coords}
+                        loggedin = {this.state.loggedin}
+                        token = {this.state.token}
+                        addPost = {this.addPost}
+                        markersData={this.state.markersData}
+                        pushMarkersData={this.pushMarkersData} googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+                        loadingElement={<div style={{ height: '100%' }}/> }
+                        containerElement={<div style={{ height: '300px' }} /> }
+                        mapElement={<div style={{ height: '100%' }}/>}
+                        centerLat={this.state.centerLat}
+                        centerLng={this.state.centerLng}
+                        coordsData={this.state.coords}
                     />
                     <br />
                     <div id="pin-controls">
@@ -344,7 +339,7 @@ class App extends Component {
                         <button className="pin-btns">See my pins</button>
                     </div>
                 </Col>
-                <Col xs="12" md="6">
+                <Col xs="12" md="4">
                     <div id="findHoodTitle">find your neighbourhood</div>
                     <div className="hoodListContainer" id="scrollbar">
                         {hoodList}
@@ -352,18 +347,19 @@ class App extends Component {
                 </Col>
             </Row>
         </Container>
-<br />
-<br />
+
+        <br />
+        <br />
+                        
         <Container>
                 <Row>
                     <Col xs="12">
                         <h3>Browse all neighbourhoods</h3>
                     </Col>
                 </Row>
-<br />
-<br />
+        <br />
+        <br />
                 <Row>
-                    
                     <HoodCard
                         onClick={()=>this.updateCenter(49.2536, 123.1604)}
                         hoodName="Arbutus Ridge"
@@ -488,8 +484,6 @@ class App extends Component {
 
             </Row>
         </Container>
-
-
       </div>
     );
   }
