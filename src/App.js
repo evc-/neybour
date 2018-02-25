@@ -320,20 +320,10 @@ class App extends Component {
         <br />
         <br />
                     
-        <Container id="pin-controls" fluid>
-            <Row>
-                <Col xs="12">
-                    <div>
-                    <button>See all pins</button>
-                    <button>See my pins</button>
-                    </div>
-                </Col>
-            </Row>
-        </Container>
 
-        <Container id="map-container" fluid>
+        <Container id="map-container">
             <Row>
-                <Col xs="6">
+                <Col xs="12" md="6">
                     <GMap
                     addCoords={this.coords}
                     loggedin = {this.state.loggedin}
@@ -348,8 +338,13 @@ class App extends Component {
                     centerLng={this.state.centerLng}
                     coordsData={this.state.coords}
                     />
+                    <br />
+                    <div id="pin-controls">
+                        <button className="pin-btns">See all pins</button>
+                        <button className="pin-btns">See my pins</button>
+                    </div>
                 </Col>
-                <Col xs="6">
+                <Col xs="12" md="6">
                     <div id="findHoodTitle">find your neighbourhood</div>
                     <div className="hoodListContainer" id="scrollbar">
                         {hoodList}
@@ -361,6 +356,14 @@ class App extends Component {
 <br />
         <Container>
                 <Row>
+                    <Col xs="12">
+                        <h3>Browse all neighbourhoods</h3>
+                    </Col>
+                </Row>
+<br />
+<br />
+                <Row>
+                    
                     <HoodCard
                         onClick={()=>this.updateCenter(49.2536, 123.1604)}
                         hoodName="Arbutus Ridge"

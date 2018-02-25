@@ -114,6 +114,20 @@
     margin-left: 5px;
 }
 
+.pin-btns{
+    margin: 3px;
+    border-color: #EFA0A6;
+    border-width: 2px;
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 10pt;
+    color: #EFA0A6;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+}
+
 /*CARDS*/
 
 #hood-name{
