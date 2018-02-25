@@ -143,7 +143,7 @@ sendData(){
                 <br /><br />
                 <Input type="text" placeholder="password" onChange={this.handlePass}/>
                 <br /><br />
-                <button onClick={this.login}>Go</button>
+                <button className="account-btns" onClick={this.login}>Go</button>
                 </div>
           );
           
@@ -157,7 +157,7 @@ sendData(){
                 <br /><br />
                 <Input type="text" placeholder="password" onChange={this.signupPass}/>
                 <br /><br />
-                <button onClick={this.signup}>Create Account</button>
+                <button className="account-btns" onClick={this.signup}>Create Account</button>
                 </div>
           );
       }
@@ -167,7 +167,6 @@ sendData(){
                     {headerContent}
                 </ModalHeader>
                 <ModalBody>
-                    <div>"Test"</div>
                     {bodyContent}
                 </ModalBody>
             </Modal>

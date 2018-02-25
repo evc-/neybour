@@ -34,7 +34,9 @@
     border-style: none;
 }
 
-#sign-up-btn{
+/*BUTTONS*/
+
+#explore-btn{
     background: linear-gradient(to bottom right, #F7EAE2, #EDC5CA);
     border-style: none;
     border-radius: 20px;
@@ -42,12 +44,12 @@
     transition: opacity 1s ease-out;
 }
 
-#sign-up-btn:hover{
-     background: linear-gradient(to bottom right, #F7EAE2, #EDC5CA);
+#explore-btn:hover{
+    background: linear-gradient(to bottom right, #F7EAE2, #EDC5CA);
     opacity: 0.5;
 }
 
-#sign-up-btn a{
+#explore-btn a{
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     color: white;
@@ -55,7 +57,7 @@
     letter-spacing: 2px;
 }
 
-#sign-up-btn a:hover{
+#explore-btn a:hover{
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     color: white;
@@ -64,7 +66,7 @@
     text-decoration: none;
 }
 
-#login-btn{
+.navbar .account-btns{
     border-color: #EFA0A6;
     border-width: 2px;
     background-color: white;
@@ -76,6 +78,43 @@
     letter-spacing: 2px;
     border-radius: 20px;
 }
+
+.navbar .account-btns:hover{
+    border-color: #EFA0A6;
+    border-width: 2px;
+    background: linear-gradient(to bottom right, #F7EAE2, #EDC5CA);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 8pt;
+    color: #EFA0A6;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 20px;
+}
+
+.modal-body .account-btns{
+    border-color: #EFA0A6;
+    border-width: 2px;
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 8pt;
+    color: #EFA0A6;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 20px;
+}
+
+#login-btn{
+    margin-right: 5px;
+
+}
+
+#signup-btn{
+    margin-left: 5px;
+}
+
+/*CARDS*/
 
 #hood-name{
     color: #F7F3F0;
@@ -130,28 +169,82 @@
     color: #F7F3F0;
 }
 
+/*ACCOUNT MODALS*/
+
 .signupModal{
-    background-color: rgba(249,224,207,0.8);
-    width: 40%;
     padding: 2%;
     margin: 0 auto;
     text-align: center;
-    /*position: absolute;
-    margin-left:-200px;
-    left:50%;
-    z-index: 1;*/
+
 }
 
 .loginModal{
-    background-color: rgba(249,224,207,0.8);
-    width: 40%;
     padding: 2%;
     margin: 0 auto;
     text-align: center;
-    /*position: absolute;
-    margin-left:-200px;
-    left:50%;
-    z-index: 1;*/
+
+}
+
+/*LISTS*/
+
+#findHoodTitle{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 14pt;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+#scrollbar::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+	border-radius: 10px;
+}
+
+#scrollbar::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+#scrollbar::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear,
+									   left bottom,
+									   left top,
+									   color-stop(0.44, rgb(239,160,166)),
+									   color-stop(0.72, rgb(249,224,207)),
+									   color-stop(0.86, rgb(252,203,170)));
+}
+
+
+.hoodListContainer{
+    overflow-y: scroll;
+    max-height: 300px;
+}
+
+.listItems{
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+}
+
+.listNames{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 10pt;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-align: center;
+}
+
+.listItems img{
+    float: left;
 }
 
 /*slider CSS*/

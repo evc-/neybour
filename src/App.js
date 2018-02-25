@@ -12,6 +12,10 @@ import PostModal from './components/PostModal.js';
 //import { Carousel } from 'react-responsive-carousel';
 //import '../node_modules/react-responsive-carousel/lib/styles/carousel.min.css';
 
+/*
+<link rel="stylesheet" href="../node_modules/react-responsive-carousel/lib/styles/carousel.min.css"/>
+*/
+
 
 class App extends Component {
     constructor(props){
@@ -127,13 +131,112 @@ class App extends Component {
     }
     
     
-  render() {     
-/*
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Carousel = require('react-responsive-carousel').Carousel;
-*/      
-            
+  render() { 
+
+      var neighbourhoodArr = [
+
+          {
+            name: "Arbutus Ridge",
+            icon: require("./img/newicons/Arbutus-Ridge/icons-01.svg"),
+            coords: {lat: 49.2536, lng: 123.1604}
+          }, 
+          
+          {
+            name: "Downtown",
+            icon: require("./img/newicons/Downtown/icons-06.svg"),
+            coords: {lat: 49.2820, lng: 123.1171}
+          }, 
+          
+          {
+            name: "Dunbar",
+            icon: require("./img/newicons/Dunbar/icons-13.svg"),
+            coords: {lat: 49.1404, lng:123.1109}
+          },
+          
+          {
+            name: "Fairview",
+            icon: require('./img/newicons/Fairview/icons-10.svg'),
+            coords: {lat: 49.2660, lng:123.1289}
+          },
+          
+          {
+            name: "Hastings-Sunrise",
+            icon: require('./img/newicons/Hastings-Sunrise/icons-03.svg'),
+            coords: {lat: 49.2811, lng:123.0441}
+          },
+          
+          {
+            name: "Kensington",
+            icon: require('./img/newicons/Kensington/icons-02.svg'),
+            coords: {lat: 49.2484, lng:123.0701}
+          },
+          
+          {
+            name: "Kerrisdale",
+            icons: require('./img/newicons/Kerrisdale/icons-05.svg'),
+            coords: {lat: 49.2341, lng: 123.1554}
+          },
+                        
+          {
+            name: "Kitsilano",
+            icon: require('./img/newicons/Kitsilano/icons-14.svg'),
+            coords: {lat: 49.2709, lng: 123.1621}
+          }, 
+          
+          {
+            name: "Mt. Pleasant",
+            icon: require('./img/newicons/Mt-Pleasant/icons-08.svg'),
+            coords: {lat: 49.2583, lng: 123.1082}
+          }, 
+          
+          {
+            name: "Oakridge",
+            icon: require('./img/newicons/Oakridge/icons-07.svg'),
+            coords: {lat: 49.2298, lng: 123.1162}
+          }, 
+          
+           {
+            name: "Riley Park",
+            icon: require('./img/newicons/Riley-Park/icons-12.svg'),
+            coords: {lat: 49.2449, lng: 123.1135}
+          }, 
+          
+           {
+            name: "Shaughnessy",
+            icon: require('./img/newicons/Shaughnessy/icons-11.svg'),
+            coords: {lat: 49.2473, lng: 123.1409}
+          }, 
+          
+          {
+            name: "Sunset",
+            icon: require('./img/newicons/Sunset/icons-04.svg'),
+            coords: {lat: 49.2245, lng: 123.0900}
+          }, 
+          
+          {
+           name: "West End",
+           icon: require('./img/newicons/West-End/icons-09.svg'),
+            coords: {lat: 49.2856, lng: 123.1306}
+          }, 
+          
+          {
+            name: "West Point Grey",
+            icon: require('./img/newicons/West-Point-Grey/icons-15.svg'),
+            coords: {lat: 49.2610, lng: 123.2001}
+          }
+
+      ];
+      
+    var hoodList = neighbourhoodArr.map((obj, i)=>{
+        return (
+            <div className="listItems" key={i}>
+                <img style={{height: "30px"}} src={obj.icon} />
+                <span className="listNames">{obj.name}</span>
+                
+            </div>
+        );
+    });
+                  
     var loginComp = null;
       console.log(this.state.modalOpen);
       if (this.state.loggedin === false && this.state.modalOpen === true){
@@ -155,6 +258,7 @@ var Carousel = require('react-responsive-carousel').Carousel;
               />
           )
       }
+  
       
       
     return (
@@ -166,12 +270,12 @@ var Carousel = require('react-responsive-carousel').Carousel;
                 <img id="nav-brand"src={require('./img/nav-brand-04.png')} alt="favicon" width="30" height="30" />
             </NavbarBrand>
 
-            <Button id="login-btn" className="navBtn" 
+            <Button className="account-btns navBtn" id="login-btn" 
                 onClick={()=>{this.setState({modalName:"login", modalOpen: true})}}>
                 login
             </Button>
 
-            <Button id="sign-up-btn" className="navBtn" 
+            <Button className="account-btns navBtn" id="signup-btn" 
                 onClick={()=>this.setState({modalName:"signup", modalOpen: true})}>
                 sign up
             </Button>
@@ -198,16 +302,16 @@ var Carousel = require('react-responsive-carousel').Carousel;
                 </Col>
             </Row>
             <Row>
-                <Col xs="10" md="6">
+                <Col xs={{size:10, offset:1}} md={{size:6, offset:0}}>
                     <div className="header-home">neybour.</div>
                     <br />
-                    <div className="subheader-home">explore Vancouver's stories by neighbourhood</div>
+                    <div className="subheader-home">What do you love about your neighbourhood?</div>
                     <br />
-                    <div className="about-home">Neybour is a place to share your stories, memories, and personal connections to the places and spaces in your Vancouver neighbourhood. Select a neighbourhood to start.</div>
+                    <div className="about-home">Neybour is a place to share your stories, memories, and personal connections to the places and spaces in your Vancouver neighbourhood.<br /> Select your neighbourhood on the map or from the list below.</div>
                     <br />
-                    <Button id="sign-up-btn"><a href="#map-container">share your story</a></Button>
+                    <Button id="explore-btn"><a href="#map-container">add your story</a></Button>
                 </Col>
-                <Col xs="1" md="6">
+                <Col xs={{size:12}} md={{size: 6}}>
                     <img className="img-fluid" src={require('./img/map/map.svg')} />
                 </Col>
             </Row>
@@ -216,8 +320,47 @@ var Carousel = require('react-responsive-carousel').Carousel;
         <br />
         <br />
                     
-        <Container>
+        <Container id="pin-controls" fluid>
             <Row>
+                <Col xs="12">
+                    <div>
+                    <button>See all pins</button>
+                    <button>See my pins</button>
+                    </div>
+                </Col>
+            </Row>
+        </Container>
+
+        <Container id="map-container" fluid>
+            <Row>
+                <Col xs="6">
+                    <GMap
+                    addCoords={this.coords}
+                    loggedin = {this.state.loggedin}
+                    token = {this.state.token}
+                    addPost = {this.addPost}
+                    markersData={this.state.markersData}
+                    pushMarkersData={this.pushMarkersData} googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+                    loadingElement={<div style={{ height: '100%' }}/> }
+                    containerElement={<div style={{ height: '300px' }} /> }
+                    mapElement={<div style={{ height: '100%' }}/>}
+                    centerLat={this.state.centerLat}
+                    centerLng={this.state.centerLng}
+                    coordsData={this.state.coords}
+                    />
+                </Col>
+                <Col xs="6">
+                    <div id="findHoodTitle">find your neighbourhood</div>
+                    <div className="hoodListContainer" id="scrollbar">
+                        {hoodList}
+                    </div>
+                </Col>
+            </Row>
+        </Container>
+<br />
+<br />
+        <Container>
+                <Row>
                     <HoodCard
                         onClick={()=>this.updateCenter(49.2536, 123.1604)}
                         hoodName="Arbutus Ridge"
@@ -343,70 +486,6 @@ var Carousel = require('react-responsive-carousel').Carousel;
             </Row>
         </Container>
 
-        
-        {
-        /*
-        <Container>
-            <Row>
-                <Col xs="12">
-                    <NarrativePin
-                        pinMsg="I am a pin">
-                        <Narrative>
-                            <div>Text that shows up in the modal</div>
-                        </Narrative>
-                    </NarrativePin>
-                </Col>
-            </Row>
-        </Container>
-        */
-        }
-
-        <Container id="pin-controls" fluid>
-            <Row>
-                <Col xs="12">
-                    <div>
-                    <button>See all pins</button>
-                    <button>See my pins</button>
-                    </div>
-                </Col>
-            </Row>
-        </Container>
-
-        <Container id="neighbourhood-dash" fluid>
-            <Row>
-                <Col xs="12">
-                    <div>
-                    <div>Welcome to *Neighbourhood Name*</div>
-                    <div>Current Weather</div>
-                    </div>
-                </Col>
-            </Row>
-        </Container>
-
-
-        <Container id="map-container" fluid>
-            <Row>
-                <Col xs="12">
-                    <GMap
-                    addCoords={this.coords}
-                    loggedin = {this.state.loggedin}
-                    token = {this.state.token}
-                    addPost = {this.addPost}
-                    markersData={this.state.markersData}
-                    pushMarkersData={this.pushMarkersData} googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-                    loadingElement={<div style={{ height: '100%' }}/> }
-                    containerElement={<div style={{ height: '300px' }} /> }
-                    mapElement={<div style={{ height: '100%' }}/>}
-                    centerLat={this.state.centerLat}
-                    centerLng={this.state.centerLng}
-                    coordsData={this.state.coords}
-                    
-                    />
-                </Col>
-            </Row>
-                    
-            
-        </Container>
 
       </div>
     );
@@ -414,6 +493,3 @@ var Carousel = require('react-responsive-carousel').Carousel;
 }
 
 export default App;
-/*
-<link rel="stylesheet" href="../node_modules/react-responsive-carousel/lib/styles/carousel.min.css"/>
-*/
