@@ -36,8 +36,8 @@ class App extends Component {
             collapsed: true,
             markersData:[],
             mapCoords:null,
-            centerLat: 34,
-            centerLng: 45,
+            centerLat: 49,
+            centerLng: -123,
             loggedin: false,
             posts:[],
             respMessage: [],
@@ -102,11 +102,12 @@ class App extends Component {
         });
     }
     
-    updateCenter(lat, lng){
+    updateCenter(coords){
         this.setState({
-            centerLat:lat,
-            centerLng:lng
+            centerLat:coords.lat,
+            centerLng:coords.lng
         })
+        
     };
     
     setHood(hood){
@@ -138,98 +139,98 @@ class App extends Component {
           {
             name: "Arbutus Ridge",
             icon: require("./img/newicons/Arbutus-Ridge/icons-01.svg"),
-            coords: {lat: 49.2536, lng: 123.1604}
+            coords: {lat: 49.2536, lng: -123.1604}
           }, 
           
           {
             name: "Downtown",
             icon: require("./img/newicons/Downtown/icons-06.svg"),
-            coords: {lat: 49.2820, lng: 123.1171}
+            coords: {lat: 49.2820, lng: -123.1171}
           }, 
           
           {
             name: "Dunbar",
             icon: require("./img/newicons/Dunbar/icons-13.svg"),
-            coords: {lat: 49.1404, lng:123.1109}
+            coords: {lat: 49.1404, lng: -123.1109}
           },
           
           {
             name: "Fairview",
             icon: require('./img/newicons/Fairview/icons-10.svg'),
-            coords: {lat: 49.2660, lng:123.1289}
+            coords: {lat: 49.2660, lng: -123.1289}
           },
           
           {
             name: "Hastings-Sunrise",
             icon: require('./img/newicons/Hastings-Sunrise/icons-03.svg'),
-            coords: {lat: 49.2811, lng:123.0441}
+            coords: {lat: 49.2811, lng: -123.0441}
           },
           
           {
             name: "Kensington",
             icon: require('./img/newicons/Kensington/icons-02.svg'),
-            coords: {lat: 49.2484, lng:123.0701}
+            coords: {lat: 49.2484, lng: -123.0701}
           },
           
           {
             name: "Kerrisdale",
             icons: require('./img/newicons/Kerrisdale/icons-05.svg'),
-            coords: {lat: 49.2341, lng: 123.1554}
+            coords: {lat: 49.2341, lng: -123.1554}
           },
                         
           {
             name: "Kitsilano",
             icon: require('./img/newicons/Kitsilano/icons-14.svg'),
-            coords: {lat: 49.2709, lng: 123.1621}
+            coords: {lat: 49.2709, lng: -123.1621}
           }, 
           
           {
             name: "Mt. Pleasant",
             icon: require('./img/newicons/Mt-Pleasant/icons-08.svg'),
-            coords: {lat: 49.2583, lng: 123.1082}
+            coords: {lat: 49.2583, lng: -123.1082}
           }, 
           
           {
             name: "Oakridge",
             icon: require('./img/newicons/Oakridge/icons-07.svg'),
-            coords: {lat: 49.2298, lng: 123.1162}
+            coords: {lat: 49.2298, lng: -123.1162}
           }, 
           
            {
             name: "Riley Park",
             icon: require('./img/newicons/Riley-Park/icons-12.svg'),
-            coords: {lat: 49.2449, lng: 123.1135}
+            coords: {lat: 49.2449, lng: -123.1135}
           }, 
           
            {
             name: "Shaughnessy",
             icon: require('./img/newicons/Shaughnessy/icons-11.svg'),
-            coords: {lat: 49.2473, lng: 123.1409}
+            coords: {lat: 49.2473, lng: -123.1409}
           }, 
           
           {
             name: "Sunset",
             icon: require('./img/newicons/Sunset/icons-04.svg'),
-            coords: {lat: 49.2245, lng: 123.0900}
+            coords: {lat: 49.2245, lng: -123.0900}
           }, 
           
           {
            name: "West End",
            icon: require('./img/newicons/West-End/icons-09.svg'),
-            coords: {lat: 49.2856, lng: 123.1306}
+            coords: {lat: 49.2856, lng: -123.1306}
           }, 
           
           {
             name: "West Point Grey",
             icon: require('./img/newicons/West-Point-Grey/icons-15.svg'),
-            coords: {lat: 49.2610, lng: 123.2001}
+            coords: {lat: 49.2610, lng: -123.2001},
           }
 
       ];
       
     var hoodList = neighbourhoodArr.map((obj, i)=>{
         return (
-            <div className="listItems" key={i}>
+            <div className="listItems" key={i} onClick={()=>{this.updateCenter(obj.coords)}}>
                 <img style={{height: "30px"}} src={obj.icon} />
                 <span className="listNames">{obj.name}</span>
                 
@@ -361,7 +362,7 @@ class App extends Component {
         <br />
                 <Row>
                     <HoodCard
-                        onClick={()=>this.updateCenter(49.2536, 123.1604)}
+                        onClick={()=>this.updateCenter(49.2536, -123.1604)}
                         hoodName="Arbutus Ridge"
                         hoodDesc="tagline"
                         hoodImg={require('./img/newicons/Arbutus-Ridge/icons-01.svg')}
