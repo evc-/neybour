@@ -2,7 +2,7 @@
 
 .header-home{
     font-family: 'Noto Serif', serif;
-    font-size: 50pt;
+    font-size: 5vw;
     color: #3F4454;
     font-weight: 700;
 }
@@ -10,7 +10,7 @@
 .subheader-home{
     font-family: 'Noto Serif', serif;
     font-style: italic;
-    font-size: 16pt;
+    font-size: 2vw;
     color: #3F4454;
     font-weight: 500;
 }
@@ -29,6 +29,7 @@
     margin-left: 0;
     margin-right: 0;
     top:0;
+    z-index: -1000;
 }
 
 #toggler{
@@ -54,23 +55,19 @@
     border-radius: 25px;
     opacity: 1;
     transition: opacity 1s ease-out;
-}
-
-#explore-btn:hover{
-    background: linear-gradient(to bottom right, #F7EAE2, #EDC5CA);
-    opacity: 0.5;
-}
-
-#explore-btn a{
-    font-size: 10pt;
+    font-size: 1em;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     color: white;
     text-transform: uppercase;
     letter-spacing: 2px;
+    white-space: normal;
+
 }
 
-#explore-btn a:hover{
+#explore-btn:hover{
+    background: linear-gradient(to bottom right, #F7EAE2, #EDC5CA);
+    opacity: 0.5;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     color: white;
@@ -78,6 +75,8 @@
     letter-spacing: 2px;
     text-decoration: none;
 }
+
+
 
 #navbar-custom{
     background: linear-gradient(to bottom right, #fbebdf, #f7cfd2);
@@ -204,7 +203,6 @@
 }
 
 #miniMap{
-    
     box-shadow: 2px 2px 5px 0px #ccc;
     background-color: #F7F3F0;
     border-bottom-left-radius: 10px;
@@ -215,9 +213,8 @@
     position:absolute;
     right: 40px;
     top:36px; 
-    z-index:6000;
-    height:200px;
-    width: 300px;
+    z-index:1000;
+    width: 20%;
 }
 
 /*ACCOUNT MODALS*/
@@ -268,10 +265,12 @@
   height: 30px;
   left: 36px;
   top: 36px;
+    z-index: 998!important;
 }
 
 .bm-menu-wrap{
     position:absolute!important;
+    z-index: 999!important;
 }
 
 /* Color/shape of burger icon bars */
@@ -404,6 +403,8 @@
 .cls-1:hover{
     fill: #efa0a6;
 }
+
+
 
 @font-face{
     font-family: Noto Serif;

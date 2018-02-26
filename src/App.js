@@ -48,9 +48,10 @@ class App extends Component {
             postModal:false,
             modalOpen: false,
             modalName: null,
-            sidebar: "neighbourhoodList",
+            sidebar: "landingMsg",
             pageTitle: "neybour.",
-            menuOpen: false
+            menuOpen: true,
+            width: window.innerWidth
         };   
     }
     
@@ -130,7 +131,21 @@ class App extends Component {
         this.setState({menuOpen: state.isOpen})  
     }
     
+    
+
+    
   render() { 
+      
+    const { width } = this.state;
+    const isMobile = width <= 576;
+    var menuWidth;
+      
+      if (isMobile) {
+            menuWidth = "50%";
+                
+        } else {
+            menuWidth = "35%";
+        }
 
       var neighbourhoodArr = [
 
@@ -260,6 +275,22 @@ class App extends Component {
       }
 
     var sidebar;
+
+        if (this.state.sidebar == "landingMsg"){
+            sidebar = (
+                <div>
+                    <div className="header-home">{this.state.pageTitle}</div>
+                    <div className="about-home">A place to share the stories and memories of your Vancouver neighbourhood.
+                    <br />
+                    Choose to share posts publicly with your neighbours, or keep them private. 
+                    </div>
+                    <br />
+                    <Button id="explore-btn" onClick={()=>{this.setState({sidebar: "neighbourhoodList"})}}>
+                        Share your story</Button>
+                </div>
+            
+            )
+        }
         if (this.state.sidebar == "neighbourhoodList"){
             sidebar = (
                 <div>
@@ -300,30 +331,27 @@ class App extends Component {
         </Navbar>
 
          {loginComp}
-
-        <Container id="title-container">
-            <Row>
-                <Col xs="12">
-                    <div className="header-home">{this.state.pageTitle}</div>
-                    <div className="about-home">Share your stories and memories of your Vancouver neighbourhood.</div>
-                </Col>
-            </Row>
-        </Container>
-
-        
-
-        <br />
             
         <Container id="map-container" fluid>
             <Row>
                 <Col xs="12">
-                    <Menu
-                        isOpen={this.state.menuOpen}
-                        onStateChange={(state) => this.handleStateChange(state)}
-                        noOverlay width={ '50%' }
-                    >
-                            {sidebar}
-                    </Menu>
+                    <div id="outer-container">
+                        <Menu
+                            
+                            outerContainerId={ "outer-container" }
+                            isOpen={this.state.menuOpen}
+                            onStateChange={(state) => this.handleStateChange(state)}
+                            noOverlay width={menuWidth}
+                        >
+                                
+                                <Col xs="12">
+                                
+                                {sidebar}
+                                
+                                </Col>    
+                        </Menu>
+                    </div>
+                    
                     <GMap
                         addCoords={this.coords}
                         loggedin = {this.state.loggedin}
