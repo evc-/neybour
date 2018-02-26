@@ -19,6 +19,10 @@ const GMap = withScriptjs(withGoogleMap((props) =>{
             //alert("You need to log in!");
         }
     }
+    this.markerInfo = function(){
+        console.log("click");
+    }
+
     
    var markers = props.markersData.map((obj, i)=>{
         return (
@@ -37,7 +41,7 @@ const GMap = withScriptjs(withGoogleMap((props) =>{
    //    console.log(obj);
        let latLng = { lat:obj.coords.lat, lng:obj.coords.long };
        return (
-        <Marker key={i} position={latLng}>
+        <Marker key={i} position={latLng} onClick={this.markerInfo}>
            <InfoWindow>
            <div>{obj.title}</div>
            </InfoWindow>
