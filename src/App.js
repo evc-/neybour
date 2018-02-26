@@ -335,10 +335,10 @@ class App extends Component {
         <Container id="map-container" fluid>
             <Row>
                 <Col xs="12">
-                    <div id="outer-container">
+                    <div id="menu-outer-container">
                         <Menu
                             
-                            outerContainerId={ "outer-container" }
+                            outerContainerId={ "menu-outer-container" }
                             isOpen={this.state.menuOpen}
                             onStateChange={(state) => this.handleStateChange(state)}
                             noOverlay width={menuWidth}
