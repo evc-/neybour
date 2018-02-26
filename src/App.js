@@ -51,7 +51,8 @@ class App extends Component {
             sidebar: "landingMsg",
             pageTitle: "neybour.",
             menuOpen: true,
-            width: window.innerWidth
+            width: window.innerWidth,
+            hoodImg: null
         };   
     }
     
@@ -109,14 +110,15 @@ class App extends Component {
         });
     }
     
-    updateCenter(coords, name){
+    updateCenter(coords, name, icon){
         this.setState({
             centerLat:coords.lat,
             centerLng:coords.lng,
             sidebar: "postList",
             hoodName: name,
             pageTitle: name,
-            menuOpen: false
+            menuOpen: false,
+            hoodImg: icon
         })
         
     };
@@ -244,10 +246,9 @@ class App extends Component {
     var hoodList = neighbourhoodArr.map((obj, i)=>{
         var bgColor = i%2==1 ? "#f7f3f0" : "white";
         return (
-            <div style={{backgroundColor: bgColor}} className="listItems" key={i} onClick={()=>{this.updateCenter(obj.coords, obj.name)}}>
+            <div style={{borderTopColor: bgColor}} className="listItems" key={i} onClick={()=>{this.updateCenter(obj.coords, obj.name, obj.icon)}}>
                 <img style={{height: "30px"}} src={obj.icon} />
                 <span className="listNames">{obj.name}</span>
-                
             </div>
         );
     });
@@ -360,7 +361,7 @@ class App extends Component {
                         markersData={this.state.markersData}
                         pushMarkersData={this.pushMarkersData} googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
                         loadingElement={<div style={{ height: '100%' }}/> }
-                        containerElement={<div style={{ height: '800px' }} /> }
+                        containerElement={<div style={{ height: '100vh', maxWidth: "100%", marginLeft:"0", marginRight:"0" }} /> }
                         mapElement={<div style={{ height: '100%' }}/>}
                         centerLat={this.state.centerLat}
                         centerLng={this.state.centerLng}
@@ -370,6 +371,22 @@ class App extends Component {
                     <div id="miniMap">
                         <MapGraphic />
                     </div>
+
+                    <div id="sideCard">
+                        <Row>
+                            <Col xs="12">
+                                <HoodCard
+                                    onClick={()=>this.updateCenter(49.2536, -123.1604)}
+                                    hoodName={this.state.hoodName}
+                                    hoodDesc={this.state.hoodDesc}
+                                    hoodImg={this.state.hoodImg}
+                                    hoodLat={49.2536}
+                                    hoodLng={123.1604}
+                                />
+                            </Col>
+                        </Row>
+                    </div>
+
                         {
                         /*
                         <div id="pin-controls">
@@ -388,14 +405,9 @@ class App extends Component {
         <Container>
                 <Row>
                     <Col xs="12">
-                        <h3>Browse all neighbourhoods</h3>
+                        <div className="browse-header">Browse all neighbourhoods</div>
                     </Col>
                 </Row>
-        <br />
-        <br />
-                
-                            
-                
                 <Row>
                     <HoodCard
                         onClick={()=>this.updateCenter(49.2536, -123.1604)}
@@ -422,7 +434,7 @@ class App extends Component {
                         hoodLat={49.1404}
                         hoodLng={123.1109}
                     />
-                   
+
                     <HoodCard
                         hoodName="Fairview"
                         hoodDesc="tagline"
@@ -518,10 +530,7 @@ class App extends Component {
                         hoodLat={49.2610}
                         hoodLng={123.2001}
                     />
-
-            </Row>
-            
-                        
+            </Row>     
         </Container>
       </div>
     );

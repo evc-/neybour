@@ -23,14 +23,32 @@
     font-weight: 200;
 }
 
+.browse-header{
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    color: #3F4454;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    
+}
+
+
+
 #map-container{
-    width: 100%;
-    padding-left:0;
-    padding-right:0;
+    max-width: 100vw;
+    height: 100vh;
     margin-left: 0;
     margin-right: 0;
+    padding-right:0;
     top:0;
     z-index: -1000;
+    overflow: hidden;
+}
+
+.hoodListContainer{
+    width: 100%;
 }
 
 #toggler{
@@ -183,6 +201,7 @@
 }
 
 #card-bg{
+    
     box-shadow: 2px 2px 5px 0px #ccc;
     justify-content: center;
     align-items: center;
@@ -204,7 +223,7 @@
 
 #miniMap{
     box-shadow: 2px 2px 5px 0px #ccc;
-    background-color: #F7F3F0;
+    background-color: white;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     border-top-left-radius: 10px;
@@ -212,9 +231,17 @@
     padding: 30px;
     position:absolute;
     right: 40px;
-    top:36px; 
+    top:3%; 
     z-index:1000;
-    width: 20%;
+    width: 15%;
+}
+
+#sideCard{
+    position:absolute;
+    right: 40px;
+    top:35%; 
+    z-index:1200;
+    width: 15%;
 }
 
 /*ACCOUNT MODALS*/
@@ -249,7 +276,6 @@
     /*background: linear-gradient(to right, #F7EAE2, #EFC2CA);*/
 }
 
-
 .gmnoprint{
     display: none!important;
 }
@@ -268,7 +294,7 @@
   height: 30px;
   left: 36px;
   top: 36px;
-    z-index: 998!important;
+z-index: 998!important;
 }
 
 .bm-menu-wrap{
@@ -336,22 +362,22 @@
     text-align: center;
     margin-bottom: 8px;
 }
-/*
 
-#scrollbar::-webkit-scrollbar-track
+
+.bm-menu::-webkit-scrollbar-track
 {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	background-color: #F5F5F5;
 	border-radius: 10px;
 }
 
-#scrollbar::-webkit-scrollbar
+.bm-menu::-webkit-scrollbar
 {
 	width: 10px;
 	background-color: #F5F5F5;
 }
 
-#scrollbar::-webkit-scrollbar-thumb
+.bm-menu::-webkit-scrollbar-thumb
 {
 	border-radius: 10px;
 	background-image: -webkit-gradient(linear,
@@ -363,15 +389,11 @@
 }
 
 
-*/
 
-.hoodListContainer{
-/*    overflow-y: scroll;*/
-    max-height: 1500px;
-}
 
 
 .listItems{
+    text-align: left;
     width: 100%;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -383,12 +405,13 @@
     font-size: 10pt;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    text-align: center;
-    padding-left: 20px;
+    text-align: left;
 }
 
 .listItems img{
-    float: right;
+    float: left;
+    margin-left: 10%;
+    margin-right: 7%;
 }
 
 #Killarney{
@@ -418,6 +441,5 @@
     font-family: Poppins;
     src: url('https://fonts.googleapis.com/css?family=Poppins');
 }
-
 
 
