@@ -19,8 +19,9 @@ class PostModal extends Component {
     
 postCreate(){
 //    console.log(this.props.token);
-    console.log(this.props.mapData);
-    console.log(this.props.coords);
+    //console.log("map data: "+this.props.mapData);
+    console.log("modal coords: "+this.props.coords.lat);
+    console.log("modal coords: "+this.props.coords.long);
     fetch('http://localhost:4567/posts/', {
     method: 'POST',
     headers: {
@@ -33,7 +34,7 @@ postCreate(){
         body:this.state.desc,
         coords: {
             lat:this.props.coords.lat,
-            long:this.props.coords.lng
+            long:this.props.coords.long
         },
         toggle:true
     })
@@ -45,6 +46,7 @@ postCreate(){
 postCheck(obj){
     if(obj.error){
         console.log("failed");
+        console.log(obj.error.message);
     } else {
         let post = {
         title:this.state.title,

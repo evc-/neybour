@@ -12,8 +12,7 @@ class Login extends Component {
         }
         
 
-    this.toggle = this.toggle.bind(this);    
-    this.sendData = this.sendData.bind(this);
+    this.toggle = this.toggle.bind(this);  
     this.login = this.login.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
     this.handlePass = this.handlePass.bind(this);
@@ -24,10 +23,7 @@ class Login extends Component {
     this.signupName = this.signupName.bind(this);
     this.signupCheck = this.signupCheck.bind(this);
     }
-    
-    
-sendData(){
-}    
+     
         //bare-bones login; use "test@test.com" and "tester" to login
     login(){
         let email = this.state.email;
@@ -59,6 +55,7 @@ sendData(){
                 };
             this.props.userInfo(obj);
             console.log("You're logged in!");
+            this.props.closeModal();
         } else if(data.message == "Auth failed"){
             console.log("failed!");
         }
@@ -91,6 +88,7 @@ sendData(){
             console.log("failed");
         } else {
             console.log(obj.message);
+            this.props.closeModal();
         }
     }    
     
