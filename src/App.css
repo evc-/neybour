@@ -210,18 +210,11 @@
 #Btn:hover{
     border-color: #EFA0A6;
     border-width: 2px;
-    background: linear-gradient(to right, #F7EAE2, #EFC2CA);
+    background-color: #EFA0A6;
+    color: white;
+    /*background: linear-gradient(to right, #F7EAE2, #EFC2CA);*/
 }
 
-/*
-.loginModal{
-    padding: 2%;
-    margin: 0 auto;
-    text-align: center;
-    background-color:#F9E0CF; 
-
-}
-*/
 
 /*LISTS*/
 
