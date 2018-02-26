@@ -339,6 +339,9 @@ class App extends Component {
                         coordsData={this.state.coords}
                     />
                     <br />
+                    <div id="miniMap">
+                        <MapGraphic />
+                    </div>
                         {
                         /*
                         <div id="pin-controls">

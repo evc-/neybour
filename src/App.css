@@ -203,6 +203,23 @@
     color: #F7F3F0;
 }
 
+#miniMap{
+    
+    box-shadow: 2px 2px 5px 0px #ccc;
+    background-color: #F7F3F0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 30px;
+    position:absolute;
+    right: 40px;
+    top:36px; 
+    z-index:6000;
+    height:200px;
+    width: 300px;
+}
+
 /*ACCOUNT MODALS*/
 
 .acctModal{
@@ -237,6 +254,10 @@
 
 
 .gmnoprint{
+    display: none!important;
+}
+
+.gm-fullscreen-control{
     display: none!important;
 }
 
