@@ -218,7 +218,7 @@ class App extends Component {
     var hoodList = neighbourhoodArr.map((obj, i)=>{
         var bgColor = i%2==1 ? "#f7f3f0" : "white";
         return (
-            <div style={{backgroundColor: bgColor}} className="listItems" key={i} onClick={()=>{this.updateCenter(obj.coords)}}>
+            <div style={{backgroundColor: bgColor}} className="listItems" key={i} onClick={()=>{this.updateCenter(obj.coords, obj.name)}}>
                 <img style={{height: "30px"}} src={obj.icon} />
                 <span className="listNames">{obj.name}</span>
                 
@@ -262,7 +262,8 @@ class App extends Component {
         } else if (this.state.sidebar == "postList"){
             sidebar = (
                 <div>
-                    <p>Post list</p>
+                    <div id="hoodTitle">{this.state.hoodName}
+                </div>
                 </div>
             );
         }
