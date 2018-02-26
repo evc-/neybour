@@ -45,9 +45,6 @@
     width: 40%;
 }
 
-#title-container{
-    background-color: white;
-}
 
 /*BUTTONS*/
 
@@ -364,6 +361,7 @@
     text-transform: uppercase;
     letter-spacing: 1.5px;
     text-align: center;
+    padding-left: 20px;
 }
 
 .listItems img{

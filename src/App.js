@@ -31,6 +31,7 @@ class App extends Component {
         this.userInfo = this.userInfo.bind(this);
         this.addPost = this.addPost.bind(this);
         this.coords = this.coords.bind(this);
+        this.handleStateChange = this.handleStateChange.bind(this);
         
         this.state = {
             collapsed: true,
@@ -47,9 +48,13 @@ class App extends Component {
             postModal:false,
             modalOpen: false,
             modalName: null,
-            sidebar: "neighbourhoodList"
+            sidebar: "neighbourhoodList",
+            pageTitle: "neybour.",
+            menuOpen: false
         };   
     }
+    
+    
     
     addPost(post){
         let temp = this.state.posts;
@@ -108,7 +113,9 @@ class App extends Component {
             centerLat:coords.lat,
             centerLng:coords.lng,
             sidebar: "postList",
-            hoodName: name
+            hoodName: name,
+            pageTitle: name,
+            menuOpen: false
         })
         
     };
@@ -119,6 +126,9 @@ class App extends Component {
         })
     }
     
+    handleStateChange(state) {
+        this.setState({menuOpen: state.isOpen})  
+    }
     
   render() { 
 
@@ -287,54 +297,32 @@ class App extends Component {
                 onClick={()=>this.setState({modalName:"signup", modalOpen: true})}>
                 sign up
             </Button>
-            
-            {
-            /*
-          <NavbarToggler id="toggler" onClick={this.toggleNavbar} className="mr-2" />
-          <Collapse isOpen={!this.state.collapsed} navbar>
-            <Nav navbar>
-              <NavItem>
-                <NavLink href="/components/">About</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">FAQ</NavLink>
-              </NavItem>
-            </Nav>
-          </Collapse>
-          */
-            }
-
         </Navbar>
+
+         {loginComp}
 
         <Container id="title-container">
             <Row>
                 <Col xs="12">
-                    {loginComp}
-                </Col>
-            </Row>
-
-            <Row>
-                <Col xs="12">
-                    <div className="header-home">neybour.</div>
-                    <div className="about-home">Share your stories and memories of your Vancouver neighbourhood.
-                    <br />
-                    Choose your neighbourhood on the map and explore the pins.</div>
-                    <br />
-                    <Button id="explore-btn"><a href="#map-container">share your story</a></Button>
-
-                        {
-                        //<div className="subheader-home">What do you love about your neighbourhood?</div>
-                    }
+                    <div className="header-home">{this.state.pageTitle}</div>
+                    <div className="about-home">Share your stories and memories of your Vancouver neighbourhood.</div>
                 </Col>
             </Row>
         </Container>
+
+        
+
         <br />
-        <br />
+            
         <Container id="map-container" fluid>
             <Row>
                 <Col xs="12">
-                    <Menu noOverlay width={ '30%' }>
-                        {sidebar}
+                    <Menu
+                        isOpen={this.state.menuOpen}
+                        onStateChange={(state) => this.handleStateChange(state)}
+                        noOverlay width={ '50%' }
+                    >
+                            {sidebar}
                     </Menu>
                     <GMap
                         addCoords={this.coords}
@@ -351,10 +339,14 @@ class App extends Component {
                         coordsData={this.state.coords}
                     />
                     <br />
-                    <div id="pin-controls">
+                        {
+                        /*
+                        <div id="pin-controls">
                         <button className="pin-btns">See all pins</button>
                         <button className="pin-btns">See my pins</button>
                     </div>
+                    */
+                    }
                 </Col>
             </Row>
         </Container>
@@ -370,9 +362,9 @@ class App extends Component {
                 </Row>
         <br />
         <br />
-                {
+                
                             
-                /*
+                
                 <Row>
                     <HoodCard
                         onClick={()=>this.updateCenter(49.2536, -123.1604)}
@@ -497,8 +489,8 @@ class App extends Component {
                     />
 
             </Row>
-            */
-                        }
+            
+                        
         </Container>
       </div>
     );
