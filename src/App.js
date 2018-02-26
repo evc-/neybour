@@ -30,7 +30,7 @@ class App extends Component {
         this.shareStory = this.shareStory.bind(this);
         this.userInfo = this.userInfo.bind(this);
         this.addPost = this.addPost.bind(this);
-        this.coords = this.coords.bind(this);
+        this.markerCoords = this.markerCoords.bind(this);
         this.handleStateChange = this.handleStateChange.bind(this);
         
         this.state = {
@@ -42,7 +42,7 @@ class App extends Component {
             loggedin: false,
             posts:[],
             respMessage: [],
-            coords:{ lat:'', lng:''},
+            markerCoords: { lat:'', long:'' },
             userInfo: [],
             modal:'',
             postModal:false,
@@ -55,17 +55,31 @@ class App extends Component {
         };   
     }
     
-    
+    componentDidMount(){
+        fetch('http://localhost:4567/posts/')
+        .then((res)=>{
+        return res.json(); 
+        })
+            .then((data)=>{
+  //      console.log(data);
+        this.setState({
+            posts:data
+        });
+//        console.log(this.state.posts);
+        });
+    }
     
     addPost(post){
-        let temp = this.state.posts;
-        temp.push(post);
+        var temp = this.state.posts;
+  //      console.log(temp);
+       temp.posts.push(post);
         this.setState({
             posts:temp
         });
+  //      console.log(this.state.posts);
         this.setState({
             postModal:false
-        })
+        });
     }
 
     shareStory(){
@@ -77,15 +91,16 @@ class App extends Component {
             console.log("log in you doof");
         }
     }
-    coords(data){
-        console.log(data);
+    markerCoords(data){
+        console.log("app.js coords:" +data.long, data.lat);
         this.setState({
-            coords: {
+            markerCoords: {
                 lat:data.lat,
-                lng:data.lng
+                long: data.long
             }
-        })
+        });
     }
+    
     userInfo(data){
         this.setState({
             loggedin:true,
@@ -118,7 +133,6 @@ class App extends Component {
             pageTitle: name,
             menuOpen: false
         })
-        
     };
     
     closeModal(){
@@ -320,12 +334,12 @@ class App extends Component {
             </NavbarBrand>
 
             <Button className="account-btns navBtn" id="login-btn" 
-                onClick={()=>{this.setState({modalName:"login", modalOpen: true})}}>
+                onClick={()=>{this.setState({ modalName:"login", modalOpen: true })}}>
                 login
             </Button>
 
             <Button className="account-btns navBtn" id="signup-btn" 
-                onClick={()=>this.setState({modalName:"signup", modalOpen: true})}>
+                onClick={()=>this.setState({ modalName:"signup", modalOpen: true })}>
                 sign up
             </Button>
         </Navbar>
@@ -351,9 +365,8 @@ class App extends Component {
                                 </Col>    
                         </Menu>
                     </div>
-                    
                     <GMap
-                        addCoords={this.coords}
+                        addCoords={this.markerCoords}
                         loggedin = {this.state.loggedin}
                         token = {this.state.token}
                         addPost = {this.addPost}
@@ -364,7 +377,9 @@ class App extends Component {
                         mapElement={<div style={{ height: '100%' }}/>}
                         centerLat={this.state.centerLat}
                         centerLng={this.state.centerLng}
-                        coordsData={this.state.coords}
+                        markerCoords = {this.state.markerCoords}
+                        postModalState = {this.state.postModal}
+                        posts = {this.state.posts}
                     />
                     <br />
                     <div id="miniMap">
@@ -398,7 +413,7 @@ class App extends Component {
                 
                 <Row>
                     <HoodCard
-                        onClick={()=>this.updateCenter(49.2536, -123.1604)}
+                        onClick={ ()=>this.updateCenter(49.2536, -123.1604) }
                         hoodName="Arbutus Ridge"
                         hoodDesc="tagline"
                         hoodImg={require('./img/newicons/Arbutus-Ridge/icons-01.svg')}

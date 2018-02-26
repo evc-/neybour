@@ -9,9 +9,9 @@ const GMap = withScriptjs(withGoogleMap((props) =>{
 
         let coords = {
             lat:resp.latLng.lat(),
-            lng:resp.latLng.lng()
+            long:resp.latLng.lng()
         };
-            
+        console.log("click data:"+ coords.lat, coords.long);
         props.addCoords(coords);
         props.pushMarkersData(resp.latLng);
             
@@ -25,7 +25,7 @@ const GMap = withScriptjs(withGoogleMap((props) =>{
             <Marker key={i} position={obj}>
             <InfoWindow>
             <PostModal
-                coords={props.markersData}
+                coords={props.markerCoords}
                 token={props.token}
                 addPost={props.addPost}
             />
@@ -33,6 +33,17 @@ const GMap = withScriptjs(withGoogleMap((props) =>{
         </Marker> 
 )
  })
+   var posts = props.posts.posts.map((obj, i)=>{
+   //    console.log(obj);
+       let latLng = { lat:obj.coords.lat, lng:obj.coords.long };
+       return (
+        <Marker key={i} position={latLng}>
+           <InfoWindow>
+           <div>{obj.title}</div>
+           </InfoWindow>
+           </Marker>
+       )
+   })
    
 return (
       <GoogleMap
@@ -42,6 +53,7 @@ return (
         onClick = {this.mapClick}
         >
             {markers}
+            {posts}
         </GoogleMap>
     );
     
