@@ -22,8 +22,13 @@
     font-weight: 200;
 }
 
-.map-container{
-    height: 1500px;
+#map-container{
+    width: 100%;
+    padding-left:0;
+    padding-right:0;
+    margin-left: 0;
+    margin-right: 0;
+    top:0;
 }
 
 #toggler{
@@ -34,12 +39,22 @@
     border-style: none;
 }
 
+#sidebar-container{
+    background-color: white;
+    padding: 20px;
+    width: 40%;
+}
+
+#title-container{
+    background-color: white;
+}
+
 /*BUTTONS*/
 
 #explore-btn{
     background: linear-gradient(to bottom right, #F7EAE2, #EDC5CA);
     border-style: none;
-    border-radius: 20px;
+    border-radius: 25px;
     opacity: 1;
     transition: opacity 1s ease-out;
 }
@@ -50,6 +65,7 @@
 }
 
 #explore-btn a{
+    font-size: 10pt;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     color: white;
@@ -66,14 +82,19 @@
     text-decoration: none;
 }
 
+#navbar-custom{
+    background: linear-gradient(to bottom right, #fbebdf, #f7cfd2);
+    opacity: 1;
+}
+
 .navbar .account-btns{
-    border-color: #EFA0A6;
+    border-color: white;
     border-width: 2px;
-    background-color: white;
+    background-color: transparent;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 8pt;
-    color: #EFA0A6;
+    color: white;
     text-transform: uppercase;
     letter-spacing: 2px;
     border-radius: 20px;
@@ -82,7 +103,9 @@
 .navbar .account-btns:hover{
     border-color: #EFA0A6;
     border-width: 2px;
-    background: linear-gradient(to bottom right, #F7EAE2, #EDC5CA);
+    background: white;
+    opacity: 0.5;
+/*    background: linear-gradient(to bottom right, #F7EAE2, #EDC5CA);*/
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 8pt;
@@ -216,6 +239,62 @@
 }
 
 
+.gmnoprint{
+    display: none!important;
+}
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: absolute;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 36px;
+}
+
+.bm-menu-wrap{
+    position:absolute!important;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #373a47;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: white;
+  padding: 10px;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  padding: 0.8em;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+
+
 /*LISTS*/
 
 #findHoodTitle{
@@ -237,6 +316,7 @@
     text-align: center;
     margin-bottom: 8px;
 }
+/*
 
 #scrollbar::-webkit-scrollbar-track
 {
@@ -263,16 +343,18 @@
 }
 
 
+*/
+
 .hoodListContainer{
-    overflow-y: scroll;
+/*    overflow-y: scroll;*/
     max-height: 1500px;
 }
+
 
 .listItems{
     width: 100%;
     padding-top: 10px;
     padding-bottom: 10px;
-    
 }
 
 .listNames{
@@ -285,7 +367,7 @@
 }
 
 .listItems img{
-    float: left;
+    float: right;
 }
 
 #Killarney{

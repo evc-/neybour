@@ -6,10 +6,11 @@ import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Bu
 import Narrative from './components/Narrative.js';
 import NarrativePin from './components/NarrativePin.js';
 import HoodCard from './components/HoodCard.js';
-//import SimpleMap from './components/Gmap-istarkov.js';
 import Login from './components/Login.js';
 import PostModal from './components/PostModal.js';
 import MapGraphic from './components/MapGraphic.js';
+import { slide as Menu } from 'react-burger-menu'
+
 //import { Carousel } from 'react-responsive-carousel';
 //import '../node_modules/react-responsive-carousel/lib/styles/carousel.min.css';
 
@@ -272,7 +273,7 @@ class App extends Component {
         
       <div className="App">
         
-         <Navbar color="faded" light>
+         <Navbar id="navbar-custom" light>
             <NavbarBrand href="/" className="mr-auto">
                 <img id="nav-brand"src={require('./img/nav-brand-04.png')} alt="favicon" width="30" height="30" />
             </NavbarBrand>
@@ -286,7 +287,9 @@ class App extends Component {
                 onClick={()=>this.setState({modalName:"signup", modalOpen: true})}>
                 sign up
             </Button>
-
+            
+            {
+            /*
           <NavbarToggler id="toggler" onClick={this.toggleNavbar} className="mr-2" />
           <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav navbar>
@@ -298,36 +301,41 @@ class App extends Component {
               </NavItem>
             </Nav>
           </Collapse>
+          */
+            }
+
         </Navbar>
 
-        <Container id="full-bg">
+        <Container id="title-container">
             <Row>
                 <Col xs="12">
                     {loginComp}
                 </Col>
             </Row>
+
             <Row>
-                <Col xs={{size:10, offset:1}} md={{size:6, offset:0}}>
+                <Col xs="12">
                     <div className="header-home">neybour.</div>
+                    <div className="about-home">Share your stories and memories of your Vancouver neighbourhood.
                     <br />
-                    <div className="subheader-home">What do you love about your neighbourhood?</div>
+                    Choose your neighbourhood on the map and explore the pins.</div>
                     <br />
-                    <div className="about-home">Neybour is a place to share your stories, memories, and personal connections to the places and spaces in your Vancouver neighbourhood.<br /> Select your neighbourhood on the map or from the list below.</div>
-                    <br />
-                    <Button id="explore-btn"><a href="#map-container">add your story</a></Button>
-                </Col>
-                <Col xs={{size:12}} md={{size: 6}}>
-                    <MapGraphic/>
+                    <Button id="explore-btn"><a href="#map-container">share your story</a></Button>
+
+                        {
+                        //<div className="subheader-home">What do you love about your neighbourhood?</div>
+                    }
                 </Col>
             </Row>
         </Container>
-                                                    
         <br />
         <br />
-                    
         <Container id="map-container" fluid>
             <Row>
-                <Col xs="12" md="8">
+                <Col xs="12">
+                    <Menu noOverlay width={ '30%' }>
+                        {sidebar}
+                    </Menu>
                     <GMap
                         addCoords={this.coords}
                         loggedin = {this.state.loggedin}
@@ -348,9 +356,6 @@ class App extends Component {
                         <button className="pin-btns">See my pins</button>
                     </div>
                 </Col>
-                <Col xs="12" md="4">
-                    {sidebar}
-                </Col>
             </Row>
         </Container>
 
@@ -365,6 +370,9 @@ class App extends Component {
                 </Row>
         <br />
         <br />
+                {
+                            
+                /*
                 <Row>
                     <HoodCard
                         onClick={()=>this.updateCenter(49.2536, -123.1604)}
@@ -489,6 +497,8 @@ class App extends Component {
                     />
 
             </Row>
+            */
+                        }
         </Container>
       </div>
     );
