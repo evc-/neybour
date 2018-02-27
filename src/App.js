@@ -52,7 +52,7 @@ class App extends Component {
             pageTitle: "neybour.",
             menuOpen: true,
             width: window.innerWidth,
-            hoodImg: null
+            hoodImg: require("./img/icons/vancouver-icon.svg")
         };   
     }
     
@@ -329,21 +329,22 @@ class App extends Component {
         
       <div className="App">
         
-         <Navbar id="navbar-custom" light>
-            <NavbarBrand href="/" className="mr-auto">
-                <img id="nav-brand"src={require('./img/nav-brand-04.png')} alt="favicon" width="30" height="30" />
-            </NavbarBrand>
 
-            <Button className="account-btns navBtn" id="login-btn" 
-                onClick={()=>{this.setState({ modalName:"login", modalOpen: true })}}>
-                login
-            </Button>
+                     <Navbar id="navbar-custom">
+                        <NavbarBrand href="/" className="mr-auto">
+                            <img id="nav-brand"src={require('./img/nav-brand-04.png')} alt="favicon" width="15" height="15" />
+                        </NavbarBrand>
 
-            <Button className="account-btns navBtn" id="signup-btn" 
-                onClick={()=>this.setState({ modalName:"signup", modalOpen: true })}>
-                sign up
-            </Button>
-        </Navbar>
+                        <Button className="account-btns navBtn" id="login-btn" 
+                            onClick={()=>{this.setState({ modalName:"login", modalOpen: true })}}>
+                            login
+                        </Button>
+
+                        <Button className="account-btns navBtn" id="signup-btn" 
+                            onClick={()=>this.setState({ modalName:"signup", modalOpen: true })}>
+                            sign up
+                        </Button>
+                    </Navbar>
 
          {loginComp}
             
@@ -414,16 +415,11 @@ class App extends Component {
             </Row>
         </Container>
 
-        <br />
-        <br />
+      
+
                         
-        <Container>
-                <Row>
-                    <Col xs="12">
-                        <div className="browse-header">Browse all neighbourhoods</div>
-                    </Col>
-                </Row>
-                <Row>
+                    {
+                    /*
                     <HoodCard
                         onClick={ ()=>this.updateCenter(49.2536, -123.1604) }
                         hoodName="Arbutus Ridge"
@@ -545,8 +541,20 @@ class App extends Component {
                         hoodLat={49.2610}
                         hoodLng={123.2001}
                     />
-            </Row>     
+                    */
+
+                }
+        
+        <Container fluid id="footer-container">
+            <Row >
+                <Col xs="12" >
+                    <div id="footer">
+                        <p id="footer-text">issa footer</p>
+                    </div>
+                </Col>
+            </Row>
         </Container>
+
       </div>
     );
   }

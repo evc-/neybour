@@ -11,7 +11,7 @@ class HoodCard extends Component {
     
   render() {
     return (
-        <div id="card-bg" onClick={this.props.onClick}>
+        <div id="card-bg">
             <div id="hood-img">
                 <img src={this.props.hoodImg}/>
             </div>

@@ -1,4 +1,18 @@
+/*FONTS*/
+
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700|Poppins');
+
+@font-face{
+    font-family: Noto Serif;
+    src: url('https://fonts.googleapis.com/css?family=Noto+Serif');
+}
+
+@font-face{
+    font-family: Poppins;
+    src: url('https://fonts.googleapis.com/css?family=Poppins');
+}
+
+/*HEADER SIDEBAR*/
 
 .header-home{
     font-family: 'Noto Serif', serif;
@@ -34,7 +48,7 @@
     
 }
 
-
+/*MAP*/
 
 #map-container{
     max-width: 100vw;
@@ -42,26 +56,17 @@
     margin-left: 0;
     margin-right: 0;
     padding-right:0;
-    top:0;
+    top:60px;
     z-index: -1000;
     overflow: hidden;
 }
 
-.hoodListContainer{
-    width: 100%;
+.gmnoprint{
+    display: none!important;
 }
 
-#toggler{
-    border-style: none;
-}
-
-#toggler:focus{
-    border-style: none;
-}
-
-#sidebar-container{
-    background-color: white;
-    padding: 20px;
+.gm-fullscreen-control{
+    display: none!important;
 }
 
 
@@ -94,11 +99,11 @@
     text-decoration: none;
 }
 
-
+/*NAVBAR*/
 
 #navbar-custom{
     background: linear-gradient(to bottom right, #fbebdf, #f7cfd2);
-    opacity: 1;
+    max-height: 60px;
 }
 
 .navbar .account-btns{
@@ -201,7 +206,6 @@
 }
 
 #card-bg{
-    
     box-shadow: 2px 2px 5px 0px #ccc;
     justify-content: center;
     align-items: center;
@@ -221,6 +225,8 @@
     color: #F7F3F0;
 }
 
+/*MINIMAP*/
+
 #miniMap{
     box-shadow: 2px 2px 5px 0px #ccc;
     background-color: white;
@@ -231,10 +237,12 @@
     padding: 30px;
     position:absolute;
     right: 40px;
-    top:3%; 
+    top:75px; 
     z-index:1000;
     width: 15%;
 }
+
+/*SIDECARD*/
 
 #sideCard{
     position:absolute;
@@ -276,17 +284,29 @@
     /*background: linear-gradient(to right, #F7EAE2, #EFC2CA);*/
 }
 
-.gmnoprint{
-    display: none!important;
+/*MENU*/
+
+.hoodListContainer{
+    width: 100%;
 }
 
-.gm-fullscreen-control{
-    display: none!important;
+#toggler{
+    border-style: none;
+}
+
+#toggler:focus{
+    border-style: none;
+}
+
+#sidebar-container{
+    background-color: white;
+    padding: 20px;
 }
 
 #menu-outer-container{
     max-width: 100%;
 }
+
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: absolute;
@@ -340,8 +360,30 @@ z-index: 998!important;
 }
 
 
-
 /*LISTS*/
+
+
+.listItems{
+    text-align: left;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.listNames{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 10pt;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-align: left;
+}
+
+.listItems img{
+    float: left;
+    margin-left: 10%;
+    margin-right: 7%;
+}
 
 #findHoodTitle{
     font-family: 'Poppins', sans-serif;
@@ -363,6 +405,7 @@ z-index: 998!important;
     margin-bottom: 8px;
 }
 
+/*SCROLLBAR*/
 
 .bm-menu::-webkit-scrollbar-track
 {
@@ -388,35 +431,7 @@ z-index: 998!important;
 									   color-stop(0.86, rgb(252,203,170)));
 }
 
-
-
-
-
-.listItems{
-    text-align: left;
-    width: 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.listNames{
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
-    font-size: 10pt;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    text-align: left;
-}
-
-.listItems img{
-    float: left;
-    margin-left: 10%;
-    margin-right: 7%;
-}
-
-#Killarney{
-    background-color: yellow;
-}
+/*SVG MAP*/
 
 .cls-1{
     fill:white;
@@ -431,15 +446,26 @@ z-index: 998!important;
 }
 
 
+/*FOOTER*/
 
-@font-face{
-    font-family: Noto Serif;
-    src: url('https://fonts.googleapis.com/css?family=Noto+Serif');
+#footer{
+    margin-left:0!important;
+    margin-right:0!important;
+    padding-left: 0!important;
+    padding-right: 0!important;
 }
 
-@font-face{
-    font-family: Poppins;
-    src: url('https://fonts.googleapis.com/css?family=Poppins');
+#footer-text{
+    text-align: center;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
 }
 
+#footer-container{
+    position:fixed;
+    width: 100%;
+    bottom:0;
+    height:30px;
+    background: linear-gradient(to right, #F7EAE2, #EFC2CA);
+}
 
