@@ -28,7 +28,7 @@ class Login extends Component {
     login(){
         let email = this.state.email;
         let password = this.state.password;
-        fetch('http://localhost:4567/users/login', {
+        fetch('https://neybourapi.herokuapp.com/users/login/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
@@ -40,10 +40,10 @@ class Login extends Component {
             })
         })
         .then((res) => res.json())
-        .then((data) => this.authenticate(data));
+        .then((data) => this.authenticate(data))
     }
     authenticate(data){
-        console.log(data);
+        console.log("login.js: "+data);
         if(data.token){
             this.setState({
                 loggedin:true
@@ -51,9 +51,10 @@ class Login extends Component {
                 var obj = {
                     email:this.state.email,
                     token:data.token,
-                    loggedin:true
+                    loggedin:true,
                 };
             this.props.userInfo(obj);
+            
             console.log("You're logged in!");
             this.props.closeModal();
         } else if(data.message == "Auth failed"){
@@ -66,7 +67,7 @@ class Login extends Component {
         let password = this.state.signupPass;
         let email = this.state.signupEmail;
         console.log(name, email, password);
-        fetch('http://localhost:4567/users/signup', {
+        fetch('https://neybourapi.herokuapp.com/users/signup', {
         method: 'POST',
         headers: {
             'Accept': 'application/json, text/plain, */*',

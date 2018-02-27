@@ -22,7 +22,7 @@ postCreate(){
     //console.log("map data: "+this.props.mapData);
     console.log("modal coords: "+this.props.coords.lat);
     console.log("modal coords: "+this.props.coords.long);
-    fetch('http://localhost:4567/posts/', {
+    fetch('https://neybourapi.herokuapp.com/posts/', {
     method: 'POST',
     headers: {
         'Accept': 'application/json, text/plain, */*',

@@ -57,7 +57,7 @@ class App extends Component {
     }
     
     componentDidMount(){
-        fetch('http://localhost:4567/posts/')
+        fetch('https://neybourapi.herokuapp.com/posts/')
         .then((res)=>{
         return res.json(); 
         })
@@ -106,8 +106,10 @@ class App extends Component {
         this.setState({
             loggedin:true,
             userInfo:data,
-            token:data.token
+            token:data.token,
+            userId:data.userId
         });
+        console.log(data);
     }
     
      pushMarkersData(data){
