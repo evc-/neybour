@@ -354,7 +354,7 @@ class App extends Component {
             <Row>
                 <Col xs="12">
                     <div id="menu-outer-container">
-                        <Menu
+                        <Menu style={{boxShadow: "2px 2px 5px 0px #ccc"}}
                             
                             outerContainerId={ "menu-outer-container" }
                             isOpen={this.state.menuOpen}

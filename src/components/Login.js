@@ -132,22 +132,25 @@ class Login extends Component {
   render() {
       
     var headerContent = null;
+    var subheaderContent = null;
     var bodyContent = null;
       
       if (this.props.modalName === "login"){
-          headerContent ="Login";
+          headerContent ="Welcome Back!";
+          subheaderContent = null;
           bodyContent = (
                 <div className="acctModal">
                 <Input type="text" placeholder="username" onChange={this.handleEmail}/>
                 <br /><br />
                 <Input type="text" placeholder="password" onChange={this.handlePass}/>
                 <br /><br />
-                <button className="account-btns" id="Btn" onClick={this.login}>Go</button>
+                <button className="btn btn-secondary" id="login-modal-btn" onClick={this.login}>Login</button>
                 </div>
           );
           
       } else if (this.props.modalName === "signup"){
-          headerContent = "Sign Up"
+          headerContent = "Hey neighbour!";
+          subheaderContent = "Create an account to share your own neighbourhood stories. You have the option to post them publicly, or keep them to yourself."
           bodyContent = (
                 <div className="acctModal">
                 <Input  type="text" placeholder="email" onChange={this.signupEmail}/>
@@ -156,16 +159,21 @@ class Login extends Component {
                 <br /><br />
                 <Input type="text" placeholder="password" onChange={this.signupPass}/>
                 <br /><br />
-                <button className="account-btns" id="Btn" onClick={this.signup}>Create Account</button>
+                <button className="btn btn-secondary" id="signup-modal-btn" onClick={this.signup}>Create Account</button>
                 </div>
           );
       }
     return (
-            <Modal isOpen={this.props.modalOpen}>
-                <ModalHeader className="modalHeader"  toggle={this.props.closeModal}>
-                    {headerContent}
+            <Modal className= "modal-dialog-centered" isOpen={this.props.modalOpen}>
+                <ModalHeader id="modal-header-toggle" toggle={this.props.closeModal}>
+                    <div id="modal-header-custom">
+                        {headerContent}
+                    </div>
                 </ModalHeader>
-                <ModalBody className="modalBody">
+                <ModalBody id="modal-body-custom">
+                    <div id="modal-subheader-custom">
+                        {subheaderContent}
+                    </div>
                     {bodyContent}
                 </ModalBody>
             </Modal>
