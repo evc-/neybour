@@ -542,3 +542,7 @@ z-index: 998!important;
     background: linear-gradient(to right, #F7EAE2, #EFC2CA);
 }
 
+
+#inner-map-container{
+    min-height: 100vh;
+}

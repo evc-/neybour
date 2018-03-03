@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import GMap from './components/Gmap.js';
+//import GMap from './components/Gmap.js';
 import './App.css';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Button, Container, Row, Col } from 'reactstrap';
 import Narrative from './components/Narrative.js';
@@ -9,15 +9,8 @@ import HoodCard from './components/HoodCard.js';
 import Login from './components/Login.js';
 import PostModal from './components/PostModal.js';
 import MapGraphic from './components/MapGraphic.js';
-import { slide as Menu } from 'react-burger-menu'
-
-//import { Carousel } from 'react-responsive-carousel';
-//import '../node_modules/react-responsive-carousel/lib/styles/carousel.min.css';
-
-/*
-<link rel="stylesheet" href="../node_modules/react-responsive-carousel/lib/styles/carousel.min.css"/>
-*/
-
+import { slide as Menu } from 'react-burger-menu';
+import GMap from './components/iMap.js';
 
 class App extends Component {
     constructor(props){
@@ -330,8 +323,6 @@ class App extends Component {
     return (
         
       <div className="App">
-        
-
                      <Navbar id="navbar-custom">
                         <NavbarBrand href="/" className="mr-auto">
                             <img id="nav-brand"src={require('./img/nav-brand-04.png')} alt="favicon" width="15" height="15" />
@@ -351,41 +342,27 @@ class App extends Component {
          {loginComp}
             
         <Container id="map-container" fluid>
+
             <Row>
                 <Col xs="12">
+                    
                     <div id="menu-outer-container">
                         <Menu style={{boxShadow: "2px 2px 5px 0px #ccc"}}
-                            
                             outerContainerId={ "menu-outer-container" }
                             isOpen={this.state.menuOpen}
                             onStateChange={(state) => this.handleStateChange(state)}
                             noOverlay width={menuWidth}
                         >
-                                
-                                <Col xs="12">
-                                
+                            <Col xs="12">
                                 {sidebar}
-                                
-                                </Col>    
+                            </Col>    
                         </Menu>
                     </div>
-                    <GMap
-                        addCoords={this.markerCoords}
-                        loggedin = {this.state.loggedin}
-                        token = {this.state.token}
-                        addPost = {this.addPost}
-                        markersData={this.state.markersData}
-                        pushMarkersData={this.pushMarkersData} googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-                        loadingElement={<div style={{ height: '100%' }}/> }
-                        containerElement={<div style={{ height: '100vh', maxWidth: "100%", marginLeft:"0", marginRight:"0" }} /> }
-                        mapElement={<div style={{ height: '100%' }}/>}
-                        centerLat={this.state.centerLat}
-                        centerLng={this.state.centerLng}
-                        markerCoords = {this.state.markerCoords}
-                        postModalState = {this.state.postModal}
-                        posts = {this.state.posts}
-                    />
-                    <br />
+
+                    <div id="inner-map-container">
+                        <GMap/>
+                    </div>
+
                     <div id="miniMap">
                         <MapGraphic />
                     </div>
@@ -405,148 +382,32 @@ class App extends Component {
                         </Row>
                     </div>
 
-                        {
-                        /*
-                        <div id="pin-controls">
-                        <button className="pin-btns">See all pins</button>
-                        <button className="pin-btns">See my pins</button>
-                    </div>
-                    */
-                    }
                 </Col>
             </Row>
         </Container>
+            
 
-      
-
-                        
                     {
                     /*
-                    <HoodCard
-                        onClick={ ()=>this.updateCenter(49.2536, -123.1604) }
-                        hoodName="Arbutus Ridge"
-                        hoodDesc="tagline"
-                        hoodImg={require('./img/newicons/Arbutus-Ridge/icons-01.svg')}
-                        hoodLat={49.2536}
-                        hoodLng={123.1604}
-                    />
-                            
-                    <HoodCard
-                        hoodName="Downtown"
-                        hoodDesc="tagline"
-                        hoodImg={require('./img/newicons/Downtown/icons-06.svg')}
-                        hoodLat={49.2820}
-                        hoodLng= {123.1171}
-                                 
-                    />
-                    
-                    <HoodCard
-                        hoodName="Dunbar"
-                        hoodDesc="tagline"
-                        hoodImg={require('./img/newicons/Dunbar/icons-13.svg')}
-                        hoodLat={49.1404}
-                        hoodLng={123.1109}
-                    />
-
-                    <HoodCard
-                        hoodName="Fairview"
-                        hoodDesc="tagline"
-                        hoodImg={require('./img/newicons/Fairview/icons-10.svg')}
-                        hoodLat={49.2660}
-                        hoodLng={123.1289}
-                    />
-                                 
-                    <HoodCard
-                        hoodName="Hastings-Sunrise"
-                        hoodDesc="tagline"
-                        hoodImg={require('./img/newicons/Hastings-Sunrise/icons-03.svg')}
-                        hoodLat={49.2811}
-                        hoodLng={123.0441}
-                    />
-                            
-                    <HoodCard
-                        hoodName="Kensington"
-                        hoodDesc="tagline"
-                        hoodImg={require('./img/newicons/Kensington/icons-02.svg')}
-                        hoodLat={49.2484}
-                        hoodLng={123.0701}
-                    />
-
-                    <HoodCard
-                        hoodName="Kerrisdale"
-                        hoodDesc="tagline"
-                        hoodImg={require('./img/newicons/Kerrisdale/icons-05.svg')}
-                        hoodLat={49.2341}
-                        hoodLng={123.1554}
-                    />
-
-                    <HoodCard
-                        hoodName="Kitsilano"
-                        hoodDesc="tagline"
-                        hoodImg={require('./img/newicons/Kitsilano/icons-14.svg')}
-                        hoodLat={49.2709}
-                        hoodLng={123.1621}
-                    />
-
-                    <HoodCard
-                        hoodName="Mt. Pleasant"
-                        hoodDesc="tagline"
-                        hoodImg={require('./img/newicons/Mt-Pleasant/icons-08.svg')}
-                        hoodLat={49.2583}
-                        hoodLng={123.1082}
-                    />
-
-                    <HoodCard
-                        hoodName="Oakridge"
-                        hoodDesc="tagline"
-                        hoodImg={require('./img/newicons/Oakridge/icons-07.svg')}
-                        hoodLat={49.2298}
-                        hoodLng={123.1162}
-                    />
-
-                    <HoodCard
-                        hoodName="Riley Park"
-                        hoodDesc="tagline"
-                        hoodImg={require('./img/newicons/Riley-Park/icons-12.svg')}
-                        hoodLat={49.2449}
-                        hoodLng={123.1135}
-                    />
-
-                    <HoodCard
-                        hoodName="Shaughnessy"
-                        hoodDesc="tagline"
-                        hoodImg={require('./img/newicons/Shaughnessy/icons-11.svg')}
-                        hoodLat={49.2473}
-                        hoodLng={123.1409}
-                    />
-    
-                    <HoodCard
-                        hoodName="Sunset"
-                        hoodDesc="tagline"
-                        hoodImg={require('./img/newicons/Sunset/icons-04.svg')}
-                        hoodLat={49.2245}
-                        hoodLng={123.0900}
-                    />
-
-                    <HoodCard
-                        hoodName="West End"
-                        hoodDesc="tagline"
-                        hoodImg={require('./img/newicons/West-End/icons-09.svg')}
-                        hoodLat={49.2856}
-                        hoodLng={123.1306}
-                    />
-
-                    <HoodCard
-                        hoodName="West Point Grey"
-                        hoodDesc="tagline"
-                        hoodImg={require('./img/newicons/West-Point-Grey/icons-15.svg')}
-                        hoodLat={49.2610}
-                        hoodLng={123.2001}
+                    <GMap
+                        addCoords={this.markerCoords}
+                        loggedin = {this.state.loggedin}
+                        token = {this.state.token}
+                        addPost = {this.addPost}
+                        markersData={this.state.markersData}
+                        pushMarkersData={this.pushMarkersData} googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+                        loadingElement={<div style={{ height: '100%' }}/> }
+                        containerElement={<div style={{ height: '100vh', maxWidth: "100%", marginLeft:"0", marginRight:"0" }} /> }
+                        mapElement={<div style={{ height: '100%' }}/>}
+                        centerLat={this.state.centerLat}
+                        centerLng={this.state.centerLng}
+                        markerCoords = {this.state.markerCoords}
+                        postModalState = {this.state.postModal}
+                        posts = {this.state.posts}
                     />
                     */
+                    }
 
-                }
-        
         <Container fluid id="footer-container">
             <Row >
                 <Col xs="12" >
