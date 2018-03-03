@@ -45,7 +45,10 @@ class App extends Component {
             pageTitle: "neybour.",
             menuOpen: true,
             width: window.innerWidth,
-            hoodImg: require("./img/icons/vancouver-icon.svg")
+            hoodImg: require("./img/icons/neighbourhood.svg"),
+            hoodName: "Vancouver",
+            hoodDesc: "Explore the neighbourhoods",
+            credits: false
         };   
     }
     
@@ -141,10 +144,7 @@ class App extends Component {
     handleStateChange(state) {
         this.setState({menuOpen: state.isOpen})  
     }
-    
-    
 
-    
   render() { 
       
     const { width } = this.state;
@@ -262,10 +262,10 @@ class App extends Component {
         );
     });
                   
-    var loginComp = null;
-      console.log(this.state.modalOpen);
+    var modalContent = null;
+
       if (this.state.loggedin === false && this.state.modalOpen === true){
-          loginComp = (
+          modalContent = (
             <Login 
                 closeModal={this.closeModal}
                 modalOpen={this.state.modalOpen}
@@ -273,9 +273,16 @@ class App extends Component {
                 modalName={this.state.modalName}
             />
           )
+      } if (this.state.credits = true && this.state.modalOpen === true){
+          modalContent = (
+            <Login 
+              closeModal ={this.closeModal}
+              modalOpen={this.state.modalOpen}
+              modalName={this.state.modalName}
+              />
+          )
       } else if (this.state.modalOpen === true){
-          console.log("showme");
-          loginComp = (
+          modalContent = (
             <Login 
                 closeModal={this.closeModal}
                 modalOpen={this.state.modalOpen}
@@ -322,8 +329,9 @@ class App extends Component {
   
     return (
         
-      <div className="App">
-                     <Navbar id="navbar-custom">
+        <div className="App">
+        
+                     <Navbar id="navbar-custom" fixed="top">
                         <NavbarBrand href="/" className="mr-auto">
                             <img id="nav-brand"src={require('./img/nav-brand-04.png')} alt="favicon" width="15" height="15" />
                         </NavbarBrand>
@@ -339,29 +347,33 @@ class App extends Component {
                         </Button>
                     </Navbar>
 
-         {loginComp}
+         {modalContent}
             
         <Container id="map-container" fluid>
 
             <Row>
                 <Col xs="12">
                     
-                    <div id="menu-outer-container">
-                        <Menu style={{boxShadow: "2px 2px 5px 0px #ccc"}}
-                            outerContainerId={ "menu-outer-container" }
-                            isOpen={this.state.menuOpen}
-                            onStateChange={(state) => this.handleStateChange(state)}
-                            noOverlay width={menuWidth}
-                        >
-                            <Col xs="12">
-                                {sidebar}
-                            </Col>    
-                        </Menu>
-                    </div>
 
-                    <div id="inner-map-container">
-                        <GMap/>
-                    </div>
+                        <div id="menu-outer-container">
+                            <Menu style={{boxShadow: "2px 2px 5px 0px #ccc"}}
+                                outerContainerId={ "menu-outer-container" }
+                                isOpen={this.state.menuOpen}
+                                onStateChange={(state) => this.handleStateChange(state)}
+                                noOverlay width={menuWidth}
+                            >
+                                <Col xs="12">
+                                    {sidebar}
+                                </Col>    
+                            </Menu>
+                        </div>
+
+        
+                    <Col xs="12">
+                        <div id="inner-map-container">
+                            <GMap/>
+                        </div>
+                    </Col>
 
                     <div id="miniMap">
                         <MapGraphic />
@@ -412,7 +424,7 @@ class App extends Component {
             <Row >
                 <Col xs="12" >
                     <div id="footer">
-                        <p id="footer-text">issa footer</p>
+                        <Button onClick={()=>this.setState({credits: true, modalOpen: true, modalName:"credits"})} id="credit-btn">credits</Button>
                     </div>
                 </Col>
             </Row>

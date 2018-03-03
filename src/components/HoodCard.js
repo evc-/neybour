@@ -19,10 +19,6 @@ class HoodCard extends Component {
                 <div id="hood-name">
                     {this.props.hoodName}
                 </div>
-                <div id="hood-desc">
-                    {this.props.hoodDesc}
-                </div>
-                <br />
                 <div id="hood-coords">
                     {this.props.hoodLat} deg N 
                     <br />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup, Row, Col } from 'reactstrap';
 
 class Login extends Component {
     
@@ -161,6 +161,40 @@ class Login extends Component {
                 <br /><br />
                 <button className="btn btn-secondary" id="signup-modal-btn" onClick={this.signup}>Create Account</button>
                 </div>
+          );
+      } else if (this.props.modalName === "credits"){
+          headerContent = "BCIT - COMP4130";
+          subheaderContent = null;
+          bodyContent = (
+            <div>
+              <Row>
+                <Col xs="6">
+                <div className="credit-txt-lg">
+                    Evelyn Cranston
+                    <br />
+                    Nicola Parker 
+                    <br />
+                    Camille Camahort 
+                    <br />
+                    Alessandro Grunwald
+                </div>
+                </Col>
+                <Col xs="6">
+                <div className="credit-txt-sm">
+                    <a href="https://github.com/istarkov/google-map-react">Created with Google Map React</a>
+                    <br />
+                    <a target="_blank" href="https://www.vecteezy.com">Illustrations from Vecteezy</a>
+                    <br />
+                    <a target="_blank" href="https://www.freepik.com/free-photos-vectors/infographic">Illustrations from Freepik</a>
+                    <br />
+                    <a target="_blank" href="https://www.flaticon.com">Icons from FlatIcon</a>
+                </div>
+                </Col>
+              </Row>
+              
+            </div>
+              
+                
           );
       }
     return (
