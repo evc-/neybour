@@ -37,7 +37,7 @@ const GMap = withScriptjs(withGoogleMap((props) =>{
         </Marker> 
 )
  })
-   var posts = props.posts.posts.map((obj, i)=>{
+   var posts = props.posts.map((obj, i)=>{
    //    console.log(obj);
        let latLng = { lat:obj.coords.lat, lng:obj.coords.long };
        return (

@@ -64,7 +64,7 @@ class App extends Component {
             .then((data)=>{
   //      console.log(data);
         this.setState({
-            posts:data
+            posts:data.posts
         });
 //        console.log(this.state.posts);
         });
