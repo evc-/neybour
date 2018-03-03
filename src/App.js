@@ -73,7 +73,7 @@ class App extends Component {
     addPost(post){
         var temp = this.state.posts;
   //      console.log(temp);
-       temp.posts.push(post);
+       temp.push(post);
         this.setState({
             posts:temp
         });
