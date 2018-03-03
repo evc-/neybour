@@ -142,7 +142,7 @@ class Login extends Component {
                 <div className="acctModal">
                 <Input type="text" placeholder="username" onChange={this.handleEmail}/>
                 <br /><br />
-                <Input type="text" placeholder="password" onChange={this.handlePass}/>
+                <Input type="password" name="password" placeholder="password" onChange={this.handlePass}/>
                 <br /><br />
                 <button className="btn btn-secondary" id="login-modal-btn" onClick={this.login}>Login</button>
                 </div>
@@ -157,7 +157,7 @@ class Login extends Component {
                 <br /><br />
                 <Input type="text" placeholder="name" onChange={this.signupName}/>
                 <br /><br />
-                <Input type="text" placeholder="password" onChange={this.signupPass}/>
+                <Input type="password" name="password" placeholder="password" onChange={this.signupPass}/>
                 <br /><br />
                 <button className="btn btn-secondary" id="signup-modal-btn" onClick={this.signup}>Create Account</button>
                 </div>

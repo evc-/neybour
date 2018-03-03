@@ -55,18 +55,18 @@ class App extends Component {
         return res.json(); 
         })
             .then((data)=>{
-  //      console.log(data);
+    //    console.log(data);
         this.setState({
             posts:data.posts
         });
-//        console.log(this.state.posts);
+        console.log(this.state.posts);
         });
     }
     
     addPost(post){
         var temp = this.state.posts;
   //      console.log(temp);
-       temp.posts.push(post);
+       temp.push(post);
         this.setState({
             posts:temp
         });
