@@ -189,9 +189,15 @@ class App extends Component {
           },
           
           {
-            name: "HastingsSunrise",
+            name: "Hastings Sunrise",
             icon: require('./img/newicons/Hastings-Sunrise/icons-03.svg'),
             coords: {lat: 49.2811, lng: -123.0441}
+          },
+          
+          {
+              name: "Grandview Woodland",
+              icon: require('./img/newicons/Grandview-Woodland/icons-20.svg'),
+              coords: {lat: 49.2697, lng: 123.0697}
           },
           
           {
@@ -202,8 +208,14 @@ class App extends Component {
           
           {
             name: "Kerrisdale",
-            icons: require('./img/newicons/Kerrisdale/icons-05.svg'),
+            icon: require('./img/newicons/Kerrisdale/icons-05.svg'),
             coords: {lat: 49.2341, lng: -123.1554}
+          },
+          
+          {
+              name: "Killarney",
+              icon: require('./img/newicons/Killarney/icons-17.svg'),
+              coords: { lat:49.2247, lng:123.0411}
           },
                         
           {
@@ -211,6 +223,12 @@ class App extends Component {
             icon: require('./img/newicons/Kitsilano/icons-14.svg'),
             coords: {lat: 49.2709, lng: -123.1621}
           }, 
+          
+          {
+              name: "Marpole",
+              icon: require('./img/newicons/Marpole/icons-07.svg'),
+              coords:{lat:49.2107, lng: 123.1302}
+          },
           
           {
             name: "Mt. Pleasant",
@@ -223,6 +241,12 @@ class App extends Component {
             icon: require('./img/newicons/Oakridge/icons-07.svg'),
             coords: {lat: 49.2298, lng: -123.1162}
           }, 
+          
+          {
+            name: "Renfrew Collingwood",
+            icon: require('./img/newicons/Renfrew-Collingwood/icons-18.svg'),
+            coords:{lat: 49.2411, lng: 123.0388}
+          },
           
            {
             name: "Riley Park",
@@ -237,10 +261,34 @@ class App extends Component {
           }, 
           
           {
+            name: "South Cambie",
+            icon: require('./img/newicons/South-Cambie/icons-21.svg'),
+            coords: {lat: 49.2452, lng: 123.1208}
+          },
+          
+          {
+            name: "Strathcona",
+            icon: require('./img/newicons/Strathcona/icons-22.svg'),
+            coords: {lat: 49.2737, lng: 123.0979}
+          },
+          
+          {
             name: "Sunset",
             icon: require('./img/newicons/Sunset/icons-04.svg'),
             coords: {lat: 49.2245, lng: -123.0900}
           }, 
+          
+          {
+            name: "UBC",
+            icon: require('./img/newicons/UBC/icons-19.svg'),
+            coords: {lat: 49.2606, lng: 123.2460}
+          },
+          
+          {
+            name: "Victoria Fraserview",
+            icon: require('./img/newicons/Victoria-Fraserview/icons-23.svg'),
+            coords: {lat: 49.2185, lng: 123.0659}  
+          },
           
           {
            name: "West End",
