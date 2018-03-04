@@ -56,7 +56,7 @@ class App extends Component {
             neighbourhoodArr: [
 
           {
-            name: "Arbutus Ridge",
+            name: "Arbutus-Ridge",
             icon: require("./img/newicons/Arbutus-Ridge/icons-01.svg"),
             coords: {lat: 49.2536, lng: -123.1604}
           }, 
@@ -70,7 +70,7 @@ class App extends Component {
           {
             name: "Dunbar",
             icon: require("./img/newicons/Dunbar/icons-13.svg"),
-            coords: {lat: 49.1404, lng: -123.1109}
+            coords: {lat: 49.2458, lng: -123.1854}
           },
           
           {
@@ -80,13 +80,13 @@ class App extends Component {
           },
           
           {
-            name: "Hastings Sunrise",
+            name: "Hastings-Sunrise",
             icon: require('./img/newicons/Hastings-Sunrise/icons-03.svg'),
             coords: {lat: 49.2811, lng: -123.0441}
           },
           
           {
-              name: "Grandview Woodland",
+              name: "Grandview-Woodland",
               icon: require('./img/newicons/Grandview-Woodland/icons-20.svg'),
               coords: {lat: 49.2697, lng: -123.0697}
           },
@@ -122,7 +122,7 @@ class App extends Component {
           },
           
           {
-            name: "Mt. Pleasant",
+            name: "Mt.Pleasant",
             icon: require('./img/newicons/Mt-Pleasant/icons-08.svg'),
             coords: {lat: 49.2583, lng: -123.1082}
           }, 
@@ -134,13 +134,13 @@ class App extends Component {
           }, 
           
           {
-            name: "Renfrew Collingwood",
+            name: "Renfrew",
             icon: require('./img/newicons/Renfrew-Collingwood/icons-18.svg'),
             coords:{lat: 49.2411, lng: -123.0388}
           },
           
            {
-            name: "Riley Park",
+            name: "Riley-Park",
             icon: require('./img/newicons/Riley-Park/icons-12.svg'),
             coords: {lat: 49.2449, lng: -123.1135}
           }, 
@@ -152,7 +152,7 @@ class App extends Component {
           }, 
           
           {
-            name: "South Cambie",
+            name: "South-Cambie",
             icon: require('./img/newicons/South-Cambie/icons-21.svg'),
             coords: {lat: 49.2452, lng: -123.1208}
           },
@@ -176,19 +176,19 @@ class App extends Component {
           },
           
           {
-            name: "Victoria Fraserview",
+            name: "Victoria-Fraserview",
             icon: require('./img/newicons/Victoria-Fraserview/icons-23.svg'),
             coords: {lat: 49.2185, lng: -123.0659}  
           },
           
           {
-           name: "West End",
+           name: "WestEnd",
            icon: require('./img/newicons/West-End/icons-09.svg'),
             coords: {lat: 49.2856, lng: -123.1306}
           }, 
           
           {
-            name: "West Point Grey",
+            name: "West-Point-Grey",
             icon: require('./img/newicons/West-Point-Grey/icons-15.svg'),
             coords: {lat: 49.2610, lng: -123.2001},
           }
