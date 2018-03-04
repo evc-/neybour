@@ -13,7 +13,9 @@ import PostModal from './components/PostModal.js';
 import MapGraphic from './components/MapGraphic.js';
 import { slide as Menu } from 'react-burger-menu';
 
+
 class App extends Component {
+    
     constructor(props){
         super(props);
         
@@ -52,6 +54,7 @@ class App extends Component {
             credits: false
         };   
     }
+    
     
     componentDidMount(){
         fetch('https://neybourapi.herokuapp.com/posts/')
@@ -186,7 +189,7 @@ class App extends Component {
           },
           
           {
-            name: "Hastings-Sunrise",
+            name: "HastingsSunrise",
             icon: require('./img/newicons/Hastings-Sunrise/icons-03.svg'),
             coords: {lat: 49.2811, lng: -123.0441}
           },
@@ -255,10 +258,15 @@ class App extends Component {
       
     var hoodList = neighbourhoodArr.map((obj, i)=>{
         var bgColor = i%2==1 ? "#f7f3f0" : "white";
+        //console.log(obj.name);
         return (
-            <div style={{borderTopColor: bgColor}} className="listItems" key={i} onClick={()=>{this.updateCenter(obj.coords, obj.name, obj.icon)}}>
+            <div style={{borderTopColor: bgColor}} className="listItems" key={i} onClick={()=>{
+            this.updateCenter(obj.coords, obj.name, obj.icon)
+            console.log(obj.name);
+        }}>
                 <img style={{height: "30px"}} src={obj.icon} />
                 <span className="listNames">{obj.name}</span>
+                                        
             </div>
         );
     });
@@ -389,7 +397,9 @@ class App extends Component {
                     </Col>
 
                     <div id="miniMap">
-                        <MapGraphic />
+                        <MapGraphic 
+                            hoodName={this.state.hoodName}
+                        />
                     </div>
 
                     <div id="sideCard">
