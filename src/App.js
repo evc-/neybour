@@ -188,7 +188,7 @@ class App extends Component {
           },
           
           {
-            name: "Hastings-Sunrise",
+            name: "HastingsSunrise",
             icon: require('./img/newicons/Hastings-Sunrise/icons-03.svg'),
             coords: {lat: 49.2811, lng: -123.0441}
           },
@@ -387,7 +387,9 @@ class App extends Component {
                     </Col>
 
                     <div id="miniMap">
-                        <MapGraphic />
+                        <MapGraphic 
+                            hoodName={this.state.hoodName}
+                        />
                     </div>
 
                     <div id="sideCard">
