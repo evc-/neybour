@@ -86,7 +86,11 @@ class Map extends Component{
                     <Marker key={i} 
                         position={{lat: obj.coords.lat, lng: obj.coords.long}}
                         onClick={this.showTitle.bind(this, i)}
-                        onDblClick={this.showPost.bind(this, i)}>
+                        onDblClick={this.showPost.bind(this, i)}
+                        /*icon={{
+                            url: require("../img/myMarker.svg")
+                        }}*/
+                    >
                 
                         {this.state.infoWindow[i]}
                     </Marker>
