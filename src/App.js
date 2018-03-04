@@ -12,7 +12,9 @@ import MapGraphic from './components/MapGraphic.js';
 import { slide as Menu } from 'react-burger-menu';
 import GMap from './components/iMap.js';
 
+
 class App extends Component {
+    
     constructor(props){
         super(props);
         
@@ -51,6 +53,7 @@ class App extends Component {
             credits: false
         };   
     }
+    
     
     componentDidMount(){
         fetch('https://neybourapi.herokuapp.com/posts/')
@@ -254,10 +257,15 @@ class App extends Component {
       
     var hoodList = neighbourhoodArr.map((obj, i)=>{
         var bgColor = i%2==1 ? "#f7f3f0" : "white";
+        //console.log(obj.name);
         return (
-            <div style={{borderTopColor: bgColor}} className="listItems" key={i} onClick={()=>{this.updateCenter(obj.coords, obj.name, obj.icon)}}>
+            <div style={{borderTopColor: bgColor}} className="listItems" key={i} onClick={()=>{
+            this.updateCenter(obj.coords, obj.name, obj.icon)
+            console.log(obj.name);
+        }}>
                 <img style={{height: "30px"}} src={obj.icon} />
                 <span className="listNames">{obj.name}</span>
+                                        
             </div>
         );
     });
