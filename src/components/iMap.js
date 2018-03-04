@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import MyGreatPlaceWithHover from './my_great_place_with_hover.jsx';
+import '../App.css';
 
 import {K_SIZE} from './my_great_place_with_hover_styles.js';
 //import {PropTypes} from 'react/addons';

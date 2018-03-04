@@ -1,4 +1,4 @@
-const K_SIZE = 40;
+const K_SIZE = 35;
 
 const greatPlaceStyle = {
   // initially any map object has left top corner at lat lng coordinates
@@ -9,12 +9,12 @@ const greatPlaceStyle = {
   left: -K_SIZE / 2,
   top: -K_SIZE / 2,
 
-  border: '5px solid #f44336',
+  border: '3.5px solid white',
   borderRadius: K_SIZE,
-  backgroundColor: 'white',
+  background:'linear-gradient(to right, #F7EAE2, #EFC2CA)',
   textAlign: 'center',
-  color: '#3f51b5',
-  fontSize: 16,
+  color: 'white',
+  fontSize: 14,
   fontWeight: 'bold',
   padding: 4,
   cursor: 'pointer'
@@ -22,8 +22,9 @@ const greatPlaceStyle = {
 
 const greatPlaceStyleHover = {
   ...greatPlaceStyle,
-  border: '5px solid #3f51b5',
-  color: '#f44336'
+  border: '3.5px solid #EFA0A6',
+  color: '#EFA0A6',
+    background:'white'
 };
 
 export {greatPlaceStyle, greatPlaceStyleHover, K_SIZE};
