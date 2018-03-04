@@ -371,7 +371,10 @@ class App extends Component {
         
                     <Col xs="12">
                         <div id="inner-map-container">
-                            <GMap/>
+                            <GMap
+                              posts={this.state.posts}  
+    
+                                />
                         </div>
                     </Col>
 

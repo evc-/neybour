@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
+import MyGreatPlaceWithHover from './my_great_place_with_hover.jsx';
+
+import {K_SIZE} from './my_great_place_with_hover_styles.js';
 //import {PropTypes} from 'react/addons';
 //import shouldPureComponentUpdate from 'react-pure-render/function';
 
-const CustomThing = ({ text }) => <div style={{backgroundColor:"green", height:"100px"}}>{text}</div>;
-
 class GMap extends Component {
-    
-
 
   static defaultProps = {
     center: [49.2, -122.9],
     zoom: 9,
-    greatPlaceCoords: {lat: 59.724465, lng: 30.080121}
+    greatPlaceCoords: {lat: 49.163, lng: -122.92}
   };
-
-
 
     constructor(props){
         super(props);
@@ -24,8 +21,6 @@ class GMap extends Component {
              
         }
     }
-
-  
     
   render() {
         console.log(this.state.defaultCenter);
@@ -37,13 +32,11 @@ class GMap extends Component {
             bootstrapURLKeys={{ key: ["AIzaSyAKz6kap5OyHVyV5-AdIK5nW4FpvrqSZ9Y"] }}
             center={this.props.center}
             zoom={this.props.zoom}
-          >
-            <CustomThing
-                lat={59.955413}
-              lng={30.337844}
-              text={'Kreyser Avrora'}
-            />
-          </GoogleMapReact>
+            hoverDistance={K_SIZE / 2}
+        >
+        <MyGreatPlaceWithHover lat={49.2} lng={-123} text={'A'} />
+        <MyGreatPlaceWithHover {...this.props.greatPlaceCoords} text={'B'} />
+      </GoogleMapReact>
 
     );
   }
