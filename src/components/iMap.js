@@ -21,7 +21,7 @@ class GMap extends Component {
         super(props);
         
         this.state={
-             
+                  
         }
     }
 

@@ -68,9 +68,11 @@
     overflow: hidden;
 }
 
+/*
 .gmnoprint{
     display: none!important;
 }
+*/
 
 .gm-fullscreen-control{
     display: none!important;

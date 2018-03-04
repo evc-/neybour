@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 //import GMap from './components/Gmap.js';
+//import GMap from './components/iMap.js';
+import Map from './components/newMap';
 import './App.css';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Button, Container, Row, Col } from 'reactstrap';
 import Narrative from './components/Narrative.js';
@@ -10,7 +12,6 @@ import Login from './components/Login.js';
 import PostModal from './components/PostModal.js';
 import MapGraphic from './components/MapGraphic.js';
 import { slide as Menu } from 'react-burger-menu';
-import GMap from './components/iMap.js';
 
 class App extends Component {
     constructor(props){
@@ -92,7 +93,7 @@ class App extends Component {
         console.log("app.js coords:" +data.long, data.lat);
         this.setState({
             markerCoords: {
-                lat:data.lat,
+                lat: data.lat,
                 long: data.long
             }
         });
@@ -371,7 +372,19 @@ class App extends Component {
         
                     <Col xs="12">
                         <div id="inner-map-container">
-                            <GMap/>
+                            <Map 
+                                googleMapURL={"https://maps.googleapis.com/maps/api/js?key=AIzaSyB32t1ZjptJtOM17HQHo87JJTxcQuQ2EnA&v=3.exp&libraries=geometry,drawing,places"}
+                                containerElement={<div style={{height: 100+'vh'}}/>}
+                                mapElement={<div style={{height: 100+'%'}}/>}
+                                loadingElement={<div style={{height: 100+'%'}} />}
+
+                                center={{ lat: 49.2827, lng: -123.1207 }}
+                                zoom={14}
+
+                                posts={this.state.posts}
+                                loggedIn={this.state.loggedin}
+                                addCoords={this.markerCoords}
+                            />
                         </div>
                     </Col>
 

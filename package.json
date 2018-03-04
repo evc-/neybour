@@ -12,7 +12,8 @@
     "react-responsive-carousel": "^3.1.33",
     "react-scripts": "1.1.1",
     "react-scrollable-anchor": "^0.6.1",
-    "reactstrap": "^5.0.0-beta"
+    "reactstrap": "^5.0.0-beta",
+    "recompose": "^0.26.0"
   },
   "scripts": {
     "start": "react-scripts start",
