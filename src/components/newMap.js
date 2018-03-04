@@ -8,7 +8,6 @@ class Map extends Component{
     constructor(props){
         super(props);
         this.state = {
-            center: this.props.center,
             showInfo: false,
             infoWindow: [],
             newPostPin: null
@@ -98,7 +97,7 @@ class Map extends Component{
                     onClick={this.handleMapClick.bind(this)}
                     
                     defaultZoom={this.props.zoom}
-                    defaultCenter={this.state.center}
+                    center={this.props.center}
                 > 
                     {posts}
                     {this.state.newPostPin}

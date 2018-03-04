@@ -12,7 +12,7 @@ import Login from './components/Login.js';
 import PostModal from './components/PostModal.js';
 import MapGraphic from './components/MapGraphic.js';
 import { slide as Menu } from 'react-burger-menu';
-
+import backarrow from './img/backarrow.svg';
 
 class App extends Component {
     
@@ -33,8 +33,7 @@ class App extends Component {
             collapsed: true,
             markersData:[],
             mapCoords:null,
-            centerLat: 49,
-            centerLng: -123,
+            mapCenter: {lat: 49.2827, lng: -123.1207},
             loggedin: false,
             posts:[],
             respMessage: [],
@@ -129,8 +128,7 @@ class App extends Component {
     
     updateCenter(coords, name, icon){
         this.setState({
-            centerLat:coords.lat,
-            centerLng:coords.lng,
+            mapCenter: {lat: coords.lat, lng: coords.lng},
             sidebar: "postList",
             hoodName: name,
             pageTitle: name,
@@ -306,7 +304,6 @@ class App extends Component {
       
     var hoodList = neighbourhoodArr.map((obj, i)=>{
         var bgColor = i%2==1 ? "#f7f3f0" : "white";
-        //console.log(obj.name);
         return (
             <div style={{borderTopColor: bgColor}} className="listItems" key={i} onClick={()=>{
             this.updateCenter(obj.coords, obj.name, obj.icon)
@@ -378,6 +375,9 @@ class App extends Component {
         } else if (this.state.sidebar == "postList"){
             sidebar = (
                 <div>
+                <div id="backArrow" onClick={()=>this.setState({sidebar: "neighbourhoodList"})}>
+                    <img className="fluid" src={backarrow}/>
+                </div>
                     <div id="hoodTitle">{this.state.hoodName}
                 </div>
                 </div>
@@ -411,9 +411,9 @@ class App extends Component {
             <Row>
                 <Col xs="12">
                     
-
                         <div id="menu-outer-container">
-                            <Menu style={{boxShadow: "2px 2px 5px 0px #ccc"}}
+                            <Menu 
+                                style={{boxShadow: "2px 2px 5px 0px #ccc"}}
                                 outerContainerId={ "menu-outer-container" }
                                 isOpen={this.state.menuOpen}
                                 onStateChange={(state) => this.handleStateChange(state)}
@@ -434,7 +434,7 @@ class App extends Component {
                                 mapElement={<div style={{height: 100+'%'}}/>}
                                 loadingElement={<div style={{height: 100+'%'}} />}
 
-                                center={{ lat: 49.2827, lng: -123.1207 }}
+                                center={ {lat: this.state.mapCenter.lat, lng: this.state.mapCenter.lng } }
                                 zoom={14}
 
                                 posts={this.state.posts}
