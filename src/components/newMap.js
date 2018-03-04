@@ -18,7 +18,7 @@ class Map extends Component{
         infoWindow[i] =  
                 <InfoWindow onCloseClick={this.closePost(i)}>
                     
-                    <div>{this.props.posts[i].title}</div>
+                    <div class="infoContent">{this.props.posts[i].title}</div>
 
                 </InfoWindow>
         this.setState({
@@ -65,7 +65,7 @@ class Map extends Component{
                             position={{lat: resp.latLng.lat(), lng: resp.latLng.lng()}}
                         >
                             <InfoWindow onCloseClick={this.closeNewPostPin}>
-                                <button>Create new Post</button>    
+                                <button className="newPost">Create New Post</button>    
                             </InfoWindow>
                         </Marker>
                 }); 

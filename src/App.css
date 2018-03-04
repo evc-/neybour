@@ -77,6 +77,29 @@
     display: none!important;
 }
 
+.newPost{
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+    border-style: solid;
+    border-width: thin;
+    border-color: #efa0a6;
+    border-radius: 100px;
+}
+
+.newPost:hover{
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    border-style: solid;
+    border-width: thin;
+    border-color: #efa0a6;
+    background-color: #efa0a6;
+}
+
+.infoContent{
+    font-family: 'Poppins', sans-serif;
+}
+
+
 
 /*BUTTONS*/
 
@@ -599,10 +622,12 @@ z-index: 998!important;
     color: #EFC2CA;
 }
 
+
 #backArrow{
     position: relative;
     top: -15px;
     height: 15px; 
     width: 20px;
 }
+
 
