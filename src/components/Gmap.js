@@ -11,6 +11,7 @@ const GMap = withScriptjs(withGoogleMap((props) =>{
             lat:resp.latLng.lat(),
             long:resp.latLng.lng()
         };
+            
         console.log("click data:"+ coords.lat, coords.long);
         props.addCoords(coords);
         props.pushMarkersData(resp.latLng);

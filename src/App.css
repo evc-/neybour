@@ -68,11 +68,10 @@
     overflow: hidden;
 }
 
-/*
 .gmnoprint{
-    display: none!important;
+/*    display: none!important;*/
+    opacity: 0;
 }
-*/
 
 .gm-fullscreen-control{
     display: none!important;
@@ -445,12 +444,12 @@
 
 /* Position and sizing of burger button */
 .bm-burger-button {
-  position: absolute;
-  width: 36px;
-  height: 30px;
-  left: 36px;
-  top: 36px;
-z-index: 998!important;
+    position: absolute;
+    width: 36px;
+    height: 30px;
+    left: 36px;
+    top: 36px;
+    z-index: 998!important;
 }
 
 .bm-menu-wrap{
@@ -624,3 +623,9 @@ z-index: 998!important;
 }
 
 
+#backArrow{
+    position: relative;
+    top: -15px;
+    height: 15px; 
+    width: 20px;
+}
