@@ -346,14 +346,17 @@
     border-top-right-radius: 10px;
 }
 
-#hood-coords{
+#hood-coords, #weather-info {
     text-align: center;
     font-family: 'Poppins', sans-serif;
     font-weight: 100;
     font-size: 8pt;
     letter-spacing: 2px;
     color: #F7F3F0;
-    padding-bottom: 20px;
+}
+
+#weather-info {
+        padding-bottom: 20px;
 }
 
 /*MINIMAP*/

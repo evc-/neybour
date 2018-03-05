@@ -10,6 +10,7 @@ class HoodCard extends Component {
     }
     
   render() {
+
     return (
         <div id="card-bg">
             <div id="hood-img">
@@ -26,6 +27,9 @@ class HoodCard extends Component {
                      {this.props.hoodLng} deg W
                 </div>
         */ }
+                <div id="weather-info">
+                    {this.props.hoodWeather} and <span> </span> {this.props.hoodTemp} &deg;
+                </div>
             </div>
         </div>
     );
