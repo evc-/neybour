@@ -12,6 +12,7 @@ class Map extends Component{
     constructor(props){
         super(props);
         this.state = {
+            hoodsArray: {},
             showInfo: false,
             infoWindow: [],
             newPostPin: null,
@@ -19,6 +20,18 @@ class Map extends Component{
         }
     }  
 
+    componentDidMount(){ 
+        fetch('http://gruni.ca/neybour/hoods.php')
+        .then((res)=>{
+            return res.json();
+        })
+        .then((data)=>{
+            this.setState({
+                hoodsArray: data
+            })
+        });   
+    }
+    
     showTitle(i){
         infoWindow[i] =  
                 <InfoWindow onCloseClick={this.closePost(i)}>
@@ -80,29 +93,20 @@ class Map extends Component{
                 lat: resp.latLng.lat(),
                 lng: resp.latLng.lng()
             };
-            
-            fetch('http://gruni.ca/neybour/hoods.php')
-            .then((res)=>{
-                return res.json();
-            })
-            .then((data)=>{
-                this.checkRegion(data);
-            })
-            .then(()=>{
-                this.setState({
-                    newPostPin: 
-                        <Marker
-                            icon={{
-                                url: require("../img/marker8.png"),
-                            }}
-                            position={{lat: resp.latLng.lat(), lng: resp.latLng.lng()}}
-                            style={{maxHeight:"5px"}}
-                              
-                        >
-                            {this.state.newPostInfoWindow}
-                        </Marker>
-                }); 
-            });
+            this.checkRegion(this.state.hoodsArray);
+            this.setState({
+                newPostPin: 
+                    <Marker
+                        icon={{
+                            url: require("../img/marker8.png"),
+                        }}
+                        position={{lat: resp.latLng.lat(), lng: resp.latLng.lng()}}
+                        style={{maxHeight:"5px"}}
+
+                    >
+                        {this.state.newPostInfoWindow}
+                    </Marker>
+            }); 
             
             
     //        }
@@ -111,7 +115,6 @@ class Map extends Component{
     }
         
     checkRegion = (data)=>{
-//        console.log(data.features[0].geometry.coordinates);
         data.features.map((obj, i)=>{
             let polyCheck = obj.geometry.coordinates[0];
             let coords = [newPostCoords.lng, newPostCoords.lat]
