@@ -83,11 +83,11 @@ postCheck(obj){
     return (
         <div>
             <div className="posts">
-              <input type="text" placeholder="Title" onChange={this.postTitle}/><br/>
-              <input type="text" placeholder="Description" onChange={this.postDesc}/><br/>
-              <label>Private?</label><input type="checkbox" onChange={this.private}/><br/>
-              <button onClick={this.postCreate}>Create Post</button>
-              </div>
+                  <input type="text" placeholder="Title" onChange={this.postTitle}/><br/>
+                  <input type="text" placeholder="Description" onChange={this.postDesc}/><br/>
+                  <label>Private?</label><input type="checkbox" onChange={this.private}/><br/>
+                  <button onClick={this.postCreate}>Create Post</button>
+            </div>
         </div>
         
 

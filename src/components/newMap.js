@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'; 
+import inside from 'point-in-polygon';
+
+import PostModal from './PostModal';
 
 var infoWindow = [];
+var newPostCoords = null;
 
 class Map extends Component{
     constructor(props){
@@ -10,7 +14,8 @@ class Map extends Component{
         this.state = {
             showInfo: false,
             infoWindow: [],
-            newPostPin: null
+            newPostPin: null,
+            newPostRegion: null
         }
     }  
 
@@ -54,28 +59,65 @@ class Map extends Component{
         });   
     }
     
+    //displays the post modal inside the InfoWindow of newPostPin
+    showPostModal = ()=>{
+        this.setState({
+            newPostInfoWindow:
+                <PostModal />     
+        })   
+    }
+    
     //when map is pressed
     handleMapClick = (resp)=>{
         //checks that google place is not pressed (so pin isn't placed when clicking on google places)
         if(resp.oa !== undefined){
     //        if(this.props.loggedIn === true){
+            this.setState({
+                newPostInfoWindow:
+                    <InfoWindow onCloseClick={this.closeNewPostPin}>
+                        <button className="newPost" onClick={this.showPostModal}>Create New Post</button>
+                    </InfoWindow>
+            })
+            newPostCoords = {
+                lat: resp.latLng.lat(),
+                lng: resp.latLng.lng()
+            };
+            
+            fetch('http://gruni.ca/neybour/hoods.php')
+            .then((res)=>{
+                return res.json();
+            })
+            .then((data)=>{
+                this.checkRegion(data);
+            })
+            .then(()=>{
                 this.setState({
                     newPostPin: 
                         <Marker
                             position={{lat: resp.latLng.lat(), lng: resp.latLng.lng()}}
                         >
-                            <InfoWindow onCloseClick={this.closeNewPostPin}>
-                                <button className="newPost">Create New Post</button>    
-                            </InfoWindow>
+                            {this.state.newPostInfoWindow}
                         </Marker>
                 }); 
-                let newPostCoords = {
-                    lat: resp.latLng.lat(),
-                    long: resp.latLng.lng()
-                };
+            });
+            
+            
     //        }
             
         }
+    }
+        
+    checkRegion = (data)=>{
+//        console.log(data.features[0].geometry.coordinates);
+        data.features.map((obj, i)=>{
+            let polyCheck = obj.geometry.coordinates[0];
+            let coords = [newPostCoords.lng, newPostCoords.lat]
+            
+            if(inside(coords, polyCheck) === true){
+                console.log(obj.properties.Name)   
+            }
+            
+        });      
     }
     
     render(){
