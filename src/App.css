@@ -81,24 +81,6 @@
     display: none!important;
 }
 
-.newPost{
-    background-color: white;
-    font-family: 'Poppins', sans-serif;
-    border-style: solid;
-    border-width: thin;
-    border-color: #efa0a6;
-    border-radius: 100px;
-}
-
-.newPost:hover{
-    color: white;
-    font-family: 'Poppins', sans-serif;
-    border-style: solid;
-    border-width: thin;
-    border-color: #efa0a6;
-    background-color: #efa0a6;
-}
-
 .infoContent{
     font-family: 'Poppins', sans-serif;
 }
@@ -217,6 +199,32 @@
 #credit-btn:active{
    border-style: none;
 }
+
+#new-post-btn{
+    background: linear-gradient(to bottom right, #F7EAE2, #EDC5CA);
+    border-style: none;
+    border-radius: 25px;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+    font-size: 8pt;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    white-space: normal;
+}
+
+#new-post-btn:hover{
+    background: linear-gradient(to bottom right, #F7EAE2, #EDC5CA);
+    opacity: 0.5;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
    
 
 /*NAVBAR*/
@@ -324,6 +332,7 @@
     border-top-left-radius: 00px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    padding: 10px;
 }
 
 #card-bg{
@@ -649,4 +658,38 @@
     top: -15px;
     height: 20px; 
     width: 20px;
+}
+
+.post-input{
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-radius: 0px;
+    font-family: 'Poppins', sans-serif;
+    padding: 5px;
+}
+
+#create-post-btn{
+    background: linear-gradient(to bottom right, #F7EAE2, #EDC5CA);
+    border-style: none;
+    border-radius: 25px;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+    font-size: 8pt;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    white-space: normal;
+}
+
+#post-label{
+    font-family: 'Poppins', sans-serif;
+    padding: 5px;
+}
+
+#post-check{
+    margin: 2px;
+    
 }

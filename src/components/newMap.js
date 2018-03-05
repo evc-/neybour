@@ -115,7 +115,7 @@ class Map extends Component{
 
                     >
                         <InfoWindow onCloseClick={this.closeNewPostPin}>
-                            <button className="newPost" onClick={this.showPostModal}>Create New Post</button>
+                            <button id="new-post-btn" onClick={this.showPostModal}>Share your story</button>
                         </InfoWindow>
                     </Marker>
             }); 
