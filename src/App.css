@@ -396,7 +396,7 @@
 #sideCard-desk{
     position:absolute;
     right: 40px;
-    bottom: 150px; 
+    bottom: 30px; 
     z-index: 1000;
     width: 200px;
 }
@@ -473,7 +473,7 @@
 
 #menu-outer-container{
     max-width: 100%;
-    padding-bottom: -95px;
+    margin-bottom: -95px;
 }
 
 /* Position and sizing of burger button */
@@ -509,8 +509,10 @@
 
 /* General sidebar styles */
 .bm-menu {
-  background: white;
-  padding: 10px;
+    background: white;
+    padding: 10px;
+    overflow-y:scroll;
+    overflow-x: hidden;
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -748,4 +750,10 @@
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+#sidebar-posts{
+    font-family: 'Poppins', sans-serif;
+    font-size: 10pt;
+    padding: 10px;
 }

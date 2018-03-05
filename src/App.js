@@ -13,6 +13,7 @@ import PostModal from './components/PostModal.js';
 import MapGraphic from './components/MapGraphic.js';
 import { slide as Menu } from 'react-burger-menu';
 import backarrow from './img/backarrow-01.svg';
+//import pinIcon from  './img/marker8.png';
 
 class App extends Component {
     
@@ -373,8 +374,9 @@ class App extends Component {
     var postList = this.state.posts.map((obj, i)=>{
         var bgColor = i%2==1 ? "#f7f3f0" : "white";
         return (
-        <div style={{backgroundColor: bgColor}} className="listItems" key={i}>
-            <div>{obj.title}</div>
+        <div id="sidebar-posts" style={{backgroundColor: bgColor}} className="listItems" key={i}>
+            <img style={{height: "30px", float: "left", marginLeft: "10px"}} src={require('./img/marker8.png')} />
+            <div style={{fontWeight:"700", textTransform:"uppercase", letterSpacing:"1.5px"}}>{obj.title}</div>
             <div>{obj.body}</div>
             <div>{obj.coordinates}</div>
             <div>{obj.region}</div>
@@ -462,7 +464,7 @@ class App extends Component {
         
                      <Navbar id="navbar-custom" fixed="top">
                         <NavbarBrand href="/" className="mr-auto">
-                            <img id="nav-brand"src={require('./img/nav-brand-04.png')} alt="favicon" width="15" height="15" />
+                            <img id="nav-brand" src={require('./img/nav-brand-04.png')} alt="favicon" width="15" height="15" />
                         </NavbarBrand>
 
                         <Button className="account-btns navBtn" id="login-btn" 
