@@ -181,6 +181,10 @@ class Map extends Component{
                     newPostRegion: obj.properties.Name 
                 })
                 console.log(obj.properties.Name)   
+            }else{
+                this.setState({
+                    newPostRegion: "UBC" 
+                })    
             }
             
         });      
