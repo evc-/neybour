@@ -16,7 +16,6 @@ class Login extends Component {
     this.login = this.login.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
     this.handlePass = this.handlePass.bind(this);
-    this.authenticate = this.authenticate.bind(this);
     this.signup = this.signup.bind(this);
     this.signupEmail = this.signupEmail.bind(this);
     this.signupPass = this.signupPass.bind(this);
@@ -53,11 +52,13 @@ class Login extends Component {
                 token: data.token,
                 loggedIn: true,
             };
+            console.log(obj);
             this.props.userInfo(obj);
 
             console.log("You're logged in!");
             this.props.closeModal();
-        } else if(data.message == "Auth failed"){
+        } 
+            else if(data.message == "Auth failed"){
             console.log("failed!");
         }
     }

@@ -11,30 +11,27 @@ class PostModal extends Component {
         }
     }
     
-    postCreate = ()=>{
-        
-//        console.log(this.state.title, this.state.desc, this.props.coords, this.props.region, this.state.newPostToggle, );
-        
+    postCreate = ()=>{      
         fetch('https://neybourapi.herokuapp.com/posts/', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-type': 'application/json',
-            'Authorization': 'Bearer ' + this.props.userInfo.token
-        },
-        body: JSON.stringify({
-            title: this.state.title,
-            body: this.state.desc,
-            coords: {
-                lat: this.props.coords.lat,
-                long: this.props.coords.lng
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-type': 'application/json',
+                'Authorization': 'Bearer ' + this.props.userInfo.token
             },
-            region: this.props.region,
-            toggle: this.state.newPostToggle
+            body: JSON.stringify({
+                title: this.state.title,
+                body: this.state.desc,
+                coords: {
+                    lat: this.props.coords.lat,
+                    long: this.props.coords.lng
+                },
+                region: this.props.region,
+                toggle: this.state.newPostToggle
+            })
         })
-    })
-    .then((res) => res.json())
-    .then((data) => this.postCheck(data)) 
+        .then((res) => res.json())
+        .then((data) => this.postCheck(data)) 
     }  
 
     postCheck = (obj)=>{
