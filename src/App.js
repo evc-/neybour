@@ -53,6 +53,7 @@ class App extends Component {
             hoodName: "Vancouver",
             hoodDesc: "Explore the neighbourhoods",
             credits: false,
+            posts: [{title:"dummy title", coords:{lat: 49, lng: -123}, body:"dummybody", region:"dummyregion"}],
             neighbourhoodArr: [
 
           {
@@ -330,6 +331,18 @@ class App extends Component {
             </div>
         );
     });
+
+    var postList = this.state.posts.map((obj, i)=>{
+        var bgColor = i%2==1 ? "#f7f3f0" : "white";
+        return (
+        <div style={{backgroundColor: bgColor}} className="listItems" key={i}>
+            <div>obj.title</div>
+            <div>obj.body</div>
+            <div>obj.coordinates</div>
+            <div>obj.region</div>
+        </div>
+        );
+    });
                   
     var modalContent = null;
 
@@ -395,8 +408,12 @@ class App extends Component {
                 <div id="backArrow" onClick={()=>this.setState({sidebar: "neighbourhoodList"})}>
                     <img className="fluid" src={backarrow}/>
                 </div>
-                    <div id="hoodTitle">{this.state.hoodName}
-                </div>
+                    <div id="hoodTitle">
+                        {this.state.hoodName}
+                    </div>
+                    <div>
+                        {postList}
+                    </div>
                 </div>
             );
         }
