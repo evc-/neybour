@@ -332,7 +332,7 @@
     border-top-left-radius: 00px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    padding: 10px;
+    padding: 5px;
 }
 
 #card-bg{
@@ -371,7 +371,7 @@
     padding: 30px;
     position:absolute;
     right: 40px;
-    top:5%; 
+    top:2%; 
     z-index:1000;
     width: 200px;
 }
@@ -396,7 +396,7 @@
 #sideCard-desk{
     position:absolute;
     right: 40px;
-    bottom: 20%; 
+    bottom: 17%; 
     z-index: 1000;
     width: 200px;
 }

@@ -374,10 +374,10 @@ class App extends Component {
         var bgColor = i%2==1 ? "#f7f3f0" : "white";
         return (
         <div style={{backgroundColor: bgColor}} className="listItems" key={i}>
-            <div>obj.title</div>
-            <div>obj.body</div>
-            <div>obj.coordinates</div>
-            <div>obj.region</div>
+            <div>{obj.title}</div>
+            <div>{obj.body}</div>
+            <div>{obj.coordinates}</div>
+            <div>{obj.region}</div>
         </div>
         );
     });
