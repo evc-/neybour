@@ -17,9 +17,7 @@ class Map extends Component{
     showTitle(i){
         infoWindow[i] =  
                 <InfoWindow onCloseClick={this.closePost(i)}>
-                    
                     <div class="infoContent">{this.props.posts[i].title}</div>
-
                 </InfoWindow>
         this.setState({
             infoWindow: infoWindow 
@@ -62,10 +60,11 @@ class Map extends Component{
                 this.setState({
                     newPostPin: 
                         <Marker
-                            /*icon={{
+                            icon={{
                                 url: require("../img/myMarker5.svg"),
-                            }}*/
+                            }}
                             position={{lat: resp.latLng.lat(), lng: resp.latLng.lng()}}
+                            style={{maxHeight:"5px"}}
                               
                         >
                             <InfoWindow onCloseClick={this.closeNewPostPin}>
@@ -92,7 +91,6 @@ class Map extends Component{
                         onDblClick={this.showPost.bind(this, i)}
                         icon={{
                             url: require("../img/myMarker5.svg"),
-                              
                         }}
                     >
                 
