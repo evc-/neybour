@@ -24,7 +24,7 @@ class Map extends Component{
     }  
 
     componentDidMount(){ 
-        fetch('http://gruni.ca/neybour/hoods.php')
+        fetch('https://gruni.ca/neybour/hoods.php')
         .then((res)=>{
             return res.json();
         })

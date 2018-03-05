@@ -223,7 +223,7 @@ class App extends Component {
     weatherFetch(){
         let lat = this.state.mapCenter.lat;
         let lng = this.state.mapCenter.lng;
-        fetch("http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lng+"&appid=5c78089b646c9d27dd997e0b6a99a182")
+        fetch("https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lng+"&appid=5c78089b646c9d27dd997e0b6a99a182")
         .then((res)=>{
         return res.json(); 
         })
