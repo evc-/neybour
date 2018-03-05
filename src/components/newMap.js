@@ -129,7 +129,6 @@ class Map extends Component{
     handleMapClick = (resp)=>{
         //checks that google place is not pressed (so pin isn't placed when clicking on google places)
         if(resp.oa !== undefined){
-            if(this.props.loggedIn === true){
             newPostCoords = {
                 lat: resp.latLng.lat(),
                 lng: resp.latLng.lng()
@@ -151,11 +150,26 @@ class Map extends Component{
                             </InfoWindow>
                         </Marker>
                 }); 
-                }
-            } 
-        }
+            } else if (this.state.loggedIn === false){
+                this.setState({
+                    newPostPin: 
+                        <Marker
+                            icon={{
+                                url: require("../img/marker8.png"),
+                            }}
+                            position={{lat: newPostCoords.lat, lng: newPostCoords.lng}}
+                            style={{maxHeight:"5px"}}
+
+                        >
+                            <InfoWindow onCloseClick={this.closeNewPostPin}>
+                                <div>Log in to share your story!</div>
+                            </InfoWindow>
+                        </Marker>
+            }); 
             
         }
+    }
+    }
         
     checkRegion = (data)=>{
         data.features.map((obj, i)=>{
