@@ -27,6 +27,7 @@ class App extends Component {
         this.updateHood = this.updateHood.bind(this);
         this.shareStory = this.shareStory.bind(this);
         this.userInfo = this.userInfo.bind(this);
+        this.addPost = this.addPost.bind(this);
         this.markerCoords = this.markerCoords.bind(this);
         this.handleStateChange = this.handleStateChange.bind(this);
         this.weatherFetch = this.weatherFetch.bind(this);
@@ -214,11 +215,10 @@ class App extends Component {
                 posts:data.posts
             });
         console.log(this.state.posts);
-        });  
+        });
         //fetch weather
         this.weatherFetch();
     }
-    
     weatherFetch(){
         let lat = this.state.mapCenter.lat;
         let lng = this.state.mapCenter.lng;
@@ -235,6 +235,19 @@ class App extends Component {
             curWeather:weather
         });
             console.log(this.state);
+        });
+    }
+
+    addPost(post){
+        var temp = this.state.posts;
+  //      console.log(temp);
+       temp.push(post);
+        this.setState({
+            posts:temp
+        });
+  //      console.log(this.state.posts);
+        this.setState({
+            postModal:false
         });
     }
 
@@ -503,6 +516,7 @@ class App extends Component {
 
                                 updateUserInfoPosts={this.updateUserInfoPosts}
                                 reprintPins={this.reprintPins}
+                                addPost={this.addPost}
                             />
                         </div>
                     </Col>

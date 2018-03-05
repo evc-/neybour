@@ -117,6 +117,7 @@ class Map extends Component{
                             closeNewPostPin={this.closeNewPostPin}
                             reprintPins={this.props.reprintPins}
                       
+                            addPost={this.addPost}
                         />
                     </InfoWindow>   
                 </Marker>
@@ -134,44 +135,27 @@ class Map extends Component{
                 lng: resp.latLng.lng()
             };
             if(this.state.loggedIn === true){
-            this.checkRegion(this.state.hoodsArray);
-            this.setState({
-                newPostPin: 
-                    <Marker
-                        icon={{
-                            url: require("../img/marker8.png"),
-                        }}
-                        position={{lat: newPostCoords.lat, lng: newPostCoords.lng}}
-                        style={{maxHeight:"5px"}}
-
-                    >
-                        <InfoWindow onCloseClick={this.closeNewPostPin}>
-                            <button id="new-post-btn" onClick={this.showPostModal}>Share your story</button>
-                        </InfoWindow>
-                    </Marker>
-            }); 
-            }
-        } else if (this.state.loggedIn === false){
+                this.checkRegion(this.state.hoodsArray);
                 this.setState({
-                newPostPin: 
-                    <Marker
-                        icon={{
-                            url: require("../img/marker8.png"),
-                        }}
-                        position={{lat: newPostCoords.lat, lng: newPostCoords.lng}}
-                        style={{maxHeight:"5px"}}
+                    newPostPin: 
+                        <Marker
+                            icon={{
+                                url: require("../img/marker8.png"),
+                            }}
+                            position={{lat: newPostCoords.lat, lng: newPostCoords.lng}}
+                            style={{maxHeight:"5px"}}
 
-                    >
-                        <InfoWindow onCloseClick={this.closeNewPostPin}>
-                            <div>Log in to share your story!</div>
-                        </InfoWindow>
-                    </Marker>
-            }); 
-            
+                        >
+                            <InfoWindow onCloseClick={this.closeNewPostPin}>
+                                <button id="new-post-btn" onClick={this.showPostModal}>Share your story</button>
+                            </InfoWindow>
+                        </Marker>
+                }); 
+                }
+            } 
         }
             
         }
-    }
         
     checkRegion = (data)=>{
         data.features.map((obj, i)=>{
