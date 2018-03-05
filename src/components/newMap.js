@@ -61,7 +61,7 @@ class Map extends Component{
                     newPostPin: 
                         <Marker
                             icon={{
-                                url: require("../img/myMarker5.svg"),
+                                url: require("../img/marker8.png"),
                             }}
                             position={{lat: resp.latLng.lat(), lng: resp.latLng.lng()}}
                             style={{maxHeight:"5px"}}
@@ -90,7 +90,8 @@ class Map extends Component{
                         onClick={this.showTitle.bind(this, i)}
                         onDblClick={this.showPost.bind(this, i)}
                         icon={{
-                            url: require("../img/myMarker5.svg"),
+                            url: require("../img/marker8.png"),
+                              
                         }}
                     >
                 
