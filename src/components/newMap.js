@@ -62,7 +62,11 @@ class Map extends Component{
                 this.setState({
                     newPostPin: 
                         <Marker
+                            /*icon={{
+                                url: require("../img/myMarker5.svg"),
+                            }}*/
                             position={{lat: resp.latLng.lat(), lng: resp.latLng.lng()}}
+                              
                         >
                             <InfoWindow onCloseClick={this.closeNewPostPin}>
                                 <button className="newPost">Create New Post</button>    
@@ -85,7 +89,12 @@ class Map extends Component{
                     <Marker key={i} 
                         position={{lat: obj.coords.lat, lng: obj.coords.long}}
                         onClick={this.showTitle.bind(this, i)}
-                        onDblClick={this.showPost.bind(this, i)}>
+                        onDblClick={this.showPost.bind(this, i)}
+                        icon={{
+                            url: require("../img/myMarker5.svg"),
+                              
+                        }}
+                    >
                 
                         {this.state.infoWindow[i]}
                     </Marker>
