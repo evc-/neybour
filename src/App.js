@@ -12,17 +12,19 @@ import Login from './components/Login.js';
 import PostModal from './components/PostModal.js';
 import MapGraphic from './components/MapGraphic.js';
 import { slide as Menu } from 'react-burger-menu';
-import backarrow from './img/backarrow.svg';
+import backarrow from './img/backarrow-01.svg';
 
 class App extends Component {
     
     constructor(props){
         super(props);
         
+        
+        this.updateByName = this.updateByName.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.toggleNavbar = this.toggleNavbar.bind(this);
         this.pushMarkersData = this.pushMarkersData.bind(this);
-        this.updateCenter = this.updateCenter.bind(this);
+        this.updateHood = this.updateHood.bind(this);
         this.shareStory = this.shareStory.bind(this);
         this.userInfo = this.userInfo.bind(this);
         this.addPost = this.addPost.bind(this);
@@ -50,7 +52,148 @@ class App extends Component {
             hoodImg: require("./img/icons/neighbourhood.svg"),
             hoodName: "Vancouver",
             hoodDesc: "Explore the neighbourhoods",
-            credits: false
+            credits: false,
+            neighbourhoodArr: [
+
+          {
+            name: "Arbutus-Ridge",
+            icon: require("./img/newicons/Arbutus-Ridge/icons-01.svg"),
+            coords: {lat: 49.2536, lng: -123.1604}
+          }, 
+          
+          {
+            name: "Downtown",
+            icon: require("./img/newicons/Downtown/icons-06.svg"),
+            coords: {lat: 49.2820, lng: -123.1171}
+          }, 
+          
+          {
+            name: "Dunbar",
+            icon: require("./img/newicons/Dunbar/icons-13.svg"),
+            coords: {lat: 49.2458, lng: -123.1854}
+          },
+          
+          {
+            name: "Fairview",
+            icon: require('./img/newicons/Fairview/icons-10.svg'),
+            coords: {lat: 49.2660, lng: -123.1289}
+          },
+          
+          {
+            name: "Hastings-Sunrise",
+            icon: require('./img/newicons/Hastings-Sunrise/icons-03.svg'),
+            coords: {lat: 49.2811, lng: -123.0441}
+          },
+          
+          {
+              name: "Grandview-Woodland",
+              icon: require('./img/newicons/Grandview-Woodland/icons-20.svg'),
+              coords: {lat: 49.2697, lng: -123.0697}
+          },
+          
+          {
+            name: "Kensington",
+            icon: require('./img/newicons/Kensington/icons-02.svg'),
+            coords: {lat: 49.2484, lng: -123.0701}
+          },
+          
+          {
+            name: "Kerrisdale",
+            icon: require('./img/newicons/Kerrisdale/icons-05.svg'),
+            coords: {lat: 49.2341, lng: -123.1554}
+          },
+          
+          {
+              name: "Killarney",
+              icon: require('./img/newicons/Killarney/icons-17.svg'),
+              coords: { lat:49.2247, lng:-123.0411}
+          },
+                        
+          {
+            name: "Kitsilano",
+            icon: require('./img/newicons/Kitsilano/icons-14.svg'),
+            coords: {lat: 49.2709, lng: -123.1621}
+          }, 
+          
+          {
+              name: "Marpole",
+              icon: require('./img/newicons/Marpole/icons-07.svg'),
+              coords:{lat:49.2107, lng: -123.1302}
+          },
+          
+          {
+            name: "Mt.Pleasant",
+            icon: require('./img/newicons/Mt-Pleasant/icons-08.svg'),
+            coords: {lat: 49.2583, lng: -123.1082}
+          }, 
+          
+          {
+            name: "Oakridge",
+            icon: require('./img/newicons/Oakridge/icons-07.svg'),
+            coords: {lat: 49.2298, lng: -123.1162}
+          }, 
+          
+          {
+            name: "Renfrew",
+            icon: require('./img/newicons/Renfrew-Collingwood/icons-18.svg'),
+            coords:{lat: 49.2411, lng: -123.0388}
+          },
+          
+           {
+            name: "Riley-Park",
+            icon: require('./img/newicons/Riley-Park/icons-12.svg'),
+            coords: {lat: 49.2449, lng: -123.1135}
+          }, 
+          
+           {
+            name: "Shaughnessy",
+            icon: require('./img/newicons/Shaughnessy/icons-11.svg'),
+            coords: {lat: 49.2473, lng: -123.1409}
+          }, 
+          
+          {
+            name: "South-Cambie",
+            icon: require('./img/newicons/South-Cambie/icons-21.svg'),
+            coords: {lat: 49.2452, lng: -123.1208}
+          },
+          
+          {
+            name: "Strathcona",
+            icon: require('./img/newicons/Strathcona/icons-22.svg'),
+            coords: {lat: 49.2737, lng: -123.0979}
+          },
+          
+          {
+            name: "Sunset",
+            icon: require('./img/newicons/Sunset/icons-04.svg'),
+            coords: {lat: 49.2245, lng: -123.0900}
+          }, 
+          
+          {
+            name: "UBC",
+            icon: require('./img/newicons/UBC/icons-19.svg'),
+            coords: {lat: 49.2606, lng: -123.2460}
+          },
+          
+          {
+            name: "Victoria-Fraserview",
+            icon: require('./img/newicons/Victoria-Fraserview/icons-23.svg'),
+            coords: {lat: 49.2185, lng: -123.0659}  
+          },
+          
+          {
+           name: "WestEnd",
+           icon: require('./img/newicons/West-End/icons-09.svg'),
+            coords: {lat: 49.2856, lng: -123.1306}
+          }, 
+          
+          {
+            name: "West-Point-Grey",
+            icon: require('./img/newicons/West-Point-Grey/icons-15.svg'),
+            coords: {lat: 49.2610, lng: -123.2001},
+          }
+
+      ]
         };   
     }
     
@@ -91,6 +234,7 @@ class App extends Component {
             console.log("log in you doof");
         }
     }
+    
     markerCoords(data){
         console.log("app.js coords:" +data.long, data.lat);
         this.setState({
@@ -126,7 +270,7 @@ class App extends Component {
         });
     }
     
-    updateCenter(coords, name, icon){
+    updateHood(coords, name, icon){
         this.setState({
             mapCenter: {lat: coords.lat, lng: coords.lng},
             sidebar: "postList",
@@ -136,6 +280,14 @@ class App extends Component {
             hoodImg: icon
         })
     };
+    
+    updateByName(name){
+        for (var i=0; i< this.state.neighbourhoodArr.length; i++){
+            if (this.state.neighbourhoodArr[i].name == name){
+                this.updateHood(this.state.neighbourhoodArr[i].coords, this.state.neighbourhoodArr[i].name, this.state.neighbourhoodArr[i].icon)
+            }
+        }
+    }
     
     closeModal(){
         this.setState({
@@ -152,161 +304,26 @@ class App extends Component {
     const { width } = this.state;
     const isMobile = width <= 576;
     var menuWidth;
+    var sideCardID;
+    var miniMapID;
       
       if (isMobile) {
-            menuWidth = "50%";
+            menuWidth = "90%";
+            sideCardID = "sideCard-mobile";
+            miniMapID = "miniMap-mobile";
                 
         } else {
             menuWidth = "35%";
+            sideCardID = "sideCard-desk";
+            miniMapID = "miniMap-desk";
+
         }
-
-      var neighbourhoodArr = [
-
-          {
-            name: "Arbutus Ridge",
-            icon: require("./img/newicons/Arbutus-Ridge/icons-01.svg"),
-            coords: {lat: 49.2536, lng: -123.1604}
-          }, 
-          
-          {
-            name: "Downtown",
-            icon: require("./img/newicons/Downtown/icons-06.svg"),
-            coords: {lat: 49.2820, lng: -123.1171}
-          }, 
-          
-          {
-            name: "Dunbar",
-            icon: require("./img/newicons/Dunbar/icons-13.svg"),
-            coords: {lat: 49.1404, lng: -123.1109}
-          },
-          
-          {
-            name: "Fairview",
-            icon: require('./img/newicons/Fairview/icons-10.svg'),
-            coords: {lat: 49.2660, lng: -123.1289}
-          },
-          
-          {
-            name: "Hastings Sunrise",
-            icon: require('./img/newicons/Hastings-Sunrise/icons-03.svg'),
-            coords: {lat: 49.2811, lng: -123.0441}
-          },
-          
-          {
-              name: "Grandview Woodland",
-              icon: require('./img/newicons/Grandview-Woodland/icons-20.svg'),
-              coords: {lat: 49.2697, lng: 123.0697}
-          },
-          
-          {
-            name: "Kensington",
-            icon: require('./img/newicons/Kensington/icons-02.svg'),
-            coords: {lat: 49.2484, lng: -123.0701}
-          },
-          
-          {
-            name: "Kerrisdale",
-            icon: require('./img/newicons/Kerrisdale/icons-05.svg'),
-            coords: {lat: 49.2341, lng: -123.1554}
-          },
-          
-          {
-              name: "Killarney",
-              icon: require('./img/newicons/Killarney/icons-17.svg'),
-              coords: { lat:49.2247, lng:123.0411}
-          },
-                        
-          {
-            name: "Kitsilano",
-            icon: require('./img/newicons/Kitsilano/icons-14.svg'),
-            coords: {lat: 49.2709, lng: -123.1621}
-          }, 
-          
-          {
-              name: "Marpole",
-              icon: require('./img/newicons/Marpole/icons-07.svg'),
-              coords:{lat:49.2107, lng: 123.1302}
-          },
-          
-          {
-            name: "Mt. Pleasant",
-            icon: require('./img/newicons/Mt-Pleasant/icons-08.svg'),
-            coords: {lat: 49.2583, lng: -123.1082}
-          }, 
-          
-          {
-            name: "Oakridge",
-            icon: require('./img/newicons/Oakridge/icons-07.svg'),
-            coords: {lat: 49.2298, lng: -123.1162}
-          }, 
-          
-          {
-            name: "Renfrew Collingwood",
-            icon: require('./img/newicons/Renfrew-Collingwood/icons-18.svg'),
-            coords:{lat: 49.2411, lng: 123.0388}
-          },
-          
-           {
-            name: "Riley Park",
-            icon: require('./img/newicons/Riley-Park/icons-12.svg'),
-            coords: {lat: 49.2449, lng: -123.1135}
-          }, 
-          
-           {
-            name: "Shaughnessy",
-            icon: require('./img/newicons/Shaughnessy/icons-11.svg'),
-            coords: {lat: 49.2473, lng: -123.1409}
-          }, 
-          
-          {
-            name: "South Cambie",
-            icon: require('./img/newicons/South-Cambie/icons-21.svg'),
-            coords: {lat: 49.2452, lng: 123.1208}
-          },
-          
-          {
-            name: "Strathcona",
-            icon: require('./img/newicons/Strathcona/icons-22.svg'),
-            coords: {lat: 49.2737, lng: 123.0979}
-          },
-          
-          {
-            name: "Sunset",
-            icon: require('./img/newicons/Sunset/icons-04.svg'),
-            coords: {lat: 49.2245, lng: -123.0900}
-          }, 
-          
-          {
-            name: "UBC",
-            icon: require('./img/newicons/UBC/icons-19.svg'),
-            coords: {lat: 49.2606, lng: 123.2460}
-          },
-          
-          {
-            name: "Victoria Fraserview",
-            icon: require('./img/newicons/Victoria-Fraserview/icons-23.svg'),
-            coords: {lat: 49.2185, lng: 123.0659}  
-          },
-          
-          {
-           name: "West End",
-           icon: require('./img/newicons/West-End/icons-09.svg'),
-            coords: {lat: 49.2856, lng: -123.1306}
-          }, 
-          
-          {
-            name: "West Point Grey",
-            icon: require('./img/newicons/West-Point-Grey/icons-15.svg'),
-            coords: {lat: 49.2610, lng: -123.2001},
-          }
-
-      ];
       
-    var hoodList = neighbourhoodArr.map((obj, i)=>{
+    var hoodList = this.state.neighbourhoodArr.map((obj, i)=>{
         var bgColor = i%2==1 ? "#f7f3f0" : "white";
         return (
             <div style={{borderTopColor: bgColor}} className="listItems" key={i} onClick={()=>{
-            this.updateCenter(obj.coords, obj.name, obj.icon)
+            this.updateHood(obj.coords, obj.name, obj.icon)
             console.log(obj.name);
         }}>
                 <img style={{height: "30px"}} src={obj.icon} />
@@ -444,17 +461,21 @@ class App extends Component {
                         </div>
                     </Col>
 
-                    <div id="miniMap">
-                        <MapGraphic 
-                            hoodName={this.state.hoodName}
-                        />
+                    <div id={miniMapID}>
+                        <Row>
+                            <Col xs="12">
+                                <MapGraphic 
+                                    hoodName={this.state.hoodName}
+                                    updateByName={this.updateByName}
+                                />
+                            </Col>
+                        </Row>
                     </div>
 
-                    <div id="sideCard">
+                    <div id={sideCardID}>
                         <Row>
                             <Col xs="12">
                                 <HoodCard
-                                    onClick={()=>this.updateCenter(49.2536, -123.1604)}
                                     hoodName={this.state.hoodName}
                                     hoodDesc={this.state.hoodDesc}
                                     hoodImg={this.state.hoodImg}
