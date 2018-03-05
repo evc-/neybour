@@ -225,7 +225,6 @@ class App extends Component {
         };   
     }
     
-    
     componentDidMount(){
         this.getPosts();   
     }
@@ -237,7 +236,7 @@ class App extends Component {
         })
         .then((data)=>{
             this.setState({
-                posts:data.posts
+                posts: data.posts
             });
         console.log(this.state.posts);
         });
@@ -407,15 +406,27 @@ class App extends Component {
         var bgColor = i%2==1 ? "#f7f3f0" : "white";
         
         if(obj.region === this.state.hoodTag){
-            return (
-            <div id="sidebar-posts" style={{backgroundColor: bgColor}} className="listItems" key={i}>
-                <img style={{height: "30px", float: "left", marginLeft: "10px"}} src={require('./img/marker8.png')} />
-                <div style={{fontWeight:"700", textTransform:"uppercase", letterSpacing:"1.5px"}}>{obj.title}</div>
-                <div>{obj.body}</div>
-                <div>{obj.coordinates}</div>
-                <div>{obj.region}</div>
-            </div>
-            );
+            if(this.state.loggedIn){   
+                return (
+                    <div id="sidebar-posts" style={{backgroundColor: bgColor}} className="listItems" key={i}>
+                        <img style={{height: "30px", float: "left", marginLeft: "10px"}} src={require('./img/marker8.png')} />
+                        <div style={{fontWeight:"700", textTransform:"uppercase", letterSpacing:"1.5px"}}>{obj.title}</div>
+                        <div>{obj.body}</div>
+                        <div>{obj.coordinates}</div>
+                        <div>{obj.region}</div>
+                    </div>
+                );
+            }else if(obj.toggle === false){
+                return (
+                    <div id="sidebar-posts" style={{backgroundColor: bgColor}} className="listItems" key={i}>
+                        <img style={{height: "30px", float: "left", marginLeft: "10px"}} src={require('./img/marker8.png')} />
+                        <div style={{fontWeight:"700", textTransform:"uppercase", letterSpacing:"1.5px"}}>{obj.title}</div>
+                        <div>{obj.body}</div>
+                        <div>{obj.coordinates}</div>
+                        <div>{obj.region}</div>
+                    </div>
+                );
+            }
         }
     });
                   

@@ -180,7 +180,7 @@ class Map extends Component{
 
                         >
                             <InfoWindow onCloseClick={this.closeNewPostPin}>
-                                <div>Log in to share your story!</div>
+                                <div><b>Log in</b> to share your story!</div>
                             </InfoWindow>
                         </Marker>
             }); 
@@ -222,19 +222,35 @@ class Map extends Component{
     render(){
         var posts = 
             this.props.posts.map((obj, i)=>{
-                return(
-                    <Marker key={i} 
-                        position={{lat: obj.coords.lat, lng: obj.coords.long}}
-                        onClick={this.showTitle.bind(this, i)}
-                        onDblClick={this.showPost.bind(this, i)}
-                        icon={{
-                            url: require("../img/myMarker2.png") 
-                        }}
-                    >
-                
-                        {this.state.infoWindow[i]}
-                    </Marker>
-                );  
+                if(this.props.loggedIn === true){
+                    return(
+                        <Marker key={i} 
+                            position={{lat: obj.coords.lat, lng: obj.coords.long}}
+                            onClick={this.showTitle.bind(this, i)}
+                            onDblClick={this.showPost.bind(this, i)}
+                            icon={{
+                                url: require("../img/myMarker2.png") 
+                            }}
+                        >
+
+                            {this.state.infoWindow[i]}
+                        </Marker>
+                    );  
+                }else if(obj.toggle === false){
+                    return(
+                        <Marker key={i} 
+                            position={{lat: obj.coords.lat, lng: obj.coords.long}}
+                            onClick={this.showTitle.bind(this, i)}
+                            onDblClick={this.showPost.bind(this, i)}
+                            icon={{
+                                url: require("../img/myMarker2.png") 
+                            }}
+                        >
+
+                            {this.state.infoWindow[i]}
+                        </Marker>
+                    );     
+                }   
             });
             
         return(
