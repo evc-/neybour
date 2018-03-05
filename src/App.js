@@ -12,7 +12,7 @@ import Login from './components/Login.js';
 import PostModal from './components/PostModal.js';
 import MapGraphic from './components/MapGraphic.js';
 import { slide as Menu } from 'react-burger-menu';
-import backarrow from './img/backarrow.svg';
+import backarrow from './img/backarrow-01.svg';
 
 class App extends Component {
     
@@ -304,12 +304,19 @@ class App extends Component {
     const { width } = this.state;
     const isMobile = width <= 576;
     var menuWidth;
+    var sideCardID;
+    var miniMapID;
       
       if (isMobile) {
-            menuWidth = "50%";
+            menuWidth = "90%";
+            sideCardID = "sideCard-mobile";
+            miniMapID = "miniMap-mobile";
                 
         } else {
             menuWidth = "35%";
+            sideCardID = "sideCard-desk";
+            miniMapID = "miniMap-desk";
+
         }
       
     var hoodList = this.state.neighbourhoodArr.map((obj, i)=>{
@@ -454,18 +461,21 @@ class App extends Component {
                         </div>
                     </Col>
 
-                    <div id="miniMap">
-                        <MapGraphic 
-                            hoodName={this.state.hoodName}
-                            updateByName={this.updateByName}
-                        />
+                    <div id={miniMapID}>
+                        <Row>
+                            <Col xs="12">
+                                <MapGraphic 
+                                    hoodName={this.state.hoodName}
+                                    updateByName={this.updateByName}
+                                />
+                            </Col>
+                        </Row>
                     </div>
 
-                    <div id="sideCard">
+                    <div id={sideCardID}>
                         <Row>
                             <Col xs="12">
                                 <HoodCard
-                                    onClick={()=>this.updateHood(49.2536, -123.1604)}
                                     hoodName={this.state.hoodName}
                                     hoodDesc={this.state.hoodDesc}
                                     hoodImg={this.state.hoodImg}
