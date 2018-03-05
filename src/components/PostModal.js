@@ -80,8 +80,14 @@ class PostModal extends Component {
                 <div className="posts">
                     <input className="post-input" type="text" placeholder="Title" onChange={this.postTitle}/><br/>
                     <input className="post-input" type="text" placeholder="What's your story?" onChange={this.postDesc}/><br/>
-                    <label id="post-label">Private?</label>
-                    <input id="post-check" type="checkbox" onChange={this.private}/><br/>
+            
+                    <label id="post-label" className="check-container">
+                        Private
+                        <input type="checkbox" onChange={this.private}/>
+                        <span className="checkmark"></span>
+                    </label>
+            
+            
                     <button id="create-post-btn" onClick={this.postCreate}>Create Post</button>
                 </div>
             </div>
