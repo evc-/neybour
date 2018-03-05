@@ -35,7 +35,7 @@ class Map extends Component{
     showTitle(i){
         infoWindow[i] =  
                 <InfoWindow onCloseClick={this.closePost(i)}>
-                    <div class="infoContent">{this.props.posts[i].title}</div>
+                    <div className="infoContent">{this.props.posts[i].title}</div>
                 </InfoWindow>
         this.setState({
             infoWindow: infoWindow 
@@ -73,9 +73,21 @@ class Map extends Component{
     //displays the post modal inside the InfoWindow of newPostPin
     showPostModal = ()=>{
         this.setState({
-            newPostInfoWindow:
-                <PostModal />     
-        })   
+            newPostPin: 
+                <Marker
+                    icon={{
+                        url: require("../img/marker8.png"),
+                    }}
+                    position={{lat: newPostCoords.lat, lng: newPostCoords.lng}}
+                    style={{maxHeight:"5px"}}
+
+                >
+                    <InfoWindow>
+                        <PostModal />
+                    </InfoWindow>   
+                </Marker>
+        }); 
+        
     }
     
     //when map is pressed
@@ -83,12 +95,6 @@ class Map extends Component{
         //checks that google place is not pressed (so pin isn't placed when clicking on google places)
         if(resp.oa !== undefined){
     //        if(this.props.loggedIn === true){
-            this.setState({
-                newPostInfoWindow:
-                    <InfoWindow onCloseClick={this.closeNewPostPin}>
-                        <button className="newPost" onClick={this.showPostModal}>Create New Post</button>
-                    </InfoWindow>
-            })
             newPostCoords = {
                 lat: resp.latLng.lat(),
                 lng: resp.latLng.lng()
@@ -100,11 +106,13 @@ class Map extends Component{
                         icon={{
                             url: require("../img/marker8.png"),
                         }}
-                        position={{lat: resp.latLng.lat(), lng: resp.latLng.lng()}}
+                        position={{lat: newPostCoords.lat, lng: newPostCoords.lng}}
                         style={{maxHeight:"5px"}}
 
                     >
-                        {this.state.newPostInfoWindow}
+                        <InfoWindow onCloseClick={this.closeNewPostPin}>
+                            <button className="newPost" onClick={this.showPostModal}>Create New Post</button>
+                        </InfoWindow>
                     </Marker>
             }); 
             
@@ -135,8 +143,7 @@ class Map extends Component{
                         onClick={this.showTitle.bind(this, i)}
                         onDblClick={this.showPost.bind(this, i)}
                         icon={{
-                            url: require("../img/marker8.png"),
-                              
+                            url: require("../img/marker8.png") 
                         }}
                     >
                 
