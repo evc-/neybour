@@ -346,14 +346,17 @@
     border-top-right-radius: 10px;
 }
 
-#hood-coords{
+#hood-coords, #weather-info {
     text-align: center;
     font-family: 'Poppins', sans-serif;
     font-weight: 100;
     font-size: 8pt;
     letter-spacing: 2px;
     color: #F7F3F0;
-    padding-bottom: 20px;
+}
+
+#weather-info {
+        padding-bottom: 20px;
 }
 
 /*MINIMAP*/
@@ -684,12 +687,64 @@
     white-space: normal;
 }
 
-#post-label{
-    font-family: 'Poppins', sans-serif;
-    padding: 5px;
+
+/*CHECKBOX */
+
+.check-container {
+    margin-top: 5px;
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 10pt;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-#post-check{
-    margin: 2px;
-    
+.check-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+}
+
+.check-container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.check-container input:checked ~ .checkmark {
+    background-color: #efa0a6;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.check-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.check-container .checkmark:after {
+    left: 5px;
+    top: 2px;
+    width: 6px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }

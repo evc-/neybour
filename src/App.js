@@ -27,9 +27,9 @@ class App extends Component {
         this.updateHood = this.updateHood.bind(this);
         this.shareStory = this.shareStory.bind(this);
         this.userInfo = this.userInfo.bind(this);
-        this.addPost = this.addPost.bind(this);
         this.markerCoords = this.markerCoords.bind(this);
         this.handleStateChange = this.handleStateChange.bind(this);
+        this.weatherFetch = this.weatherFetch.bind(this);
         
         this.state = {
             collapsed: true,
@@ -54,6 +54,7 @@ class App extends Component {
             hoodName: "Vancouver",
             hoodDesc: "Explore the neighbourhoods",
             credits: false,
+            posts: [{title:"dummy title", coords:{lat: 49, lng: -123}, body:"dummybody", region:"dummyregion"}],
             neighbourhoodArr: [
 
           {
@@ -213,19 +214,27 @@ class App extends Component {
                 posts:data.posts
             });
         console.log(this.state.posts);
-        });   
+        });  
+        //fetch weather
+        this.weatherFetch();
     }
     
-    addPost(post){
-        var temp = this.state.posts;
-  //      console.log(temp);
-       temp.push(post);
-        this.setState({
-            posts:temp
+    weatherFetch(){
+        let lat = this.state.mapCenter.lat;
+        let lng = this.state.mapCenter.lng;
+        fetch("http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lng+"&appid=5c78089b646c9d27dd997e0b6a99a182")
+        .then((res)=>{
+        return res.json(); 
+        })
+        .then((data)=>{
+            let weather = data.weather[0].description;
+            let temp = Math.round((parseInt(data.main.temp) - 273.15) * 10) / 10;
+   //          console.log(weather, temp);
+            this.setState({
+            curTemp:temp,
+            curWeather:weather
         });
-  //      console.log(this.state.posts);
-        this.setState({
-            postModal:false
+            console.log(this.state);
         });
     }
 
@@ -288,7 +297,8 @@ class App extends Component {
             pageTitle: name,
             menuOpen: false,
             hoodImg: icon
-        })
+        });
+        this.weatherFetch();
     };
     
     updateByName(name){
@@ -344,6 +354,18 @@ class App extends Component {
                 <span className="listNames">{obj.name}</span>
                                         
             </div>
+        );
+    });
+
+    var postList = this.state.posts.map((obj, i)=>{
+        var bgColor = i%2==1 ? "#f7f3f0" : "white";
+        return (
+        <div style={{backgroundColor: bgColor}} className="listItems" key={i}>
+            <div>obj.title</div>
+            <div>obj.body</div>
+            <div>obj.coordinates</div>
+            <div>obj.region</div>
+        </div>
         );
     });
                   
@@ -411,8 +433,12 @@ class App extends Component {
                 <div id="backArrow" onClick={()=>this.setState({sidebar: "neighbourhoodList"})}>
                     <img className="fluid" src={backarrow}/>
                 </div>
-                    <div id="hoodTitle">{this.state.hoodName}
-                </div>
+                    <div id="hoodTitle">
+                        {this.state.hoodName}
+                    </div>
+                    <div>
+                        {postList}
+                    </div>
                 </div>
             );
         }
@@ -501,6 +527,8 @@ class App extends Component {
                                     hoodImg={this.state.hoodImg}
                                     hoodLat={49.2536}
                                     hoodLng={123.1604}
+                                    hoodTemp={this.state.curTemp}
+                                    hoodWeather={this.state.curWeather}
                                 />
                             </Col>
                         </Row>

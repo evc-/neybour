@@ -19,6 +19,8 @@ class Map extends Component{
             newPostPin: null,
             newPostRegion: null
         }
+        
+        this.addPost = this.addPost.bind(this);
     }  
 
     componentDidMount(){ 
@@ -30,7 +32,24 @@ class Map extends Component{
             this.setState({
                 hoodsArray: data
             })
-        });   
+        });
+        this.setState({
+            loggedIn:this.props.loggedIn
+        })
+    }
+    
+    componentWillReceiveProps(nextprops){
+        if(this.props.loggedIn !== this.state.loggedIn){
+        this.setState({
+            loggedIn:this.props.loggedIn
+        });
+        if(this.state.newPostPin){    
+        this.setState({
+            newPostPin: null    
+        });
+        }
+    }
+
     }
     
     showTitle(i){
@@ -54,6 +73,11 @@ class Map extends Component{
         this.setState({
             infoWindow: infoWindow 
         });
+    }
+    
+    addPost(data){
+        this.props.addPost(data);
+        this.closeNewPostPin();
     }
     
     //closes InfoWindow
@@ -92,6 +116,7 @@ class Map extends Component{
                             updateUserInfoPosts={this.props.updateUserInfoPosts}
                             closeNewPostPin={this.closeNewPostPin}
                             reprintPins={this.props.reprintPins}
+                      
                         />
                     </InfoWindow>   
                 </Marker>
@@ -108,6 +133,7 @@ class Map extends Component{
                 lat: resp.latLng.lat(),
                 lng: resp.latLng.lng()
             };
+            if(this.state.loggedIn === true){
             this.checkRegion(this.state.hoodsArray);
             this.setState({
                 newPostPin: 
@@ -125,6 +151,24 @@ class Map extends Component{
                     </Marker>
             }); 
             }
+        } else if (this.state.loggedIn === false){
+                this.setState({
+                newPostPin: 
+                    <Marker
+                        icon={{
+                            url: require("../img/marker8.png"),
+                        }}
+                        position={{lat: newPostCoords.lat, lng: newPostCoords.lng}}
+                        style={{maxHeight:"5px"}}
+
+                    >
+                        <InfoWindow onCloseClick={this.closeNewPostPin}>
+                            <div>Log in to share your story!</div>
+                        </InfoWindow>
+                    </Marker>
+            }); 
+            
+        }
             
         }
     }
