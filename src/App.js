@@ -245,7 +245,7 @@ class App extends Component {
         });
     }
     
-    userInfo(data){
+    userInfo = (data)=>{
         this.setState({
             loggedIn: true,
             userInfo: data
@@ -335,29 +335,31 @@ class App extends Component {
 
       if (this.state.loggedIn === false && this.state.modalOpen === true){
           modalContent = (
-            <Login 
-                closeModal={this.closeModal}
-                modalOpen={this.state.modalOpen}
-                userInfo={this.userInfo} 
-                modalName={this.state.modalName}
-            />
+                <Login 
+                    closeModal={this.closeModal}
+                    modalOpen={this.state.modalOpen}
+                    modalName={this.state.modalName}
+                    userInfo={this.userInfo}   
+                />
           )
       } if (this.state.credits = true && this.state.modalOpen === true){
-          modalContent = (
-            <Login 
-              closeModal ={this.closeModal}
-              modalOpen={this.state.modalOpen}
-              modalName={this.state.modalName}
-              />
-          )
+            modalContent = (
+                <Login 
+                    closeModal ={this.closeModal}
+                    modalOpen={this.state.modalOpen}
+                    modalName={this.state.modalName}
+                    userInfo={this.userInfo}   
+                />
+            )
       } else if (this.state.modalOpen === true){
-          modalContent = (
-            <Login 
-                closeModal={this.closeModal}
-                modalOpen={this.state.modalOpen}
-                modalName={this.state.modalName}
-              />
-          )
+            modalContent = (
+                <Login 
+                    closeModal={this.closeModal}
+                    modalOpen={this.state.modalOpen}
+                    modalName={this.state.modalName}
+                    userInfo={this.userInfo}    
+                />
+            )
       }
 
     var sidebar;
