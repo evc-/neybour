@@ -396,7 +396,7 @@
 #sideCard-desk{
     position:absolute;
     right: 40px;
-    bottom: 30px; 
+    bottom: 20px; 
     z-index: 1000;
     width: 200px;
 }
