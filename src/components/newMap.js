@@ -59,6 +59,7 @@ class Map extends Component{
     }
     
     showTitle(i){
+        this.closePost(this.state.currentPin);
         this.setState({
             currentPin: i,
             newPostPin: null 
