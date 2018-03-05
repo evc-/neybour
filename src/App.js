@@ -36,7 +36,7 @@ class App extends Component {
             markersData:[],
             mapCoords:null,
             mapCenter: {lat: 49.2827, lng: -123.1207},
-            loggedin: false,
+            loggedIn: false,
             posts:[],
             respMessage: [],
             markerCoords: { lat:'', long:'' },
@@ -226,7 +226,7 @@ class App extends Component {
     }
 
     shareStory(){
-        if(this.state.loggedin === true){
+        if(this.state.loggedIn === true){
             this.setState({
                 postModal:true
             })   
@@ -247,10 +247,8 @@ class App extends Component {
     
     userInfo(data){
         this.setState({
-            loggedin:true,
-            userInfo:data,
-            token:data.token,
-            userId:data.userId
+            loggedIn: true,
+            userInfo: data
         });
         console.log(data);
     }
@@ -335,7 +333,7 @@ class App extends Component {
                   
     var modalContent = null;
 
-      if (this.state.loggedin === false && this.state.modalOpen === true){
+      if (this.state.loggedIn === false && this.state.modalOpen === true){
           modalContent = (
             <Login 
                 closeModal={this.closeModal}
@@ -455,8 +453,8 @@ class App extends Component {
                                 zoom={14}
 
                                 posts={this.state.posts}
-                                loggedIn={this.state.loggedin}
-                                addCoords={this.markerCoords}
+                                loggedIn={this.state.loggedIn}
+                                userInfo={this.state.userInfo}
                             />
                         </div>
                     </Col>
@@ -489,29 +487,6 @@ class App extends Component {
                 </Col>
             </Row>
         </Container>
-            
-
-                    {
-                    /*
-                    <GMap
-                        addCoords={this.markerCoords}
-                        loggedin = {this.state.loggedin}
-                        token = {this.state.token}
-                        addPost = {this.addPost}
-                        markersData={this.state.markersData}
-                        pushMarkersData={this.pushMarkersData} googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-                        loadingElement={<div style={{ height: '100%' }}/> }
-                        containerElement={<div style={{ height: '100vh', maxWidth: "100%", marginLeft:"0", marginRight:"0" }} /> }
-                        mapElement={<div style={{ height: '100%' }}/>}
-                        centerLat={this.state.centerLat}
-                        centerLng={this.state.centerLng}
-                        markerCoords = {this.state.markerCoords}
-                        postModalState = {this.state.postModal}
-                        posts = {this.state.posts}
-                    />
-                    */
-                    }
-
         <Container fluid id="footer-container">
             <Row >
                 <Col xs="12" >

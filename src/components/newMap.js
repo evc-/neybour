@@ -82,8 +82,12 @@ class Map extends Component{
                     style={{maxHeight:"5px"}}
 
                 >
-                    <InfoWindow>
-                        <PostModal />
+                    <InfoWindow onCloseClick={this.closeNewPostPin}>
+                        <PostModal 
+                            coords={newPostCoords}
+                            region={this.state.newPostRegion}
+                            userInfo={this.props.userInfo}
+                        />
                     </InfoWindow>   
                 </Marker>
         }); 
@@ -115,8 +119,6 @@ class Map extends Component{
                         </InfoWindow>
                     </Marker>
             }); 
-            
-            
     //        }
             
         }
@@ -128,6 +130,9 @@ class Map extends Component{
             let coords = [newPostCoords.lng, newPostCoords.lat]
             
             if(inside(coords, polyCheck) === true){
+                this.setState({
+                    newPostRegion: obj.properties.Name 
+                })
                 console.log(obj.properties.Name)   
             }
             

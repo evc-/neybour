@@ -12,21 +12,25 @@ class PostModal extends Component {
     }
     
     postCreate = ()=>{
+        
+//        console.log(this.state.title, this.state.desc, this.props.coords, this.props.region, this.state.newPostToggle, );
+        
         fetch('https://neybourapi.herokuapp.com/posts/', {
         method: 'POST',
         headers: {
             'Accept': 'application/json, text/plain, */*',
             'Content-type': 'application/json',
-            'Authorization': 'Bearer ' + this.props.token
+            'Authorization': 'Bearer ' + this.props.userInfo.token
         },
         body: JSON.stringify({
-            title:this.state.title,
-            body:this.state.desc,
+            title: this.state.title,
+            body: this.state.desc,
             coords: {
-                lat:this.props.coords.lat,
-                long:this.props.coords.long
+                lat: this.props.coords.lat,
+                long: this.props.coords.lng
             },
-            toggle:true
+            region: this.props.region,
+            toggle: this.state.newPostToggle
         })
     })
     .then((res) => res.json())
@@ -63,8 +67,10 @@ class PostModal extends Component {
         });
     }
 
-    private = ()=>{
-        console.log("hi");
+    private = (evt)=>{
+        this.setState({
+            newPostToggle: evt.target.checked   
+        })
     }
 
     render() {

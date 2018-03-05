@@ -42,19 +42,19 @@ class Login extends Component {
         .then((res) => res.json())
         .then((data) => this.authenticate(data))
     }
-    authenticate(data){
-        console.log("login.js: "+data);
+    
+    authenticate = (data)=>{
         if(data.token){
             this.setState({
-                loggedin:true
+                loggedIn: true
             });
-                var obj = {
-                    email:this.state.email,
-                    token:data.token,
-                    loggedin:true,
-                };
+            var obj = {
+                email: this.state.email,
+                token: data.token,
+                loggedIn: true,
+            };
             this.props.userInfo(obj);
-            
+
             console.log("You're logged in!");
             this.props.closeModal();
         } else if(data.message == "Auth failed"){
