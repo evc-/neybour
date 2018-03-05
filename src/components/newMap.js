@@ -38,24 +38,36 @@ class Map extends Component{
         })
     }
     
-    componentWillReceiveProps(nextprops){
-        if(this.props.loggedIn !== this.state.loggedIn){
-        this.setState({
-            loggedIn:this.props.loggedIn
-        });
-        if(this.state.newPostPin){    
-        this.setState({
-            newPostPin: null    
-        });
+    componentWillReceiveProps(nextProps){
+        if(nextProps.panTo){
+            console.log("PAN")
+            this.panTo(nextProps.panTo);
         }
-    }
+        
+        
+        if(this.props.loggedIn !== this.state.loggedIn){
+            this.setState({
+                loggedIn:this.props.loggedIn
+            });
+            if(this.state.newPostPin){    
+                this.setState({
+                    newPostPin: null    
+                });
+            }
+        }
 
     }
     
     showTitle(i){
+        this.setState({
+            currentPin: i,
+            newPostPin: null 
+        });
         infoWindow[i] =  
                 <InfoWindow onCloseClick={this.closePost(i)}>
-                    <div className="infoContent">{this.props.posts[i].title}</div>
+                    <div onClick={this.showPost.bind(this, i)} style={{cursor:'pointer'}}>
+                        <div className="infoContent">{this.props.posts[i].title}</div>
+                    </div>
                 </InfoWindow>
         this.setState({
             infoWindow: infoWindow 
@@ -127,14 +139,20 @@ class Map extends Component{
     
     //when map is pressed
     handleMapClick = (resp)=>{
+        this.closePost(this.state.currentPin);
         //checks that google place is not pressed (so pin isn't placed when clicking on google places)
         if(resp.oa !== undefined){
             newPostCoords = {
                 lat: resp.latLng.lat(),
                 lng: resp.latLng.lng()
             };
+            
+            //pan when newPostPin shows up
+//            this.panTo({lat: newPostCoords.lat+0.005, lng: newPostCoords.lng});
+            
             if(this.state.loggedIn === true){
                 this.checkRegion(this.state.hoodsArray);
+                console.log(this.state.newPostRegion)
                 this.setState({
                     newPostPin: 
                         <Marker
@@ -172,22 +190,33 @@ class Map extends Component{
     }
         
     checkRegion = (data)=>{
+        var stopper = false;
+        
         data.features.map((obj, i)=>{
-            let polyCheck = obj.geometry.coordinates[0];
-            let coords = [newPostCoords.lng, newPostCoords.lat]
-            
-            if(inside(coords, polyCheck) === true){
-                this.setState({
-                    newPostRegion: obj.properties.Name 
-                })
-                console.log(obj.properties.Name)   
-            }else{
-                this.setState({
-                    newPostRegion: "UBC" 
-                })    
+            if(stopper === false){
+                let polyCheck = obj.geometry.coordinates[0];
+                let coords = [newPostCoords.lng, newPostCoords.lat]
+
+                if(inside(coords, polyCheck) === true){
+                    this.setState({
+                        newPostRegion: obj.properties.Name 
+                    })  
+                    stopper = true;
+                }else{
+                    this.setState({
+                        newPostRegion: "UBC" 
+                    })    
+                }
             }
-            
-        });      
+        });     
+    }
+    
+    recenterMap = (data)=>{
+        this.props.recenterMap(this.map.getCenter().lat(),this.map.getCenter().lng());
+    }
+    
+    panTo = (panTo) =>{
+        this.map.panTo(panTo)  
     }
     
     render(){
@@ -211,9 +240,11 @@ class Map extends Component{
         return(
                 <GoogleMap
                     onClick={this.handleMapClick.bind(this)}
-                    
+
                     defaultZoom={this.props.zoom}
                     center={this.props.center}
+                    onDragEnd={this.recenterMap}
+                    ref={(map) => { this.map = map; }}
                 > 
                     {posts}
                     {this.state.newPostPin}

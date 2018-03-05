@@ -38,6 +38,7 @@ class App extends Component {
             markersData:[],
             mapCoords:null,
             mapCenter: {lat: 49.2827, lng: -123.1207},
+            mapZoom: 14,
             loggedIn: false,
             posts:[],
             respMessage: [],
@@ -61,138 +62,161 @@ class App extends Component {
 
           {
             name: "Arbutus-Ridge",
+              tag: "Arbutus-Ridge",
             icon: require("./img/newicons/Arbutus-Ridge/icons-01.svg"),
             coords: {lat: 49.2536, lng: -123.1604}
           }, 
           
           {
             name: "Downtown",
+            tag: "Downtown",
             icon: require("./img/newicons/Downtown/icons-06.svg"),
             coords: {lat: 49.2820, lng: -123.1171}
           }, 
           
           {
             name: "Dunbar",
+            tag: "Dunbar",
             icon: require("./img/newicons/Dunbar/icons-13.svg"),
             coords: {lat: 49.2458, lng: -123.1854}
           },
           
           {
             name: "Fairview",
+            tag: "Fairview",
             icon: require('./img/newicons/Fairview/icons-10.svg'),
             coords: {lat: 49.2660, lng: -123.1289}
           },
           
           {
             name: "Hastings-Sunrise",
+            tag: "Hastings-Sunrise",
             icon: require('./img/newicons/Hastings-Sunrise/icons-03.svg'),
             coords: {lat: 49.2811, lng: -123.0441}
           },
           
           {
               name: "Grandview-Woodland",
+              tag: "Grandview-Woodland",
               icon: require('./img/newicons/Grandview-Woodland/icons-20.svg'),
               coords: {lat: 49.2697, lng: -123.0697}
           },
           
           {
             name: "Kensington",
+              tag: "Kensington-Cedar Cottage",
             icon: require('./img/newicons/Kensington/icons-02.svg'),
             coords: {lat: 49.2484, lng: -123.0701}
           },
           
           {
             name: "Kerrisdale",
+            tag: "Kerrisdale",
             icon: require('./img/newicons/Kerrisdale/icons-05.svg'),
             coords: {lat: 49.2341, lng: -123.1554}
           },
           
           {
               name: "Killarney",
+              tag: "Killarney",
               icon: require('./img/newicons/Killarney/icons-17.svg'),
               coords: { lat:49.2247, lng:-123.0411}
           },
                         
           {
             name: "Kitsilano",
+            tag: "Kitsilano",
             icon: require('./img/newicons/Kitsilano/icons-14.svg'),
             coords: {lat: 49.2709, lng: -123.1621}
           }, 
           
           {
               name: "Marpole",
+              tag: "Marpole",
               icon: require('./img/newicons/Marpole/icons-07.svg'),
               coords:{lat:49.2107, lng: -123.1302}
           },
           
           {
             name: "Mt.Pleasant",
+            tag: "Mt.Pleasant",
             icon: require('./img/newicons/Mt-Pleasant/icons-08.svg'),
             coords: {lat: 49.2583, lng: -123.1082}
           }, 
           
           {
             name: "Oakridge",
+            tag: "Oakridge",
             icon: require('./img/newicons/Oakridge/icons-07.svg'),
             coords: {lat: 49.2298, lng: -123.1162}
           }, 
           
           {
             name: "Renfrew",
+            tag: "Renfrew",
             icon: require('./img/newicons/Renfrew-Collingwood/icons-18.svg'),
             coords:{lat: 49.2411, lng: -123.0388}
           },
           
            {
             name: "Riley-Park",
+            tag: "Riley Park",
             icon: require('./img/newicons/Riley-Park/icons-12.svg'),
             coords: {lat: 49.2449, lng: -123.1135}
           }, 
           
            {
             name: "Shaughnessy",
+            tag: "Shaughnessy",
             icon: require('./img/newicons/Shaughnessy/icons-11.svg'),
             coords: {lat: 49.2473, lng: -123.1409}
           }, 
           
           {
             name: "South-Cambie",
+            tag: "South Cambie",
             icon: require('./img/newicons/South-Cambie/icons-21.svg'),
             coords: {lat: 49.2452, lng: -123.1208}
           },
           
           {
             name: "Strathcona",
+            tag: "Strathcona",
             icon: require('./img/newicons/Strathcona/icons-22.svg'),
             coords: {lat: 49.2737, lng: -123.0979}
           },
           
           {
             name: "Sunset",
+            tag: "Sunset",
             icon: require('./img/newicons/Sunset/icons-04.svg'),
             coords: {lat: 49.2245, lng: -123.0900}
           }, 
           
           {
             name: "UBC",
+            tag: "UBC",
             icon: require('./img/newicons/UBC/icons-19.svg'),
             coords: {lat: 49.2606, lng: -123.2460}
           },
           
           {
             name: "Victoria-Fraserview",
+            tag: "Victoria-Fraserview",
             icon: require('./img/newicons/Victoria-Fraserview/icons-23.svg'),
             coords: {lat: 49.2185, lng: -123.0659}  
           },
           
           {
            name: "WestEnd",
+           tag: "West End",
            icon: require('./img/newicons/West-End/icons-09.svg'),
             coords: {lat: 49.2856, lng: -123.1306}
           }, 
           
           {
             name: "West-Point-Grey",
+            tag: "West Point Grey",
             icon: require('./img/newicons/West-Point-Grey/icons-15.svg'),
             coords: {lat: 49.2610, lng: -123.2001},
           }
@@ -235,7 +259,7 @@ class App extends Component {
             curTemp:temp,
             curWeather:weather
         });
-            console.log(this.state);
+//            console.log(this.state);
         });
     }
 
@@ -303,11 +327,14 @@ class App extends Component {
         });
     }
     
-    updateHood(coords, name, icon){
+    updateHood(coords, name, icon, tag){
         this.setState({
-            mapCenter: {lat: coords.lat, lng: coords.lng},
+//            mapCenter: {lat: coords.lat, lng: coords.lng},
+            panTo: {lat: coords.lat, lng: coords.lng},
+            mapZoom: 14,
             sidebar: "postList",
             hoodName: name,
+            hoodTag: tag,
             pageTitle: name,
             menuOpen: false,
             hoodImg: icon
@@ -318,7 +345,7 @@ class App extends Component {
     updateByName(name){
         for (var i=0; i< this.state.neighbourhoodArr.length; i++){
             if (this.state.neighbourhoodArr[i].name == name){
-                this.updateHood(this.state.neighbourhoodArr[i].coords, this.state.neighbourhoodArr[i].name, this.state.neighbourhoodArr[i].icon)
+                this.updateHood(this.state.neighbourhoodArr[i].coords, this.state.neighbourhoodArr[i].name, this.state.neighbourhoodArr[i].icon, this.state.neighbourhoodArr[i].tag)
             }
         }
     }
@@ -336,7 +363,13 @@ class App extends Component {
     reprintPins = ()=>{
         this.getPosts();  
     }
-
+    
+    recenterMap = (lat, lng)=>{
+        this.setState({
+            mapCenter: {lat: lat, lng: lng}
+        })  
+    }
+    
   render() { 
       
     const { width } = this.state;
@@ -361,11 +394,10 @@ class App extends Component {
         var bgColor = i%2==1 ? "#f7f3f0" : "white";
         return (
             <div style={{borderTopColor: bgColor}} className="listItems" key={i} onClick={()=>{
-            this.updateHood(obj.coords, obj.name, obj.icon)
-            console.log(obj.name);
+            this.updateHood(obj.coords, obj.name, obj.icon, obj.tag)
         }}>
-                <img style={{height: "30px"}} src={obj.icon} />
-                <span className="listNames">{obj.name}</span>
+                <img style={{height: "30px",cursor:'pointer'}} src={obj.icon} />
+                <span className="listNames" style={{cursor:'pointer'}}>{obj.name}</span>
                                         
             </div>
         );
@@ -373,15 +405,18 @@ class App extends Component {
 
     var postList = this.state.posts.map((obj, i)=>{
         var bgColor = i%2==1 ? "#f7f3f0" : "white";
-        return (
-        <div id="sidebar-posts" style={{backgroundColor: bgColor}} className="listItems" key={i}>
-            <img style={{height: "30px", float: "left", marginLeft: "10px"}} src={require('./img/marker8.png')} />
-            <div style={{fontWeight:"700", textTransform:"uppercase", letterSpacing:"1.5px"}}>{obj.title}</div>
-            <div>{obj.body}</div>
-            <div>{obj.coordinates}</div>
-            <div>{obj.region}</div>
-        </div>
-        );
+        
+        if(obj.region === this.state.hoodTag){
+            return (
+            <div id="sidebar-posts" style={{backgroundColor: bgColor}} className="listItems" key={i}>
+                <img style={{height: "30px", float: "left", marginLeft: "10px"}} src={require('./img/marker8.png')} />
+                <div style={{fontWeight:"700", textTransform:"uppercase", letterSpacing:"1.5px"}}>{obj.title}</div>
+                <div>{obj.body}</div>
+                <div>{obj.coordinates}</div>
+                <div>{obj.region}</div>
+            </div>
+            );
+        }
     });
                   
     var modalContent = null;
@@ -417,7 +452,7 @@ class App extends Component {
 
     var sidebar;
 
-        if (this.state.sidebar == "landingMsg"){
+        if (this.state.sidebar === "landingMsg"){
             sidebar = (
                 <div>
                     <div className="header-home">{this.state.pageTitle}</div>
@@ -432,7 +467,7 @@ class App extends Component {
             
             )
         }
-        if (this.state.sidebar == "neighbourhoodList"){
+        if (this.state.sidebar === "neighbourhoodList"){
             sidebar = (
                 <div>
                 <div id="findHoodTitle">find your neighbourhood
@@ -442,7 +477,7 @@ class App extends Component {
                 </div>
             </div>
             );
-        } else if (this.state.sidebar == "postList"){
+        } else if (this.state.sidebar === "postList"){
             sidebar = (
                 <div>
                 <div id="backArrow" onClick={()=>this.setState({sidebar: "neighbourhoodList"})}>
@@ -508,8 +543,10 @@ class App extends Component {
                                 mapElement={<div style={{height: 100+'%'}}/>}
                                 loadingElement={<div style={{height: 100+'%'}} />}
 
-                                center={ {lat: this.state.mapCenter.lat, lng: this.state.mapCenter.lng } }
-                                zoom={14}
+                                center={this.state.mapCenter}
+                                zoom={this.state.mapZoom}
+                                recenterMap={this.recenterMap}
+                                panTo={this.state.panTo}
 
                                 posts={this.state.posts}
                                 loggedIn={this.state.loggedIn}
@@ -519,6 +556,7 @@ class App extends Component {
                                 updateUserInfoPosts={this.updateUserInfoPosts}
                                 reprintPins={this.reprintPins}
                                 addPost={this.addPost}
+                            
                             />
                         </div>
                     </Col>
