@@ -323,7 +323,7 @@
 }
 
 #hood-img{
-    padding: 20px;
+    padding: 10px;
 }
 
 #card-footer{
@@ -396,9 +396,10 @@
 #sideCard-desk{
     position:absolute;
     right: 40px;
-    bottom: 20px; 
+    bottom: 13px; 
     z-index: 1000;
     width: 200px;
+    margin-top: 5px;
 }
 
 #sideCard-mobile{
