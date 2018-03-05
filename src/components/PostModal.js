@@ -7,7 +7,7 @@ class PostModal extends Component {
         super(props);
         
         this.state={
-
+                newPostToggle:false
         }
     }
     

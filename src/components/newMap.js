@@ -18,6 +18,8 @@ class Map extends Component{
             newPostPin: null,
             newPostRegion: null
         }
+        
+        this.addPost = this.addPost.bind(this);
     }  
 
     componentDidMount(){ 
@@ -72,6 +74,11 @@ class Map extends Component{
         });
     }
     
+    addPost(data){
+        this.props.addPost(data);
+        this.closeNewPostPin();
+    }
+    
     //closes InfoWindow
     closePost(i){
         infoWindow[i] = null;
@@ -104,6 +111,7 @@ class Map extends Component{
                             coords={newPostCoords}
                             region={this.state.newPostRegion}
                             userInfo={this.props.userInfo}
+                            addPost={this.addPost}
                         />
                     </InfoWindow>   
                 </Marker>

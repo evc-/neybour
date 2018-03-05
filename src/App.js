@@ -495,6 +495,7 @@ class App extends Component {
                                 posts={this.state.posts}
                                 loggedIn={this.state.loggedIn}
                                 userInfo={this.state.userInfo}
+                                addPost={this.addPost}
                             />
                         </div>
                     </Col>
