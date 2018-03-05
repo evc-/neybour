@@ -396,7 +396,7 @@
 #sideCard-desk{
     position:absolute;
     right: 40px;
-    bottom: 17%; 
+    bottom: 5%; 
     z-index: 1000;
     width: 200px;
 }
@@ -473,6 +473,7 @@
 
 #menu-outer-container{
     max-width: 100%;
+    padding-bottom: -95px;
 }
 
 /* Position and sizing of burger button */
