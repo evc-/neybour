@@ -15,6 +15,7 @@ class Map extends Component{
             hoodsArray: {},
             showInfo: false,
             infoWindow: [],
+            userPosts: [],
             newPostPin: null,
             newPostRegion: null
         }
@@ -87,6 +88,10 @@ class Map extends Component{
                             coords={newPostCoords}
                             region={this.state.newPostRegion}
                             userInfo={this.props.userInfo}
+                            userPosts={this.props.userPosts}
+                            updateUserInfoPosts={this.props.updateUserInfoPosts}
+                            closeNewPostPin={this.closeNewPostPin}
+                            reprintPins={this.props.reprintPins}
                         />
                     </InfoWindow>   
                 </Marker>
@@ -98,7 +103,7 @@ class Map extends Component{
     handleMapClick = (resp)=>{
         //checks that google place is not pressed (so pin isn't placed when clicking on google places)
         if(resp.oa !== undefined){
-    //        if(this.props.loggedIn === true){
+            if(this.props.loggedIn === true){
             newPostCoords = {
                 lat: resp.latLng.lat(),
                 lng: resp.latLng.lng()
@@ -119,7 +124,7 @@ class Map extends Component{
                         </InfoWindow>
                     </Marker>
             }); 
-    //        }
+            }
             
         }
     }

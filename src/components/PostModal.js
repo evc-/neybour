@@ -7,8 +7,9 @@ class PostModal extends Component {
         super(props);
         
         this.state={
-
+            newPostToggle: false   
         }
+        console.log(this.props.userInfo);
     }
     
     postCreate = ()=>{      
@@ -31,27 +32,45 @@ class PostModal extends Component {
             })
         })
         .then((res) => res.json())
-        .then((data) => this.postCheck(data)) 
+        .then((data) => this.updateUserPosts(data)) 
     }  
 
-    postCheck = (obj)=>{
+    updateUserPosts = (obj)=>{
         if(obj.error){
             console.log("failed");
             console.log(obj.error.message);
         } else {
-            let post = {
-            title:this.state.title,
-            body:this.state.desc,
-            coords: {
-                lat:this.props.coords.lat,
-                long:this.props.coords.lng
-            },
-            toggle:true
-        };
-            console.log(obj.message);
-            this.props.addPost(post);
+            var postsArr = this.props.userPosts;
+            postsArr.push(obj.createdPost._id);            
+            
+            fetch('https://neybourapi.herokuapp.com/users/' + this.props.userInfo.userId, {
+                method: 'PATCH',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-type': 'application/json',
+                    'Authorization': 'Bearer ' + this.props.userInfo.token
+                },
+                body: JSON.stringify(
+                    [ 
+                        { "propName": "posts", "value": postsArr }
+                    ]
+                )
+            })
+            .then((res) => res.json())
+            .then((data) => console.log(data))
+            
+            fetch('https://neybourapi.herokuapp.com/users/' + this.props.userInfo.userId)
+            .then((res)=>{
+                return res.json(); 
+            })
+            .then((data)=>{ 
+                this.props.updateUserInfoPosts(data.user.posts);
+                this.props.closeNewPostPin();
+                this.props.reprintPins();
+            });
         }
     }    
+    
     postTitle = (evt)=>{
         this.setState({
             title:evt.target.value

@@ -41,6 +41,7 @@ class App extends Component {
             respMessage: [],
             markerCoords: { lat:'', long:'' },
             userInfo: [],
+            userPosts: [],
             modal:'',
             postModal:false,
             modalOpen: false,
@@ -199,17 +200,20 @@ class App extends Component {
     
     
     componentDidMount(){
+        this.getPosts();   
+    }
+    
+    getPosts = ()=>{
         fetch('https://neybourapi.herokuapp.com/posts/')
         .then((res)=>{
         return res.json(); 
         })
-            .then((data)=>{
-    //    console.log(data);
-        this.setState({
-            posts:data.posts
-        });
+        .then((data)=>{
+            this.setState({
+                posts:data.posts
+            });
         console.log(this.state.posts);
-        });
+        });   
     }
     
     addPost(post){
@@ -248,9 +252,17 @@ class App extends Component {
     userInfo = (data)=>{
         this.setState({
             loggedIn: true,
-            userInfo: data
+            userInfo: data,
+            userPosts: data.posts
         });
         console.log(data);
+    }
+    
+    updateUserInfoPosts = (data)=>{
+        console.log("app.js: " + JSON.stringify(data));
+        this.setState({
+            userPosts: data
+        })
     }
     
      pushMarkersData(data){
@@ -295,6 +307,10 @@ class App extends Component {
     
     handleStateChange(state) {
         this.setState({menuOpen: state.isOpen})  
+    }
+
+    reprintPins = ()=>{
+        this.getPosts();  
     }
 
   render() { 
@@ -457,6 +473,10 @@ class App extends Component {
                                 posts={this.state.posts}
                                 loggedIn={this.state.loggedIn}
                                 userInfo={this.state.userInfo}
+                                userPosts={this.state.userPosts}
+
+                                updateUserInfoPosts={this.updateUserInfoPosts}
+                                reprintPins={this.reprintPins}
                             />
                         </div>
                     </Col>

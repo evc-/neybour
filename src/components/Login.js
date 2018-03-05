@@ -48,7 +48,9 @@ class Login extends Component {
                 loggedIn: true
             });
             var obj = {
+                userId: data.userId,
                 email: this.state.email,
+                posts: data.posts,
                 token: data.token,
                 loggedIn: true,
             };
